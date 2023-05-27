@@ -4,3 +4,5 @@ dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 /usr/lib/xdg-desktop-portal-hyprland &
 systemctl restart --user gnome-keyring-daemon
 systemctl restart --user gcr-ssh-agent.socket
+
+hyprpaper &

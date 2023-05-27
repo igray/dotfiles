@@ -1,17 +1,17 @@
 local wezterm = require 'wezterm';
 local mux = wezterm.mux
 
-wezterm.on('gui-startup', function(cmd)
-  local tab, pane, window = mux.spawn_window(cmd or {})
-
-  window:gui_window():maximize()
-  -- Create a split occupying the right 1/3 of the screen
-  local new_pane = pane:split { size = 0.3, direction = "Right" }
-  -- Create another split in the right of the remaining 2/3
-  -- of the space; the resultant split is in the middle
-  -- 1/3 of the display and has the focus.
-  new_pane:split { size = 0.5, direction = "Bottom" }
-end)
+-- wezterm.on('gui-startup', function(cmd)
+--   local tab, pane, window = mux.spawn_window(cmd or {})
+--
+--   window:gui_window():maximize()
+--   -- Create a split occupying the right 1/3 of the screen
+--   local new_pane = pane:split { size = 0.3, direction = "Right" }
+--   -- Create another split in the right of the remaining 2/3
+--   -- of the space; the resultant split is in the middle
+--   -- 1/3 of the display and has the focus.
+--   new_pane:split { size = 0.5, direction = "Bottom" }
+-- end)
 
 return {
   enable_wayland = true,
