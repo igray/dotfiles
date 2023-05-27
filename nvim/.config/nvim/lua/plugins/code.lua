@@ -1,0 +1,213 @@
+return {
+  { "echasnovski/mini.pairs", enabled = false },
+  { "tpope/vim-rails" },
+  { "gleam-lang/gleam.vim" },
+  -- Use <tab> for completion and snippets (supertab)
+  -- first: disable default <tab> and <s-tab> behavior in LuaSnip
+  {
+    "L3MON4D3/LuaSnip",
+    keys = function()
+      return {}
+    end,
+  },
+  -- then: setup supertab in cmp
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-emoji",
+    },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
+
+      local luasnip = require("luasnip")
+      local cmp = require("cmp")
+
+      opts.mapping = vim.tbl_extend("force", opts.mapping, {
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- they way you will only jump inside the snippet region
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+      })
+
+      opts.sources = cmp.config.sources({
+        { name = "copilot" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+      })
+    end,
+  },
+  -- add more treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "css",
+        "help",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "query",
+        "regex",
+        "ruby",
+        "rust",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+      ignore_install = { "elm" },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      autoformat = false,
+      -- options for vim.diagnostic.config()
+      diagnostics = {
+        virtual_text = false,
+      },
+      -- make sure mason installs the server
+      servers = {
+        ---@type lspconfig.options.tsserver
+        tsserver = {
+          settings = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        },
+      },
+      setup = {
+        tsserver = function(_, opts)
+          require("lazyvim.util").on_attach(function(client, buffer)
+            if client.name == "tsserver" then
+              -- stylua: ignore
+              vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
+              -- stylua: ignore
+              vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
+            end
+          end)
+          require("typescript").setup({ server = opts })
+          return true
+        end,
+      },
+    },
+    init = function(_)
+      local status_ok, lspconfig = pcall(require, "lspconfig")
+      if not status_ok then
+        return
+      end
+
+      local configs = require("lspconfig.configs")
+      local util = require("lspconfig.util")
+
+      -- Check if the config is already defined (useful when reloading this file)
+      if not configs.gleam then
+        configs.gleam = {
+          default_config = {
+            cmd = { "gleam", "lsp" },
+            filetypes = { "gleam" },
+            root_dir = function(fname)
+              return util.root_pattern("gleam.toml")(fname)
+            end,
+            settings = {},
+          },
+        }
+      end
+
+      lspconfig.gleam.setup({})
+
+      local custom_attach = function(client)
+        if client.config.flags then
+          client.config.flags.allow_incremental_sync = true
+        end
+      end
+
+      lspconfig.elmls.setup({
+        init_options = {
+          elmReviewDiagnostics = "warning",
+          elmPath = "lamdera",
+        },
+        on_attach = custom_attach,
+      })
+    end,
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      table.insert(opts.ensure_installed, "prettierd")
+    end,
+  },
+  { "jose-elias-alvarez/typescript.nvim" },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      table.insert(opts.sources, nls.builtins.formatting.prettierd)
+      table.insert(opts.sources, require("typescript.extensions.null-ls.code-actions"))
+    end,
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    config = true,
+  },
+  {
+    "mrcjkb/haskell-tools.nvim",
+    opts = {
+      hls = {
+        on_attach = function(_, bufnr)
+          local ht = require("haskell-tools")
+          local def_opts = { noremap = true, silent = true }
+          local opts = vim.tbl_extend("keep", def_opts, { buffer = bufnr })
+          -- haskell-language-server relies heavily on codeLenses,
+          -- so auto-refresh (see advanced configuration) is enabled by default
+          vim.keymap.set("n", "<space>ca", vim.lsp.codelens.run, opts)
+          vim.keymap.set("n", "<space>hs", ht.hoogle.hoogle_signature, opts)
+          vim.keymap.set("n", "<space>ea", ht.lsp.buf_eval_all, opts)
+          -- Toggle a GHCi repl for the current package
+          vim.keymap.set("n", "<leader>rr", ht.repl.toggle, opts)
+          -- Toggle a GHCi repl for the current buffer
+          vim.keymap.set("n", "<leader>rf", function()
+            ht.repl.toggle(vim.api.nvim_buf_get_name(0))
+          end, def_opts)
+          vim.keymap.set("n", "<leader>rq", ht.repl.quit, opts)
+        end,
+      },
+    },
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    opts = {
+      suggestion = { auto_trigger = true },
+    },
+  },
+}
