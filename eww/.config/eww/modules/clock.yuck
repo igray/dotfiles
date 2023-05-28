@@ -16,9 +16,9 @@
           :text ":")
         (label
           :text {time.minute}
-          :class "minute"))
-      (revealer
-        :reveal date_rev
+          :class "minute")
+        (label
+          :text " ")
         (button
           :class "date"
           :onclick "${EWW_CMD} open --toggle calendar"

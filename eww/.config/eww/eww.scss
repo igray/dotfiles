@@ -44,7 +44,7 @@ tooltip {
 }
 
 .text,
-.text label, { text-shadow: 0 0 .3rem $base; }
+.text label { text-shadow: 0 0 .3rem $base; }
 
 .icon,
 .icon label { font-family: Material Symbols Outlined; }
@@ -75,6 +75,7 @@ tooltip {
 .date {
   background: $bg;
   color: $flamingo;
+  padding-right: .7rem;
 
   label {
     font-size: 1.2rem;
