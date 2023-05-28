@@ -102,18 +102,7 @@
           :class "volume-bar"
           :value {volume.percent}
           :tooltip "volume on ${volume.percent}%"
-          :onchange "scripts/volume setvol SINK {}"))
-      (box
-        :class "brightness-slider-box"
-        :space-evenly false
-        (button
-          :class "brightness-slider-icon icon"
-          {brightness.icon})
-        (scale
-          :class "brightness-slider" 
-          :value {brightness.percent} 
-          :marks true 
-          :onchange "brillo -S {}")))
+          :onchange "scripts/volume setvol SINK {}")))
 
     (box
       :class "system-info-box"
