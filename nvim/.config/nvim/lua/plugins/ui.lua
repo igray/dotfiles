@@ -75,7 +75,7 @@ return {
     event = "VeryLazy",
     config = function()
       require("chatgpt").setup({
-        api_key_cmd = "cat ~/.openai_key"
+        api_key_cmd = "cat ~/.openai_key",
       })
     end,
     dependencies = {
@@ -96,6 +96,6 @@ return {
       { "<leader>ors", "<cmd>ChatGPTRun summarize<cr>", desc = "summarize" },
       { "<leader>orf", "<cmd>ChatGPTRun fix_bugs<cr>", desc = "fix_bugs" },
       { "<leader>ore", "<cmd>ChatGPTRun explain_code<cr>", desc = "explain_code" },
-    }
+    },
   },
 }
