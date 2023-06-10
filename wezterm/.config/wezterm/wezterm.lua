@@ -16,6 +16,7 @@ local mux = wezterm.mux
 return {
   enable_wayland = true,
   color_scheme = "Builtin Solarized Dark",
+  --font = wezterm.font("M+2 Nerd Font Propo", {weight="ExtraLight"}),
   font = wezterm.font("JetBrainsMono Nerd Font", {weight="ExtraLight"}),
   font_size = 11.0,
   -- title_font = wezterm.font("JetBrainsMono Nerd Font", {weight="ExtraLight"}),

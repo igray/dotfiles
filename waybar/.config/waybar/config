@@ -7,6 +7,7 @@
   "layer": "top",
   "position": "top",
   "output": "DP-3",
+  "output_": "eDP-1",
   "spacing": 0,
   "modules-left": ["wlr/workspaces"],
   "modules-center": ["clock#icon", "clock#time","clock#dateicon", "clock#date"],
@@ -101,8 +102,8 @@
   "pulseaudio#icon": {
     "format": "{icon}",
     "format-bluetooth": "{icon} ",
-    "format-bluetooth-muted": "婢 ",
-    "format-muted": "婢",
+    "format-bluetooth-muted": "󰝟 ",
+    "format-muted": "󰝟",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -151,11 +152,11 @@
     "format": "{icon}",
     "format-warning": "{icon}",
     "format-critical": "{icon}",
-    "format-charging": "",
+    "format-charging": "󰂄",
     "format-plugged": "",
     "format-alt": "{icon}",
     "format-full": "",
-    "format-icons": ["", "", "", "", "", "", "", "", "", ""]
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
 
   "battery#value": {
