@@ -75,7 +75,7 @@ return {
     event = "VeryLazy",
     config = function()
       require("chatgpt").setup({
-        api_key_cmd = "cat ~/.openai_key",
+        api_key_cmd = "cat /home/igray/.openai_key",
       })
     end,
     dependencies = {
