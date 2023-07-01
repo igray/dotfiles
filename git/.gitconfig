@@ -9,6 +9,18 @@
 [core]
   pager = delta
 
+[alias]
+  pf = push --force-with-lease
+  hard-reset = reset --hard @{u}
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  unstage = reset HEAD --
+  last = log -1 HEAD
+  patch = "!git --no-pager diff"
+  glog = log --graph --decorate --oneline
+
 [interactive]
   diffFilter = delta --color-only
 
