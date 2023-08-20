@@ -1,4 +1,5 @@
 return {
+  { "folke/flash.nvim", enabled = false },
   {
     "folke/which-key.nvim",
     opts = function()
@@ -26,15 +27,15 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      event_handlers = {
-        {
-          event = "file_opened",
-          handler = function(_)
-            --auto close
-            require("neo-tree").close_all()
-          end,
-        },
-      },
+      -- event_handlers = {
+      --   {
+      --     event = "file_opened",
+      --     handler = function(_)
+      --       --auto close
+      --       require("neo-tree").close_all()
+      --     end,
+      --   },
+      -- },
       filesystem = {
         filtered_items = {
           always_show = { -- remains visible even if other settings would normally hide it
