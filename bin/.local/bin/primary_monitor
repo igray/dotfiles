@@ -1,0 +1,11 @@
+#!/bin/sh
+
+function move_window() {
+  hyprctl dispatch --batch "dispatch workspace $1 ; dispatch focuswindow pid:$2 ; dispatch movetoworkspacesilent $3"
+}
+
+function eww_monitor() {
+  cd ~/.config/eww
+  find ./ -type f -exec sed -i "s/:monitor \d/:monitor $1/g" {} \;
+}
+

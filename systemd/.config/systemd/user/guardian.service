@@ -1,0 +1,5 @@
+[Unit]
+Description=update wallpapers
+
+[Service]
+ExecStart=/usr/local/bin/guardian_pod.sh
