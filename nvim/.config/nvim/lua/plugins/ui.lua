@@ -76,6 +76,7 @@ return {
     config = function()
       require("chatgpt").setup({
         api_key_cmd = "cat /home/igray/.openai_key",
+        api_host_cmd = "echo api.openai.com",
       })
     end,
     dependencies = {
