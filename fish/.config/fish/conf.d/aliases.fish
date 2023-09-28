@@ -35,5 +35,5 @@ end
 
 # other
 alias doh='commandline -i "sudo $history[1]";history delete --exact --case-sensitive doh'
-alias l='exa'
+alias l='eza'
 alias vim='nvim'
