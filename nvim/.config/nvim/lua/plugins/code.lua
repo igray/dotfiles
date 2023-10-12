@@ -58,6 +58,7 @@ return {
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
+        { name = "emoji" },
       })
     end,
   },
@@ -92,7 +93,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      autoformat = false,
       -- options for vim.diagnostic.config()
       diagnostics = {
         virtual_text = false,
@@ -125,7 +125,7 @@ return {
       },
       setup = {
         tsserver = function(_, opts)
-          require("lazyvim.util").on_attach(function(client, buffer)
+          require("lazyvim.util").lsp.on_attach(function(client, buffer)
             if client.name == "tsserver" then
               -- stylua: ignore
               vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
