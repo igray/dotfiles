@@ -186,14 +186,6 @@ return {
   },
   { "jose-elias-alvarez/typescript.nvim" },
   {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      table.insert(opts.sources, nls.builtins.formatting.prettierd)
-      table.insert(opts.sources, require("typescript.extensions.null-ls.code-actions"))
-    end,
-  },
-  {
     "NvChad/nvim-colorizer.lua",
     config = true,
   },
@@ -228,11 +220,5 @@ return {
       }
     end,
     ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      suggestion = { auto_trigger = true },
-    },
   },
 }
