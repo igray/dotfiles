@@ -11,7 +11,12 @@
 #
 
 [
-  ./git.nix
-  ./zsh.nix
+  ./dircolors.nix
   ./direnv.nix
+  ./eza.nix
+  ./fish.nix
+  ./fzf.nix
+  ./git.nix
+  ./starship.nix
+  ./zoxide.nix
 ]

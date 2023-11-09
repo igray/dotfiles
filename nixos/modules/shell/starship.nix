@@ -3,10 +3,11 @@
 {
   home-manager.users.${vars.user} = {
     programs = {
-      direnv = {
+      starship = {
         enable = true;
-        nix-direnv = {
-          enable = true;
+        enableFishIntegration = true;
+        settings = {
+          add_newline = false;
         };
       };
     };

@@ -96,7 +96,7 @@ with host;
     home-manager.users.${vars.user} =
     let
       hyprlandConf = ''
-        monitor=${toString mainMonitor},2256x1504@60,0x0,1
+        monitor=${toString mainMonitor},2256x1504@60,0x0,1.25
         monitor=${toString secondMonitor},3840x2160@60,2256x0,1.75
         monitor=${toString thirdMonitor},3840x2160@60,2256x0,1.75
         monitor=,highres,auto,auto

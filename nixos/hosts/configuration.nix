@@ -105,8 +105,11 @@
 
       # Apps
       appimage-run      # Runs AppImages on NixOS
+      authenticator     # 2FA
       google-chrome     # Browser
       remmina           # XRDP & VNC Client
+      slack             # Talky
+      zoom-us           # Work calls
 
       # File Management
       gnome.file-roller # Archive Manager
@@ -157,8 +160,9 @@
   flatpak.enable = false;                    # Enable Flatpak (see module options)
 
   nix = {                                   # Nix Package Manager Settings
-    settings ={
+    settings = {
       auto-optimise-store = true;
+      trusted-users = [ "root" vars.user ];
     };
     gc = {                                  # Garbage Collection
       automatic = true;

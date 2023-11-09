@@ -3,11 +3,11 @@
 {
   home-manager.users.${vars.user} = {
     programs = {
-      direnv = {
+      exa = { # TODO: update to eza
         enable = true;
-        nix-direnv = {
-          enable = true;
-        };
+        enableAliases = true;
+        git = true;
+        icons = true;
       };
     };
   };

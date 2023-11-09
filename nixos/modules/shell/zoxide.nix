@@ -3,11 +3,9 @@
 {
   home-manager.users.${vars.user} = {
     programs = {
-      direnv = {
+      zoxide = {
         enable = true;
-        nix-direnv = {
-          enable = true;
-        };
+        enableFishIntegration = true;
       };
     };
   };
