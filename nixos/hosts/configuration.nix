@@ -55,6 +55,7 @@
   };
 
   fonts.fonts = with pkgs; [                # Fonts
+    cantarell-fonts                         # NixOS
     carlito                                 # NixOS
     vegur                                   # NixOS
     source-code-pro
