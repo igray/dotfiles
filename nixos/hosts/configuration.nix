@@ -107,6 +107,7 @@
       appimage-run      # Runs AppImages on NixOS
       authenticator     # 2FA
       google-chrome     # Browser
+      gcr               # Secrets prompter?
       remmina           # XRDP & VNC Client
       slack             # Talky
       zoom-us           # Work calls
@@ -177,7 +178,11 @@
       keep-derivations      = true
     '';
   };
-  nixpkgs.config.allowUnfree = true;        # Allow Proprietary Software.
+  nixpkgs = {
+    config = {
+       allowUnfree = true;                  # Allow Proprietary Software.
+    };
+  };
 
   system = {                                # NixOS Settings
     #autoUpgrade = {                        # Allow Auto Update (not useful in flakes)

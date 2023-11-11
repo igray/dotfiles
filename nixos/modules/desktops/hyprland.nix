@@ -101,6 +101,8 @@ with host;
         monitor=${toString thirdMonitor},3840x2160@60,2256x0,1.75
         monitor=,highres,auto,auto
 
+        env = SSH_AUTH_SOCK,$XDG_RUNTIME_DIR/keyring/ssh
+
         general {
           border_size=1
           gaps_in=5
@@ -133,8 +135,7 @@ with host;
           follow_mouse=1
           repeat_delay=250
           numlock_by_default=1
-          accel_profile=flat
-          sensitivity=0
+          sensitivity=0.5
           touchpad {
             natural_scroll=true
             clickfinger_behavior=true
@@ -259,6 +260,7 @@ with host;
         windowrule = idleinhibit focus, title:^(Zoom Meeting.*)$
 
         exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+        exec-once=${pkgs.systemd}/bin/systemctl start --user gnome-keyring.service
         exec-once=${pkgs.hyprpaper}/bin/hyprpaper
         exec-once=${unstable.waybar}/bin/waybar
         exec-once=${unstable.eww-wayland}/bin/eww daemon

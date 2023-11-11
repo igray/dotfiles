@@ -13,6 +13,7 @@
 [
   ./avahi.nix
   ./dunst.nix
+  ./keyring.nix
   ./flameshot.nix
   ./picom.nix
   ./polybar.nix
