@@ -17,6 +17,7 @@
   ./kitty.nix
   ./obs.nix
   ./rofi.nix
+  ./wallpaper.nix
   ./waybar.nix
   ./wezterm.nix
   ./wofi.nix

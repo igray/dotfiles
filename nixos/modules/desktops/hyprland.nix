@@ -262,7 +262,6 @@ with host;
 
         exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once=${pkgs.systemd}/bin/systemctl start --user gnome-keyring.service
-        exec-once=${pkgs.hyprpaper}/bin/hyprpaper
         exec-once=${unstable.waybar}/bin/waybar
         exec-once=${unstable.eww-wayland}/bin/eww daemon
         exec-once=${pkgs.blueman}/bin/blueman-applet
@@ -270,6 +269,7 @@ with host;
         exec-once=${pkgs.udiskie}/bin/udiskie
         exec-once=${pkgs.gammastep}/bin/gammastep -m wayland -l 30.318276:-97.742119
         exec-once=${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 1200 '${pkgs.systemd}/bin/systemctl suspend' after-resume '${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off'
+        exec-once=${pkgs.hyprpaper}/bin/hyprpaper
       '';
     in
     {
@@ -317,6 +317,15 @@ with host;
             fi
           '';
           executable = true;
+        };
+        ".config/hypr/hyprpaper.conf" = {
+          text = ''
+            preload = ~/.local/wallchange/mywallpaper.jpg
+            wallpaper = DP-2,~/.local/wallchange/mywallpaper.jpg
+            wallpaper = DP-5,~/.local/wallchange/mywallpaper.jpg
+            wallpaper = DP-7,~/.local/wallchange/mywallpaper.jpg
+            wallpaper = eDP-1,~/.local/wallchange/mywallpaper.jpg
+          '';
         };
       };
     };
