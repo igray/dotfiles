@@ -77,6 +77,7 @@
     };
     systemPackages = with pkgs; [           # System-Wide Packages
       # Terminal
+      bat               # Pager
       btop              # Resource Manager
       coreutils         # GNU Utilities
       git               # Version Control
@@ -109,6 +110,7 @@
       authenticator     # 2FA
       google-chrome     # Browser
       gcr               # Secrets prompter?
+      openssl           # Keygen
       remmina           # XRDP & VNC Client
       slack             # Talky
       zoom-us           # Work calls
@@ -156,6 +158,9 @@
       extraConfig = ''
         HostKeyAlgorithms +ssh-rsa
       '';
+    };
+    envfs = {
+      enable = true;
     };
   };
 

@@ -37,6 +37,7 @@
     initrd.kernelModules = [ "amdgpu" ];        # Video Drivers
   };
 
+  docker.enable = true;                         # Docker
   laptop.enable = true;                         # Laptop modules
   hyprland.enable = true;                       # Window manager
 
