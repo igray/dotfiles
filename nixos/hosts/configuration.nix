@@ -110,6 +110,7 @@
       authenticator     # 2FA
       google-chrome     # Browser
       gcr               # Secrets prompter?
+      logseq            # Notes
       openssl           # Keygen
       remmina           # XRDP & VNC Client
       slack             # Talky
