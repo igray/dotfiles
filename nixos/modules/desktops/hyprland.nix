@@ -46,6 +46,7 @@ with host;
         NIXOS_OZONE_WL = "1";
       };
       systemPackages = with pkgs; [
+        cliphist        # Search clipboard
         gammastep       # Nightlight
         grim            # Grab Images
         hyprpaper       # Background manager
@@ -65,14 +66,16 @@ with host;
       '';
     };
 
-    services.greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
+    services = {
+      greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
+          };
         };
+        vt = 7;
       };
-      vt = 7;
     };
 
     programs = {
@@ -179,7 +182,9 @@ with host;
         bind=SUPERALT,L,exec,${pkgs.swaylock}/bin/swaylock
         bind=SUPER,F,exec,${pkgs.pcmanfm}/bin/pcmanfm
         bind=SUPERSHIFT,F,togglefloating,
-        bind=SUPER,Space,exec, pkill wofi || ${pkgs.wofi}/bin/wofi --show drun
+        bind=SUPER,Space,exec,${pkgs.fuzzel}/bin/fuzzel
+        bind=SUPER,V,exec,${pkgs.cliphist}/bin/cliphist list | ${pkgs.fuzzel}/bin/fuzzel -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
+        bind=SUPER,W,exec, ~/.config/fuzzel/scripts/switchclient.sh
         bind=SUPER,P,pseudo,
         bind=SUPER,M,layoutmsg,swapwithmaster auto
         bind=SUPER,Y,movetoworkspace,special:scratch

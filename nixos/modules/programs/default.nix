@@ -14,12 +14,13 @@
   #./alacritty.nix
   ./eww.nix
   ./flatpak.nix
+  ./fuzzel.nix
   ./kitty.nix
   ./obs.nix
-  ./rofi.nix
+  #./rofi.nix
   ./wallpaper.nix
   ./waybar.nix
   ./wezterm.nix
-  ./wofi.nix
+  #./wofi.nix
   #./games.nix
 ]
