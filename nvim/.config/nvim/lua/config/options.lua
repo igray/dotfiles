@@ -3,6 +3,7 @@
 -- Add any additional options here
 
 vim.opt.colorcolumn = "100"
+vim.g.autoformat = false
 
 -- LSP borders
 local _border = "rounded"
