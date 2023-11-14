@@ -103,15 +103,15 @@
       pipewire          # Audio Server/Control
       pulseaudio        # Audio Server/Control
       vlc               # Media Player
+      vulkan-tools      # Troubleshoot GL
       stremio           # Media Streamer
 
       # Apps
       appimage-run      # Runs AppImages on NixOS
       authenticator     # 2FA
-      google-chrome     # Browser
       gcr               # Secrets prompter?
-      logseq            # Notes
       openssl           # Keygen
+      polkit_gnome      # PW Prompt
       remmina           # XRDP & VNC Client
       slack             # Talky
       zoom-us           # Work calls
@@ -133,6 +133,7 @@
     (with unstable; [
       # Apps
       firefox           # Browser
+      logseq            # Notes
     ]);
   };
 
@@ -190,6 +191,9 @@
        allowUnfree = true;                  # Allow Proprietary Software.
     };
   };
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-24.8.6"
+  ];
 
   system = {                                # NixOS Settings
     #autoUpgrade = {                        # Allow Auto Update (not useful in flakes)

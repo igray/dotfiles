@@ -15,6 +15,7 @@
   ./eww.nix
   ./flatpak.nix
   ./fuzzel.nix
+  ./google-chrome.nix
   ./kitty.nix
   ./obs.nix
   #./rofi.nix

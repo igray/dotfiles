@@ -54,6 +54,7 @@
         rocm-opencl-icd
         rocm-opencl-runtime
         amdvlk
+        mesa.drivers
       ];
     };
     sane = {                                    # Scanning
