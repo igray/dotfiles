@@ -86,10 +86,6 @@
       nix-tree          # Browse Nix Store
       pciutils          # Manage PCI
       ranger            # File Manager
-      nodejs_20         # Neovim/Mason
-      ripgrep           # Neovim/Telescope
-      fd                # Neovim/Telescope
-      gcc               # Neovim/Treesitter
       tldr              # Helper
       stow              # Until config is integrated here
       usbutils          # Manage USB
