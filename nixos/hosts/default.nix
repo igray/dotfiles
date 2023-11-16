@@ -34,8 +34,8 @@ in
       host = {
         hostName = "framework";
         mainMonitor = "eDP-1";
-        secondMonitor = "DP-2";
-        thirdMonitor = "DP-5";
+        secondMonitor = "DP-3";
+        thirdMonitor = "DP-7";
       };
     };
     modules = [

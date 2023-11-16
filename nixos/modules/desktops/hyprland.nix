@@ -326,10 +326,9 @@ with host;
         ".config/hypr/hyprpaper.conf" = {
           text = ''
             preload = ~/.local/wallchange/mywallpaper.jpg
-            wallpaper = DP-2,~/.local/wallchange/mywallpaper.jpg
-            wallpaper = DP-5,~/.local/wallchange/mywallpaper.jpg
-            wallpaper = DP-7,~/.local/wallchange/mywallpaper.jpg
-            wallpaper = eDP-1,~/.local/wallchange/mywallpaper.jpg
+            wallpaper = ${toString mainMonitor},~/.local/wallchange/mywallpaper.jpg
+            wallpaper = ${toString secondMonitor},~/.local/wallchange/mywallpaper.jpg
+            wallpaper = ${toString thirdMonitor},~/.local/wallchange/mywallpaper.jpg
           '';
         };
       };

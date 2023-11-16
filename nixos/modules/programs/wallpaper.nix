@@ -1,6 +1,7 @@
 
-{ config, lib, pkgs, vars, ... }:
+{ config, lib, pkgs, vars, host, ... }:
 
+with host;
 {
   config = {
     systemd = {
@@ -114,10 +115,9 @@
             #gsettings set org.gnome.desktop.background picture-uri-dark file://$local_wallpaper
             hyprctl hyprpaper unload "$local_wallpaper"
             hyprctl hyprpaper preload "$local_wallpaper"
-            hyprctl hyprpaper wallpaper "DP-2,$local_wallpaper"
-            hyprctl hyprpaper wallpaper "DP-5,$local_wallpaper"
-            hyprctl hyprpaper wallpaper "DP-7,$local_wallpaper"
-            hyprctl hyprpaper wallpaper "eDP-1,$local_wallpaper"
+            hyprctl hyprpaper wallpaper "${toString mainMonitor},$local_wallpaper"
+            hyprctl hyprpaper wallpaper "${toString secondMonitor},$local_wallpaper"
+            hyprctl hyprpaper wallpaper "${toString thirdMonitor},$local_wallpaper"
           '';
           executable = true;
         };

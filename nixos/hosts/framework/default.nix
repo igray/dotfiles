@@ -34,6 +34,7 @@
       timeout = 1;
     };
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [ "amdgpu.sg_display=0" ];        # Workaround white-screen issue
     initrd.kernelModules = [ "amdgpu" ];        # Video Drivers
   };
 
@@ -42,6 +43,7 @@
   hyprland.enable = true;                       # Window manager
 
   hardware = {
+    enableRedistributableFirmware = true;
     cpu = {
       amd = {
         updateMicrocode = true;
