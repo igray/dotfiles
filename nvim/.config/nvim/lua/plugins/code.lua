@@ -114,6 +114,22 @@ return {
             },
           },
         },
+        nil_ls = {
+          settings = {
+            formatting = {
+              command = "nixpkgs-fmt",
+            },
+            nix = {
+              flake = {
+                autoArchive = true,
+                autoEvalInputs = true,
+              },
+            },
+          },
+        },
+        solargraph = {
+          mason = false,
+        },
         ---@type lspconfig.options.tsserver
         tsserver = {
           settings = {
@@ -122,8 +138,37 @@ return {
             },
           },
         },
+        yamlls = {},
       },
       setup = {
+        solargraph = function(_, opts)
+          require("lspconfig").solargraph.setup({
+            cmd = {
+              "docker",
+              "compose",
+              "-f",
+              ".devcontainer/docker-compose.yml",
+              "exec",
+              "web",
+              "sh",
+              "-c",
+              "solargraph stdio",
+            },
+            settings = {
+              solargraph = {
+                autoformat = false,
+                formatting = true,
+                completion = true,
+                diagnostic = true,
+                folding = true,
+                references = true,
+                rename = true,
+                symbols = true,
+              },
+            },
+          })
+          return true
+        end,
         tsserver = function(_, opts)
           require("lazyvim.util").lsp.on_attach(function(client, buffer)
             if client.name == "tsserver" then
@@ -178,12 +223,7 @@ return {
       })
     end,
   },
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, "prettierd")
-    end,
-  },
+  { "williamboman/mason.nvim", enabled = false },
   { "jose-elias-alvarez/typescript.nvim" },
   {
     "NvChad/nvim-colorizer.lua",
