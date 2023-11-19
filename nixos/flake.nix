@@ -37,7 +37,7 @@
       vars = {                                                              # Variables Used In Flake
         user = "igray";
         location = "$HOME/.setup";
-        terminal = "wezterm";
+        terminal = "kitty";
         editor = "nvim";
       };
     in
