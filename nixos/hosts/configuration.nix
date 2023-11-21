@@ -160,6 +160,9 @@
     envfs = {
       enable = true;
     };
+    fwupd = {
+      enable = true;
+    };
   };
 
   flatpak.enable = false;                    # Enable Flatpak (see module options)
