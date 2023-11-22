@@ -95,6 +95,7 @@
           doh=''
             commandline -i "sudo $history[1]";history delete --exact --case-sensitive doh
           '';
+          open="xdg-open";
         };
         shellInit = ''
           set -g theme_display_ruby no

@@ -57,6 +57,7 @@ with host;
         wl-clipboard    # Clipboard
         wlr-randr       # Monitor Settings
         udiskie         # Removable drive automount
+        xdg-utils       # Open files
       ];
     };
 

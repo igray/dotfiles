@@ -107,7 +107,6 @@
       # Apps
       appimage-run      # Runs AppImages on NixOS
       authenticator     # 2FA
-      gcr               # Secrets prompter?
       openssl           # Keygen
       polkit_gnome      # PW Prompt
       remmina           # XRDP & VNC Client
