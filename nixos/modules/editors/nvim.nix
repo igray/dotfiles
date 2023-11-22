@@ -21,7 +21,6 @@
         extraPackages = with pkgs; [
           elmPackages.elm-language-server
           elmPackages.lamdera
-          fd                # Telescope
           lua-language-server
           nil
           nixpkgs-fmt
@@ -29,7 +28,6 @@
           nodePackages.typescript-language-server
           nodePackages.vscode-langservers-extracted
           nodePackages.yaml-language-server
-          ripgrep           # Telescope
           shfmt
           stylua
           zig               # Treesitter

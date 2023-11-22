@@ -80,14 +80,16 @@
       bat               # Pager
       btop              # Resource Manager
       coreutils         # GNU Utilities
+      fd                # Find files
       git               # Version Control
       killall           # Process Killer
       nano              # Text Editor
       nix-tree          # Browse Nix Store
       pciutils          # Manage PCI
       ranger            # File Manager
-      tldr              # Helper
+      ripgrep           # Search files
       stow              # Until config is integrated here
+      tldr              # Helper
       usbutils          # Manage USB
       wget              # Retriever
 
