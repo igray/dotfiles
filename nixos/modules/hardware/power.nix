@@ -8,7 +8,19 @@
   config = lib.mkIf ( config.laptop.enable ) {
     services = {
       tlp.enable = true;                          # Power Efficiency
-      auto-cpufreq.enable = true;
+      auto-cpufreq = {
+        enable = false;
+        settings = {
+          charger = {
+            governor = "performance";
+            turbo = "auto";
+          };
+          battery = {
+            governor = "powersave";
+            turbo = "auto";
+          };
+        };
+      };
     };
 
     home-manager.users.${vars.user} = {
