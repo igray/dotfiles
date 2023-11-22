@@ -64,25 +64,25 @@
         ];
         shellAliases = {
           # ruby
-          rbb = "bundle";
-          rbbe = "bundle exec";
-          rbbl = "bundle list";
-          rbbo="bundle open";
-          rbbu="bundle update";
+          rbb = "bin/bundle";
+          rbbe = "bin/bundle exec";
+          rbbl = "bin/bundle list";
+          rbbo="bin/bundle open";
+          rbbu="bin/bundle update";
 
           # rails
-          ror="bundle exec rails";
-          rorc="bundle exec rails console";
-          rordc="bundle exec rails dbconsole";
-          rordm="bundle exec rake db:migrate";
-          rordM="bundle exec rake db:migrate db:test:clone";
-          rordr="bundle exec rake db:rollback";
-          rorg="bundle exec rails generate";
-          rorlc="bundle exec rake log:clear";
-          rorp="bundle exec rails plugin";
-          rorr="bundle exec rails runner";
-          rors="bundle exec rails server";
-          rorsd="bundle exec rails server --debugger";
+          ror="bin/rails";
+          rorc="bin/rails console";
+          rordc="bin/rails dbconsole";
+          rordm="bin/rake db:migrate";
+          rordM="bin/rake db:migrate db:test:clone";
+          rordr="bin/rake db:rollback";
+          rorg="bin/rails generate";
+          rorlc="bin/rake log:clear";
+          rorp="bin/rails plugin";
+          rorr="bin/rails runner";
+          rors="bin/rails server";
+          rorsd="bin/rails server --debugger";
 
           # git
 

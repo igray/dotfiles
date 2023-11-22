@@ -143,24 +143,14 @@ return {
       setup = {
         solargraph = function(_, opts)
           require("lspconfig").solargraph.setup({
-            cmd = {
-              "docker",
-              "compose",
-              "-f",
-              ".devcontainer/docker-compose.yml",
-              "exec",
-              "web",
-              "sh",
-              "-c",
-              "solargraph stdio",
-            },
+            cmd = vim.lsp.rpc.connect('127.0.0.1', 7658),
             settings = {
               solargraph = {
                 autoformat = false,
-                formatting = true,
                 completion = true,
                 diagnostic = true,
                 folding = true,
+                formatting = true,
                 references = true,
                 rename = true,
                 symbols = true,
