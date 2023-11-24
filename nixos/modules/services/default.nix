@@ -18,6 +18,7 @@
   ./flameshot.nix
   ./picom.nix
   ./polybar.nix
+  ./restic.nix
 # ./samba.nix
   ./sxhkd.nix
   ./udiskie.nix
