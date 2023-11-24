@@ -61,6 +61,17 @@ return {
       })
     end,
   },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true
+      },
+    }
+  },
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
