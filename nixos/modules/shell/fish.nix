@@ -96,6 +96,9 @@
             commandline -i "sudo $history[1]";history delete --exact --case-sensitive doh
           '';
           open="xdg-open";
+
+          # Only for kitty-- remove when moving back to wezterm
+          ssh="kitty +kitten ssh";
         };
         shellInit = ''
           set -g theme_display_ruby no
