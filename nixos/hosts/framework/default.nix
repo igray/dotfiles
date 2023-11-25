@@ -64,6 +64,7 @@
       extraBackends = [ pkgs.sane-airscan ];
     };
   };
+  services.hardware.bolt.enable = true;         # Thunderbolt
 
   networking = {
     hostName = "laptop";
