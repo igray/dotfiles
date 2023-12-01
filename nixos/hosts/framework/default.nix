@@ -74,7 +74,7 @@
   environment = {
     systemPackages = with pkgs; [               # System Wide Packages
       nil               # LSP for nix language
-      onlyoffice-bin    # Office
+      libreoffice-fresh # Office
       simple-scan       # Scanning
       wdisplays         # Display Configurator
     ];

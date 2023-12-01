@@ -25,6 +25,7 @@
               command git checkout $argv
             '';
           };
+          gpr = "git push --set-upstream origin (currentGitBranch)";
 
           # CareerPlug
           cpBranch = "currentGitBranch | cut -d '-' -f-2";
@@ -96,6 +97,7 @@
             commandline -i "sudo $history[1]";history delete --exact --case-sensitive doh
           '';
           open="xdg-open";
+          ltr="ls -l -snew";
 
           # Only for kitty-- remove when moving back to wezterm
           ssh="kitty +kitten ssh";

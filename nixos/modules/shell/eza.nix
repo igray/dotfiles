@@ -3,7 +3,7 @@
 {
   home-manager.users.${vars.user} = {
     programs = {
-      exa = { # TODO: update to eza
+      eza = {
         enable = true;
         enableAliases = true;
         git = true;

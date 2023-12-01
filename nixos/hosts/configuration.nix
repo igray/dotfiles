@@ -54,7 +54,7 @@
     sudo.wheelNeedsPassword = false;
   };
 
-  fonts.fonts = with pkgs; [                # Fonts
+  fonts.packages = with pkgs; [                # Fonts
     cantarell-fonts                         # NixOS
     carlito                                 # NixOS
     vegur                                   # NixOS
