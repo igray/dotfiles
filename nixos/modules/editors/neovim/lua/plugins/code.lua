@@ -1,6 +1,6 @@
 return {
   { "echasnovski/mini.pairs", enabled = false },
-  { "tpope/vim-rails" },
+  { "tpope/vim-rails", ft = { "ruby", "eruby" } },
   { "gleam-lang/gleam.vim" },
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
@@ -64,6 +64,7 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     build = ":Copilot auth",
+    lazy = false,
     opts = {
       suggestion = {
         enabled = true,
