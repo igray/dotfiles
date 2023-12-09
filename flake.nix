@@ -44,7 +44,7 @@
   {
     nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs vars system; };
-      modules = [ ./nix-os/configuration.nix ];
+      modules = [ ./nixos/configuration.nix ];
     };
 
     homeConfigurations."${vars.username}" = home-manager.lib.homeManagerConfiguration {
