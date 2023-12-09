@@ -1,5 +1,0 @@
-[Unit]
-Description=change the wallpaper
-
-[Service]
-ExecStart=/usr/local/bin/wall_change.sh

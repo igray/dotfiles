@@ -1,7 +1,0 @@
-[Unit]
-Description=partial backup to server
-
-[Service]
-Nice=19
-IOSchedulingClass=3
-ExecStart=/usr/local/bin/remote_backup
