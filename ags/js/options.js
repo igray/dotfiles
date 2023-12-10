@@ -18,9 +18,9 @@ export default {
     apply: apply,
     list: getOptions,
 
-    spacing: Option(9),
+    spacing: Option(4),
     padding: Option(8),
-    radii: Option(9),
+    radii: Option(6),
 
     popover_padding_multiplier: Option(1.4, {
         'category': 'General',
