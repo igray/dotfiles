@@ -4,10 +4,11 @@ let
 in
 {
   imports = [
+    ./ags.nix
     ./browser.nix
     ./dconf.nix
-    ./dunst.nix
-    ./fuzzel.nix
+#   ./dunst.nix
+#   ./fuzzel.nix
     ./git.nix
     ./hyprland.nix
     ./lf.nix
@@ -19,7 +20,7 @@ in
     ./theme.nix
     ./tmux.nix
     ./wallpaper.nix
-    ./waybar.nix
+#   ./waybar.nix
     ./wezterm.nix
     ./mimelist.nix
   ];

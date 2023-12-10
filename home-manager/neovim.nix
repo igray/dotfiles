@@ -166,5 +166,5 @@
     in
     "${parsers}/parser";
 
-  xdg.configFile."nvim/lua".source = ../config/nvim/lua;
+  xdg.configFile."nvim/lua".source = ../nvim/lua;
 }

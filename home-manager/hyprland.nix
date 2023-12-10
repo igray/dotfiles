@@ -1,26 +1,8 @@
 { inputs, pkgs, vars, ... }:
 let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-
-  launcher = pkgs.writeShellScriptBin "hypr" ''
-    #!/${pkgs.bash}/bin/bash
-
-    export WLR_NO_HARDWARE_CURSORS=1
-    export QT_QPA_PLATFORM = "wayland"
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION = "1"
-    export GDK_BACKEND = "wayland"
-    export WLR_NO_HARDWARE_CURSORS = "1"
-    export MOZ_ENABLE_WAYLAND = "1"
-    export NIXOS_OZONE_WL = "1"
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export AWT_TOOLKIT=MToolkit
-
-    exec ${hyprland}/bin/Hyprland
-  '';
 in
 {
-  home.packages = [ launcher ];
-
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";
@@ -43,30 +25,38 @@ in
         "${toString vars.thirdMonitor},3840x2160@60,2256x0,1.75"
         ",highres,auto,auto"
       ];
-      env = [ "SSH_AUTH_SOCK,$XDG_RUNTIME_DIR/keyring/ssh" ];
 
       general = {
-        border_size = 1;
-        gaps_in = 5;
-        gaps_out = 10;
-        "col.active_border" = "rgba(6c71c4ff)";
-        "col.inactive_border" = "rgba(073642ff)";
         layout = "master";
+        resize_on_border = true;
       };
 
       decoration = {
-        rounding = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        drop_shadow = "yes";
+        shadow_range = 8;
+        shadow_render_power = 2;
+        "col.shadow" = "rgba(00000044)";
+
+        dim_inactive = false;
+
+        blur = {
+          enabled = true;
+          size = 8;
+          passes = 3;
+          new_optimizations = "on";
+          noise = 0.01;
+          contrast = 0.9;
+          brightness = 0.8;
+        };
       };
 
       animations = {
-        enabled = true;
+        enabled = "yes";
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
-          "windows, 1, 7, myBezier"
+          "windows, 1, 5, myBezier"
           "windowsOut, 1, 7, default, popin 80%"
           "border, 1, 10, default"
-          "borderangle, 1, 8, default"
           "fade, 1, 7, default"
           "workspaces, 1, 6, default"
         ];
@@ -79,10 +69,12 @@ in
         repeat_delay = 250;
         numlock_by_default = 1;
         sensitivity = 0.5;
+        float_switch_override_focus = 2;
         touchpad = {
           natural_scroll = true;
           clickfinger_behavior = true;
           tap-to-click = false;
+          disable_while_typing = true;
         };
       };
 
@@ -116,7 +108,16 @@ in
         "SUPER,mouse:273,resizewindow"
       ];
 
-      bind = [
+      bind = let
+        e = "exec, ags -b hypr";
+      in [
+        "CTRL SHIFT, R,  ${e} quit; ags -b hypr"
+        "SUPER, Space,       ${e} -t applauncher"
+        ", XF86PowerOff, ${e} -t powermenu"
+        "SUPER, Tab,     ${e} -t overview"
+        ", XF86Launch4,  ${e} -r 'recorder.start()'"
+        ",Print,         ${e} -r 'recorder.screenshot()'"
+        "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
         "SUPER,Return,exec,${pkgs.${vars.terminal}}/bin/${vars.terminal}"
         "SUPER,C,killactive,"
         "SUPER,Escape,exit,"
@@ -124,7 +125,7 @@ in
         "SUPERALT,L,exec,${pkgs.swaylock}/bin/swaylock"
         "SUPER,F,exec,${pkgs.pcmanfm}/bin/pcmanfm"
         "SUPERSHIFT,F,togglefloating,"
-        "SUPER,Space,exec,${pkgs.fuzzel}/bin/fuzzel"
+#       "SUPER,Space,exec,${pkgs.fuzzel}/bin/fuzzel"
         "SUPER,V,exec,${pkgs.cliphist}/bin/cliphist list | ${pkgs.fuzzel}/bin/fuzzel -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy"
         "SUPER,W,exec, ~/.config/fuzzel/scripts/switchclient.sh"
         "SUPER,P,pseudo,"
@@ -182,42 +183,81 @@ in
         "SUPERSHIFT,right,movetoworkspace,+1"
         "SUPERSHIFT,left,movetoworkspace,-1"
 
-        ",print,exec,${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f - -o ~/Pictures/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png && notify-send \"Saved to ~/Pictures/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png\""
+#       ",print,exec,${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f - -o ~/Pictures/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png && notify-send \"Saved to ~/Pictures/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png\""
 
-        ",XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10"
-        ",XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10"
-        ",XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t"
-        "SUPER_L,c,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
-        ",XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
-        ",XF86MonBrightnessDown,exec,${pkgs.light}/bin/light -U 10"
-        ",XF86MonBrightnessUP,exec,${pkgs.light}/bin/light -A 10"
+#       ",XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10"
+#       ",XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10"
+#       ",XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t"
+#       "SUPER_L,c,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
+#       ",XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
+#       ",XF86MonBrightnessDown,exec,${pkgs.light}/bin/light -U 10"
+#       ",XF86MonBrightnessUP,exec,${pkgs.light}/bin/light -A 10"
       ];
-      bindl = [ ",switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh" ];
 
-      windowrule = [
+      bindle = let e = "exec, ags -b hypr -r"; in [
+        ",XF86MonBrightnessUp,   ${e} 'brightness.screen += 0.05; indicator.display()'"
+        ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
+        ",XF86KbdBrightnessUp,   ${e} 'brightness.kbd++; indicator.kbd()'"
+        ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
+        ",XF86AudioRaiseVolume,  ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
+        ",XF86AudioLowerVolume,  ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
+      ];
+
+      bindl = let e = "exec, ags -b hypr -r"; in [
+        ",XF86AudioPlay,    ${e} 'mpris?.playPause()'"
+        ",XF86AudioStop,    ${e} 'mpris?.stop()'"
+        ",XF86AudioPause,   ${e} 'mpris?.pause()'"
+        ",XF86AudioPrev,    ${e} 'mpris?.previous()'"
+        ",XF86AudioNext,    ${e} 'mpris?.next()'"
+        ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
+        ",switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh"
+      ];
+
+      windowrule = let
+        f = regex: "float, ^(${regex})$";
+      in [
+		(f "org.gnome.Calculator")
+		(f "org.gnome.Nautilus")
+		(f "pavucontrol")
+		(f "nm-connection-editor")
+		(f "blueberry.py")
+		(f "org.gnome.Settings")
+		(f "org.gnome.design.Palette")
+		(f "Color Picker")
+		(f "xdg-desktop-portal")
+		(f "xdg-desktop-portal-gnome")
+		(f "transmission-gtk")
+		(f "com.github.Aylur.ags")
         "workspace special:scratch, title:^(Authenticator)$"
         "workspace special:journal, ^(Logseq)$"
-        "float, ^(org\.gnome\.Settings)$"
         "maxsize 600 800, ^(pavucontrol)$"
         "center, ^(pavucontrol)$"
-        "float, ^(pavucontrol)$"
         "tile, ^(libreoffice)$"
         "nofullscreenrequest, ^(.*libreoffice.*)$"
         "float, ^(blueman-manager)$"
         "size 490 600, ^(org.gnome.Calculator)$"
-        "float, ^(org.gnome.Calculator)$"
         "idleinhibit focus, title:^(Google Meet.*)$"
         "idleinhibit focus, title:^(Zoom Meeting.*)$"
       ];
 
+      env = [
+        "WLR_NO_HARDWARE_CURSORS,1"
+        "QT_QPA_PLATFORM,wayland"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "GDK_BACKEND,wayland"
+        "WLR_NO_HARDWARE_CURSORS,1"
+        "MOZ_ENABLE_WAYLAND,1"
+        "NIXOS_OZONE_WL,1"
+        "_JAVA_AWT_WM_NONREPARENTING,1"
+        "AWT_TOOLKIT,MToolkit"
+        "SSH_AUTH_SOCK,$XDG_RUNTIME_DIR/keyring/ssh"
+      ];
+
       exec-once = [
+        "ags -b hypr"
+        "hyprctl setcursor Qogir 24"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "${pkgs.systemd}/bin/systemctl start --user gnome-keyring.service"
-        "${pkgs.waybar}/bin/waybar"
-        "${pkgs.eww-wayland}/bin/eww daemon"
-        "${pkgs.blueman}/bin/blueman-applet"
-        "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
-        "${pkgs.udiskie}/bin/udiskie"
         "${pkgs.gammastep}/bin/gammastep -m wayland -l 30.318276:-97.742119"
         "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' after-resume 'hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && hyprctl dispatch dpms off'"
         # "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 1200 '${pkgs.systemd}/bin/systemctl suspend' after-resume '${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off'"
@@ -251,6 +291,11 @@ in
     show-failed-attempts = true;
   };
 
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" "ssh" ];
+  };
+
   home.file = {
     ".config/hypr/script/clamshell.sh" = {
       text = ''
@@ -276,19 +321,6 @@ in
         wallpaper = ${toString vars.secondMonitor},~/.local/wallchange/mywallpaper.jpg
         wallpaper = ${toString vars.thirdMonitor},~/.local/wallchange/mywallpaper.jpg
       '';
-    };
-  };
-
-  home.file.".config/eww" = {
-    source = ../config/eww;
-    recursive = true;
-  };
-
-  services = {
-    udiskie = {
-      enable = true;
-      automount = true;
-      tray = "auto";
     };
   };
 }

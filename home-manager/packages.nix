@@ -39,16 +39,16 @@
     zip
 
     # hyprland
-    wl-gammactl
-    wl-clipboard
-    wf-recorder
+    brightnessctl
     hyprpicker
-    wayshot
-    swappy
-    slurp
     imagemagick
     pavucontrol
-    brightnessctl
+    slurp
+    swappy
     swww
+    wayshot
+    wf-recorder
+    wl-clipboard
+    wl-gammactl
   ];
 }

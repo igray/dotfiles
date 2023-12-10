@@ -17,6 +17,7 @@
 
   security = {
     polkit.enable = true;
+    pam.services.gdm.enableGnomeKeyring = true;
   };
 
   environment.systemPackages = with pkgs.gnome; [
