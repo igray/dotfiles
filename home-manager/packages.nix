@@ -40,15 +40,21 @@
 
     # hyprland
     brightnessctl
+    gammastep       # Nightlight
+    grim            # Grab Images
+    hyprpaper       # Background manager
     hyprpicker
     imagemagick
     pavucontrol
     slurp
     swappy
-    swww
-    wayshot
+    swayidle        # Idle Daemon
     wf-recorder
     wl-clipboard
     wl-gammactl
+
+    # original config dependencies
+    swaylock        # Lock Screen
+    xdg-utils       # Open files
   ];
 }

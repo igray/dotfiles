@@ -30,23 +30,6 @@
     gnome-weather
     gnome-calculator
     gnome-software # for flatpak
-
-    # original config dependencies
-    pkgs.cliphist        # Search clipboard
-    pkgs.gammastep       # Nightlight
-    pkgs.grim            # Grab Images
-    pkgs.hyprpaper       # Background manager
-    pkgs.slurp           # Region Selector
-    pkgs.swappy          # Snapshot Editor
-    pkgs.swayidle        # Idle Daemon
-    pkgs.swaylock        # Lock Screen
-    pkgs.wl-clipboard    # Clipboard
-    pkgs.wlr-randr       # Monitor Settings
-    pkgs.udiskie         # Removable drive automount
-    pkgs.xdg-utils       # Open files
-    pkgs.eww-wayland         # Widgets
-    pkgs.jq                  # JSON Processor
-    pkgs.socat               # Data Transfer
   ];
 
   systemd = {

@@ -1,15 +1,5 @@
 { pkgs, lib, vars, ... }:
 {
-  xdg.desktopEntries."nvim" = {
-    name = "NeoVim";
-    comment = "Edit text files";
-    icon = "nvim";
-    exec = "${pkgs.${vars.terminal}}/bin/${vars.terminal} ${pkgs.neovim}/bin/nvim %F";
-    categories = [ "TerminalEmulator" ];
-    terminal = false;
-    mimeType = [ "text/plain" ];
-  };
-
   programs.neovim = {
     enable = true;
     viAlias = true;

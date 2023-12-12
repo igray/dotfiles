@@ -14,7 +14,7 @@ in
       enable = true;
       extraConfig = ''
         return {
-          enable_wayland = true,
+          enable_wayland = false,
           color_scheme = "Builtin Solarized Dark",
           --font = wezterm.font("M+2 Nerd Font Propo", {weight="ExtraLight"}),
           font = wezterm.font("JetBrainsMono Nerd Font", {weight="ExtraLight"}),

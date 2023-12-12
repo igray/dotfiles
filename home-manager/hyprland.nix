@@ -112,27 +112,24 @@ in
         e = "exec, ags -b hypr";
       in [
         "CTRL SHIFT, R,  ${e} quit; ags -b hypr"
-        "SUPER, Space,       ${e} -t applauncher"
+        "SUPER, Space,   ${e} -t applauncher"
         ", XF86PowerOff, ${e} -t powermenu"
         "SUPER, Tab,     ${e} -t overview"
         ", XF86Launch4,  ${e} -r 'recorder.start()'"
         ",Print,         ${e} -r 'recorder.screenshot()'"
         "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
+        "SUPERALT,L,     ${e} -r 'lockscreen.lockscreen()'"
         "SUPER,Return,exec,${pkgs.${vars.terminal}}/bin/${vars.terminal}"
         "SUPER,C,killactive,"
         "SUPER,Escape,exit,"
         "SUPERSHIFT,S,exec,${pkgs.systemd}/bin/systemctl suspend"
-        "SUPERALT,L,exec,${pkgs.swaylock}/bin/swaylock"
-        "SUPER,F,exec,${pkgs.pcmanfm}/bin/pcmanfm"
+        "SUPER,F,exec,nautilus"
         "SUPERSHIFT,F,togglefloating,"
-#       "SUPER,Space,exec,${pkgs.fuzzel}/bin/fuzzel"
-        "SUPER,V,exec,${pkgs.cliphist}/bin/cliphist list | ${pkgs.fuzzel}/bin/fuzzel -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy"
-        "SUPER,W,exec, ~/.config/fuzzel/scripts/switchclient.sh"
         "SUPER,P,pseudo,"
         "SUPER,M,layoutmsg,swapwithmaster auto"
         "SUPER,Y,movetoworkspace,special:scratch"
         "SUPER,S,togglespecialworkspace,scratch"
-        "SUPER,Z,fullscreen,"
+        "SUPER,Z,fullscreen,1"
         "SUPER,R,forcerendererreload"
         "SUPERSHIFT,R,exec,${pkgs.hyprland}/bin/hyprctl reload"
         "ALT,tab,focuscurrentorlast"
@@ -259,7 +256,7 @@ in
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "${pkgs.systemd}/bin/systemctl start --user gnome-keyring.service"
         "${pkgs.gammastep}/bin/gammastep -m wayland -l 30.318276:-97.742119"
-        "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' after-resume 'hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && hyprctl dispatch dpms off'"
+        "${pkgs.swayidle}/bin/swayidle -w timeout 600 '~/.config/hypr/script/lock.sh' after-resume 'hyprctl dispatch dpms on' before-sleep '~/.config/hypr/script/lock.sh'"
         # "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 1200 '${pkgs.systemd}/bin/systemctl suspend' after-resume '${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off'"
         "${pkgs.hyprpaper}/bin/hyprpaper"
       ];
@@ -307,10 +304,18 @@ in
           if [[ `hyprctl monitors | grep "Monitor" | wc -l` != 1 ]]; then
             hyprctl keyword monitor "eDP-1, disable"
           else
-            swaylock -f
+            ~/.config/hypr/script/lock.sh
             systemctl sleep
           fi
         fi
+      '';
+      executable = true;
+    };
+    ".config/hypr/script/lock.sh" = {
+      text = ''
+        #!/bin/sh
+
+        ags -b hypr -r 'lockscreen.lockscreen()'
       '';
       executable = true;
     };

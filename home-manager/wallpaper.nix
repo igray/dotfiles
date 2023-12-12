@@ -1,6 +1,5 @@
-{ vars, ... }:
+{ ... }:
 
-with vars;
 {
   home.file = {
     ".config/wallchange/guardian_pod.rb" = {
@@ -48,34 +47,24 @@ with vars;
     ".config/wallchange/wallchange.sh" = {
       text = ''
         #!/usr/bin/env bash
-        image_path=$1
-        #Setting up a path for local storage
 
+        image_path=$1
         if [ ! -d "$image_path" ]; then
           image_path="$HOME/Pictures/wallpapers"
         fi
+
         local_dir="$HOME/.local/wallchange"
-        #creating local directory
         mkdir -p $local_dir
-        #getting name of the picture
         pic=$(find $image_path -regextype posix-extended -regex "(.*\.jpg)|(.*\.png)"|shuf -n1)
         #echo $pic
 
-        #Storing image in local_dir
         local_wallpaper=$local_dir/mywallpaper.jpg
-        #setting the wallpaper
         cp "$pic" $local_wallpaper
-        #echo $local_wallpaper
-        #Adding bogus wallpaper (don't know if this is a gsettings bug or i'm doing some basic flaw)
-        #gsettings set org.gnome.desktop.background picture-uri file:/$local_wallpaper
-        #try increasing the sleep if wallpaper doesn't change
-        sleep 1;
-        #gsettings set org.gnome.desktop.background picture-uri-dark file://$local_wallpaper
         hyprctl hyprpaper unload "$local_wallpaper"
         hyprctl hyprpaper preload "$local_wallpaper"
-        hyprctl hyprpaper wallpaper "${toString mainMonitor},$local_wallpaper"
-        hyprctl hyprpaper wallpaper "${toString secondMonitor},$local_wallpaper"
-        hyprctl hyprpaper wallpaper "${toString thirdMonitor},$local_wallpaper"
+        for mon in $(hyprctl monitors | grep Monitor | awk -e '{ print $2; }'); do
+          hyprctl hyprpaper wallpaper "$mon,$local_wallpaper"
+        done
       '';
       executable = true;
     };

@@ -1,5 +1,6 @@
 import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
+import Bluetooth from 'resource:///com/github/Aylur/ags/service/bluetooth.js';
 import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js';
 import options from '../options.js';
 import icons from '../icons.js';
@@ -19,6 +20,7 @@ export function init() {
     scssWatcher();
     dependandOptions();
 
+    Bluetooth.enabled = true;
     reloadScss();
     hyprlandInit();
     setupHyprland();

@@ -7,8 +7,6 @@ in
     ./ags.nix
     ./browser.nix
     ./dconf.nix
-#   ./dunst.nix
-#   ./fuzzel.nix
     ./git.nix
     ./hyprland.nix
     ./lf.nix
@@ -20,7 +18,6 @@ in
     ./theme.nix
     ./tmux.nix
     ./wallpaper.nix
-#   ./waybar.nix
     ./wezterm.nix
     ./mimelist.nix
   ];
@@ -46,8 +43,6 @@ in
       NIXPKGS_ALLOW_UNFREE = "1";
       SHELL = "${pkgs.${vars.terminal}}/bin/${vars.terminal}";
       BAT_THEME = "base16";
-      GOPATH = "${homeDirectory}/.local/share/go";
-      GOMODCACHE="${homeDirectory}/./go/pkg/mod";
     };
 
     sessionPath = [

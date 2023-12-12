@@ -71,7 +71,7 @@ class Recorder extends Service {
     }
 
     async screenshot(full = false) {
-        if (!dependencies(['slurp', 'wayshot']))
+        if (!dependencies(['slurp', 'grim']))
             return;
 
         const path = GLib.get_home_dir() + '/Pictures/Screenshots';
@@ -79,11 +79,10 @@ class Recorder extends Service {
         Utils.ensureDirectory(path);
 
         await Utils.execAsync([
-            'wayshot',
-            '-f', file,
+            'grim',
         ].concat(full ? [] : [
-            '-s', await Utils.execAsync('slurp'),
-        ]));
+            '-g', await Utils.execAsync('slurp'),
+        ]).concat([file]));
 
         Utils.execAsync(['bash', '-c', `wl-copy < ${file}`]);
 
