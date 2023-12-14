@@ -20,7 +20,6 @@ export function init() {
     scssWatcher();
     dependandOptions();
 
-    Bluetooth.enabled = true;
     reloadScss();
     hyprlandInit();
     setupHyprland();

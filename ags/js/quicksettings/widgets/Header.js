@@ -3,7 +3,6 @@ import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
 import icons from '../../icons.js';
 import PowerMenu from '../../services/powermenu.js';
 import Lockscreen from '../../services/lockscreen.js';
-import Avatar from '../../misc/Avatar.js';
 import { uptime } from '../../variables.js';
 import options from '../../options.js';
 import { openSettings } from '../../settings/theme.js';
@@ -40,7 +39,6 @@ export const BatteryProgress = () => Widget.Box({
 export default () => Widget.Box({
     class_name: 'header horizontal',
     children: [
-        Avatar(),
         Widget.Box({
             class_name: 'system-box',
             vertical: true,
