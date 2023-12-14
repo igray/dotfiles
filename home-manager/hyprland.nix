@@ -118,7 +118,7 @@ in
         ", XF86Launch4,  ${e} -r 'recorder.start()'"
         ",Print,         ${e} -r 'recorder.screenshot()'"
         "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
-        "SUPERALT,L,     ${e} -r 'lockscreen.lockscreen()'"
+        "SUPERALT,L,     ${e} -r 'swaylock -f'"
         "SUPER,Return,exec,${pkgs.${vars.terminal}}/bin/${vars.terminal}"
         "SUPER,C,killactive,"
         "SUPER,Escape,exit,"
@@ -256,36 +256,39 @@ in
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "${pkgs.systemd}/bin/systemctl start --user gnome-keyring.service"
         "${pkgs.gammastep}/bin/gammastep -m wayland -l 30.318276:-97.742119"
-        "${pkgs.swayidle}/bin/swayidle -w timeout 600 '~/.config/hypr/script/lock.sh' after-resume 'hyprctl dispatch dpms on' before-sleep '~/.config/hypr/script/lock.sh'"
-        # "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 1200 '${pkgs.systemd}/bin/systemctl suspend' after-resume '${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off'"
+        "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' after-resume 'hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f'"
+        # "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 1200 '${pkgs.systemd}/bin/systemctl suspend' after-resume 'hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && hyprctl dispatch dpms off'"
         "${pkgs.hyprpaper}/bin/hyprpaper"
       ];
     };
   };
 
-  programs.swaylock.settings = {
-    color = "000000f0";
-    font-size = "24";
-    indicator-idle-visible = false;
-    indicator-radius = 100;
-    indicator-thickness = 20;
-    inside-color = "00000000";
-    inside-clear-color = "00000000";
-    inside-ver-color = "00000000";
-    inside-wrong-color = "00000000";
-    key-hl-color = "79b360";
-    line-color = "000000f0";
-    line-clear-color = "000000f0";
-    line-ver-color = "000000f0";
-    line-wrong-color = "000000f0";
-    ring-color = "ffffff50";
-    ring-clear-color = "bbbbbb50";
-    ring-ver-color = "bbbbbb50";
-    ring-wrong-color = "b3606050";
-    text-color = "ffffff";
-    text-ver-color = "ffffff";
-    text-wrong-color = "ffffff";
-    show-failed-attempts = true;
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      color = "000000f0";
+      font-size = "24";
+      indicator-idle-visible = false;
+      indicator-radius = 100;
+      indicator-thickness = 20;
+      inside-color = "00000000";
+      inside-clear-color = "00000000";
+      inside-ver-color = "00000000";
+      inside-wrong-color = "00000000";
+      key-hl-color = "79b360";
+      line-color = "000000f0";
+      line-clear-color = "000000f0";
+      line-ver-color = "000000f0";
+      line-wrong-color = "000000f0";
+      ring-color = "ffffff50";
+      ring-clear-color = "bbbbbb50";
+      ring-ver-color = "bbbbbb50";
+      ring-wrong-color = "b3606050";
+      text-color = "ffffff";
+      text-ver-color = "ffffff";
+      text-wrong-color = "ffffff";
+      show-failed-attempts = true;
+    };
   };
 
   services.gnome-keyring = {
@@ -308,14 +311,6 @@ in
             systemctl sleep
           fi
         fi
-      '';
-      executable = true;
-    };
-    ".config/hypr/script/lock.sh" = {
-      text = ''
-        #!/bin/sh
-
-        ags -b hypr -r 'lockscreen.lockscreen()'
       '';
       executable = true;
     };

@@ -18,6 +18,7 @@
   security = {
     polkit.enable = true;
     pam.services.gdm.enableGnomeKeyring = true;
+    pam.services.swaylock = {};
   };
 
   environment.systemPackages = with pkgs.gnome; [

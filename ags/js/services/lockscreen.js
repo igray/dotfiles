@@ -11,7 +11,7 @@ class Lockscreen extends Service {
         });
     }
 
-    lockscreen() { this.emit('lock', true); }
+    lockscreen() { Utils.execAsync(['swaylock', '-f']); }
 
     /** @param {string} password */
     auth(password) {

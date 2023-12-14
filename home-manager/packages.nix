@@ -54,7 +54,6 @@
     wl-gammactl
 
     # original config dependencies
-    swaylock        # Lock Screen
     xdg-utils       # Open files
   ];
 }
