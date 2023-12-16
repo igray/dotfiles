@@ -1,7 +1,4 @@
-{ inputs, pkgs, vars, ... }:
-let
-  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-in
+{ pkgs, vars, ... }:
 {
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
@@ -14,7 +11,6 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprland;
     systemd.enable = true;
     xwayland.enable = true;
 

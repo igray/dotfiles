@@ -92,7 +92,11 @@
   # network
   networking = {
     hostName = "laptop";
-    networkmanager.enable = true;
+    wireless.iwd.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
   };
 
   security = {

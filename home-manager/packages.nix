@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 {
   home.packages = with pkgs; with nodePackages_latest; with gnome; [
     # gui
@@ -13,7 +13,7 @@
     simple-scan
     slack
     spotify
-    logseq
+    unstable.logseq
     vlc
     zoom-us
 
