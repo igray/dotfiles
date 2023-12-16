@@ -13,15 +13,8 @@ import FontIcon from '../../misc/FontIcon.js';
 
 const ProfileIndicator = () => Widget.Icon({
     connections: [[Asusctl, icon => {
-        icon.visible = Asusctl.profile !== 'Balanced';
+        icon.visible = Asusctl.profile !== 'balanced';
         icon.icon = icons.asusctl.profile[Asusctl.profile];
-    }]],
-});
-
-const ModeIndicator = () => FontIcon({
-    connections: [[Asusctl, icon => {
-        icon.visible = Asusctl.mode !== 'Hybrid';
-        icon.icon = icons.asusctl.mode[Asusctl.mode];
     }]],
 });
 
@@ -106,7 +99,6 @@ export default () => PanelButton({
     child: Widget.Box({
         children: [
             Asusctl?.available && ProfileIndicator(),
-            Asusctl?.available && ModeIndicator(),
             DNDIndicator(),
             BluetoothDevicesIndicator(),
             BluetoothIndicator(),

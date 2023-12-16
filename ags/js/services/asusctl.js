@@ -5,35 +5,16 @@ class Asusctl extends Service {
     static {
         Service.register(this, {}, {
             'profile': ['string', 'r'],
-            'mode': ['string', 'r'],
         });
     }
 
-    #profile = 'Balanced';
+    #profile = 'balanced';
 
-    nextProfile() {
-        Utils.execAsync('asusctl profile -n')
-            .then(() => {
-                this.#profile = Utils.exec('asusctl profile -p').split(' ')[3];
-                this.changed('profile');
-            })
-            .catch(console.error);
-    }
-
-    /** @param {'Performance' | 'Balanced' | 'Quiet'} prof */
+    /** @param {'performance' | 'balanced' | 'power-saver'} prof */
     setProfile(prof) {
-        Utils.execAsync(`asusctl profile --profile-set ${prof}`)
+        Utils.execAsync(`powerprofilesctl set ${prof}`)
             .then(() => {
                 this.#profile = prof;
-                this.changed('profile');
-            })
-            .catch(console.error);
-    }
-
-    nextMode() {
-        Utils.execAsync(`supergfxctl -m ${this._mode === 'Hybrid' ? 'Integrated' : 'Hybrid'}`)
-            .then(() => {
-                this._mode = Utils.exec('supergfxctl -g');
                 this.changed('profile');
             })
             .catch(console.error);
@@ -42,20 +23,18 @@ class Asusctl extends Service {
     constructor() {
         super();
 
-        if (Utils.exec('which asusctl')) {
+        if (Utils.exec('which powerprofilesctl')) {
             this.available = true;
-            this.#profile = Utils.exec('asusctl profile -p').split(' ')[3];
-            Utils.execAsync('supergfxctl -g').then(mode => this._mode = mode);
+            this.#profile = Utils.exec('powerprofilesctl get');
         }
         else {
             this.available = false;
         }
     }
 
-    /** @returns {['Performance', 'Balanced', 'Quiet']} */
-    get profiles() { return ['Performance', 'Balanced', 'Quiet']; }
+    /** @returns {['performance', 'balanced', 'power-saver']} */
+    get profiles() { return ['performance', 'balanced', 'power-saver']; }
     get profile() { return this.#profile; }
-    get mode() { return this._mode || 'Hybrid'; }
 }
 
 export default new Asusctl();

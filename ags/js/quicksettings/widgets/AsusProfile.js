@@ -1,4 +1,3 @@
-import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import icons from '../../icons.js';
 import Asusctl from '../../services/asusctl.js';
@@ -12,9 +11,9 @@ export const ProfileToggle = () => ArrowToggleButton({
     label: Widget.Label({
         binds: [['label', Asusctl, 'profile']],
     }),
-    connection: [Asusctl, () => Asusctl.profile !== 'Balanced'],
-    activate: () => Asusctl.setProfile('Quiet'),
-    deactivate: () => Asusctl.setProfile('Balanced'),
+    connection: [Asusctl, () => Asusctl.profile !== 'balanced'],
+    activate: () => Asusctl.setProfile('power-saver'),
+    deactivate: () => Asusctl.setProfile('balanced'),
     activateOnArrow: false,
 });
 
@@ -42,16 +41,6 @@ export const ProfileSelector = () => Menu({
                     })),
                 }),
             ],
-        }),
-        Widget.Separator(),
-        Widget.Button({
-            on_clicked: () => Utils.execAsync('rog-control-center'),
-            child: Widget.Box({
-                children: [
-                    Widget.Icon(icons.ui.settings),
-                    Widget.Label('Rog Control Center'),
-                ],
-            }),
         }),
     ],
 });

@@ -11,7 +11,7 @@ const DesktopClock = () => Widget.Box({
             Clock({
                 class_name: 'clock',
                 hpack: 'center',
-                format: '%H',
+                format: '%I',
             }),
             Widget.Box({
                 class_name: 'separator-box',

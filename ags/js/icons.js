@@ -26,9 +26,9 @@ export default {
     },
     asusctl: {
         profile: {
-            Balanced: 'power-profile-balanced-symbolic',
-            Quiet: 'power-profile-power-saver-symbolic',
-            Performance: 'power-profile-performance-symbolic',
+            balanced: 'power-profile-balanced-symbolic',
+            'power-saver': 'power-profile-power-saver-symbolic',
+            performance: 'power-profile-performance-symbolic',
         },
         mode: {
             Integrated: '',
