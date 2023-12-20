@@ -28,7 +28,6 @@
       gedit # text editor
       epiphany # web browser
       geary # email reader
-      gnome-characters
       totem # video player
       tali # poker game
       iagno # go game
