@@ -35,8 +35,9 @@ in {
         github.user = user;
         push.autoSetupRemote = true;
       };
-      delta = {
+      difftastic = {
         enable = true;
+        background = "light";
       };
     };
     gitui = {
