@@ -30,6 +30,8 @@
     gnome-weather
     gnome-calculator
     gnome-software # for flatpak
+    pkgs.nwg-displays
+    pkgs.wlr-randr
   ];
 
   systemd = {

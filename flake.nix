@@ -29,9 +29,6 @@
     vars = {
       username = "igray";
       terminal = "kitty";
-      mainMonitor = "eDP-1";
-      secondMonitor = "DP-3";
-      thirdMonitor = "DP-7";
     };
     system = "x86_64-linux";
     unstable = import nixpkgs-unstable {

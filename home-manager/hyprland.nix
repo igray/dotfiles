@@ -1,4 +1,8 @@
 { pkgs, vars, ... }:
+let
+  mainMonitor = "BOE 0x0BCA";
+  secondMonitor = "Dell Inc. DELL UP2720Q BJMDMX2";
+in
 {
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
@@ -16,10 +20,22 @@
 
     settings = {
       monitor = [
-        "${toString vars.mainMonitor},2256x1504@60,0x0,1.25"
-        "${toString vars.secondMonitor},3840x2160@60,2256x0,1.75"
-        "${toString vars.thirdMonitor},3840x2160@60,2256x0,1.75"
-        ",highres,auto,auto"
+        "desc:${toString secondMonitor},3840x2160@59.997002,0x0,1.75"
+        "desc:${toString mainMonitor},2256x1504@59.999001,190x1234,1.25"
+        ",preferred,auto,auto"
+      ];
+
+      workspace = [
+        "1,monitor:desc:${toString secondMonitor},default:true"
+        "2,monitor:desc:${toString secondMonitor}"
+        "3,monitor:desc:${toString secondMonitor}"
+        "4,monitor:desc:${toString secondMonitor}"
+        "5,monitor:desc:${toString secondMonitor}"
+        "6,monitor:desc:${toString mainMonitor},default:true"
+        "7,monitor:desc:${toString mainMonitor}"
+        "8,monitor:desc:${toString mainMonitor}"
+        "9,monitor:desc:${toString mainMonitor}"
+        "10,monitor:desc:${toString mainMonitor}"
       ];
 
       general = {
@@ -313,9 +329,8 @@
     ".config/hypr/hyprpaper.conf" = {
       text = ''
         preload = ~/.local/wallchange/mywallpaper.jpg
-        wallpaper = ${toString vars.mainMonitor},~/.local/wallchange/mywallpaper.jpg
-        wallpaper = ${toString vars.secondMonitor},~/.local/wallchange/mywallpaper.jpg
-        wallpaper = ${toString vars.thirdMonitor},~/.local/wallchange/mywallpaper.jpg
+        wallpaper = desc:${toString mainMonitor},~/.local/wallchange/mywallpaper.jpg
+        wallpaper = desc:${toString secondMonitor},~/.local/wallchange/mywallpaper.jpg
       '';
     };
   };
