@@ -8,6 +8,7 @@ class Asusctl extends Service {
         });
     }
 
+    profiles = Object.freeze(['performance', 'balanced', 'power-saver']);
     #profile = 'balanced';
 
     /** @param {'performance' | 'balanced' | 'power-saver'} prof */
@@ -32,8 +33,6 @@ class Asusctl extends Service {
         }
     }
 
-    /** @returns {['performance', 'balanced', 'power-saver']} */
-    get profiles() { return ['performance', 'balanced', 'power-saver']; }
     get profile() { return this.#profile; }
 }
 

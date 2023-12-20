@@ -202,7 +202,6 @@ const sidebar = Widget.Revealer({
                             'wl-copy',
                             getValues(),
                         ]);
-                        print(getValues());
                         Utils.execAsync([
                             'notify-send',
                             '-i', 'preferences-desktop-theme-symbolic',
