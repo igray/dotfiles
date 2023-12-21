@@ -15,7 +15,7 @@
     spotify
     unstable.logseq
     vlc
-    zoom-us
+    # zoom-us
 
     # tools
     acpi
