@@ -1,8 +1,13 @@
 { pkgs, ... }:
 {
-  boot = {                                      # Boot Options
-    kernelParams = [ "amdgpu.sg_display=0" ];   # Workaround white-screen issue
-    initrd.kernelModules = [ "amdgpu" ];        # Video Drivers
+  boot = {
+    # sg_display: Workaround white-screen issue
+    kernelParams = [ "amdgpu.sg_display=0" "quiet" ];
+    initrd = {
+      kernelModules = [ "amdgpu" ];        # Video Drivers
+      systemd.enable = true;
+    };
+    plymouth.enable = true;
   };
   hardware = {
     enableRedistributableFirmware = true;

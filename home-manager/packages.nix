@@ -4,6 +4,7 @@
     # gui
     (mpv.override { scripts = [mpvScripts.mpris]; })
     authenticator
+    calibre
     d-spy
     dconf-editor
     discord
