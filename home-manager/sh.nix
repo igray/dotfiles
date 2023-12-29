@@ -83,9 +83,6 @@
         '';
         open="xdg-open";
         ltr="ls -l -snew";
-
-        # Only for kitty-- remove when moving back to wezterm
-        ssh="kitty +kitten ssh";
       };
       shellInit = ''
         set -g theme_display_ruby no

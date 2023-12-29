@@ -5,12 +5,12 @@ in
 {
   imports = [
     ./ags.nix
+    ./alacritty.nix
     ./browser.nix
     ./dconf.nix
     ./git.nix
     ./hyprland.nix
     ./lf.nix
-    ./kitty.nix
     ./neovim.nix
     ./packages.nix
     ./sh.nix
@@ -41,7 +41,7 @@ in
     sessionVariables = {
       QT_XCB_GL_INTEGRATION = "none"; # kde-connect
       NIXPKGS_ALLOW_UNFREE = "1";
-      SHELL = "${pkgs.${vars.terminal}}/bin/${vars.terminal}";
+      SHELL = "${pkgs.fish}/bin/fish";
       BAT_THEME = "base16";
     };
 

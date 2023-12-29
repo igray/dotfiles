@@ -28,7 +28,7 @@
   let
     vars = {
       username = "igray";
-      terminal = "kitty";
+      terminal = "alacritty";
     };
     system = "x86_64-linux";
     unstable = import nixpkgs-unstable {
