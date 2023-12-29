@@ -39,7 +39,6 @@ in
 
     username = vars.username;
     sessionVariables = {
-      QT_XCB_GL_INTEGRATION = "none"; # kde-connect
       NIXPKGS_ALLOW_UNFREE = "1";
       SHELL = "${pkgs.fish}/bin/fish";
       BAT_THEME = "base16";
@@ -63,13 +62,6 @@ in
     "file://${homeDirectory}/.config Config"
     "file://${homeDirectory}/.local/share Local"
   ];
-
-  services = {
-    kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-  };
 
   programs.home-manager.enable = true;
   xdg.enable = true;
