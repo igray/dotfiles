@@ -11,6 +11,7 @@ in
     ./git.nix
     ./hyprland.nix
     ./lf.nix
+    ./mimelist.nix
     ./neovim.nix
     ./packages.nix
     ./sh.nix
@@ -19,7 +20,6 @@ in
     ./tmux.nix
     ./wallpaper.nix
     ./wezterm.nix
-    ./mimelist.nix
   ];
 
   news.display = "show";

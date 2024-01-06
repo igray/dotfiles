@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   services.xserver = {
+    displayManager.gdm.enable = true;
     displayManager.startx.enable = true;
   };
 
@@ -22,14 +23,17 @@
 
   environment.systemPackages = with pkgs.gnome; [
     adwaita-icon-theme
-    nautilus
-    gnome-calendar
+    baobab
     gnome-boxes
-    gnome-system-monitor
-    gnome-control-center
-    gnome-weather
     gnome-calculator
+    gnome-calendar
+    gnome-clocks
+    gnome-control-center
     gnome-software # for flatpak
+    gnome-system-monitor
+    gnome-weather
+    nautilus
+    pkgs.loupe
     pkgs.nwg-displays
     pkgs.wlr-randr
   ];
@@ -55,6 +59,7 @@
     devmon.enable = true;
     udisks2.enable = true;
     upower.enable = true;
+    power-profiles-daemon.enable = true;
     accounts-daemon.enable = true;
     gnome = {
       evolution-data-server.enable = true;

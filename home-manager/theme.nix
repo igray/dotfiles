@@ -1,5 +1,6 @@
 { pkgs, inputs, ... }:
 let
+  gtk-theme = "adw-gtk3-dark";
   moreWaita = pkgs.stdenv.mkDerivation {
     name = "MoreWaita";
     src = inputs.more-waita;
@@ -25,16 +26,16 @@ in
 {
   home = {
     packages = with pkgs; [
-      font-awesome
-      papirus-icon-theme
-      qogir-icon-theme
-      whitesur-icon-theme
-      colloid-icon-theme
       adw-gtk3
-      nerdfonts
+      font-awesome
       moreWaita
+      nerdfonts
     ];
-    sessionVariables.XCURSOR_THEME = cursor-theme;
+    sessionVariables = {
+      XCURSOR_THEME = cursor-theme;
+      XCURSOR_SIZE = "24";
+      GTK_THEME = gtk-theme;
+    };
     pointerCursor = {
       package = cursor-package;
       name = cursor-theme;
@@ -68,12 +69,12 @@ in
   gtk = {
     enable = true;
     font.name = "Ubuntu Nerd Font";
-    theme.name = "adw-gtk3-dark";
+    theme.name = gtk-theme;
     cursorTheme = {
       name = cursor-theme;
       package = cursor-package;
     };
-    iconTheme.name = "MoreWaita";
+    iconTheme.name = moreWaita.name;
     gtk3.extraCss = ''
       headerbar, .titlebar,
       .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
@@ -84,7 +85,6 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
-    style.name = "adwaita-dark";
+    platformTheme = "kde";
   };
 }
