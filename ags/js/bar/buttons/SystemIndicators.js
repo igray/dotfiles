@@ -15,20 +15,22 @@ const ProfileIndicator = () => Widget.Icon()
     .bind('visible', Asusctl, 'profile', p => p !== 'Balanced')
     .bind('icon', Asusctl, 'profile', i => icons.asusctl.profile[i]);
 
+const ModeIndicator = () => FontIcon()
+    .bind('visible', Asusctl, 'mode', m => m !== 'Hybrid')
+    .bind('icon', Asusctl, 'mode', i => icons.asusctl.mode[i]);
+
 const MicrophoneIndicator = () => Widget.Icon().hook(Audio, icon => {
     if (!Audio.microphone)
         return;
 
     const { muted, low, medium, high } = icons.audio.mic;
-    if (Audio.microphone.is_muted)
-        return icon.icon = muted;
 
     /** @type {Array<[number, string]>} */
     const cons = [[67, high], [34, medium], [1, low], [0, muted]];
     icon.icon = cons.find(([n]) => n <= Audio.microphone.volume * 100)?.[1] || '';
 
     icon.visible = Audio.recorders.length > 0 || Audio.microphone.is_muted;
-}, 'speaker-changed');
+}, 'microphone-changed');
 
 const DNDIndicator = () => Widget.Icon({
     visible: Notifications.bind('dnd'),
