@@ -218,7 +218,7 @@ export default {
             icon_size: Option(56),
             pinned_apps: Option([
                 'firefox',
-                'org.wezfurlong.wezterm',
+                'alacritty',
                 'org.gnome.Nautilus',
                 'logseq',
                 'slack',

@@ -7,6 +7,7 @@
 
     "org/gnome/desktop/interface" = {
       show-battery-percentage = true;
+      color-scheme = "prefer-dark";
     };
 
     "org/gnome/desktop/peripherals/touchpad" = {
