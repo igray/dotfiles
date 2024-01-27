@@ -9,6 +9,7 @@
     dconf-editor
     discord
     gimp
+    gnome-characters
     icon-library
     libreoffice-fresh
     simple-scan
