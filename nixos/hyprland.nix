@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
   services.xserver = {
-    displayManager.gdm.enable = true;
+    displayManager.gdm = {
+      enable = true;
+      autoSuspend = false;
+    };
     displayManager.startx.enable = true;
   };
 
