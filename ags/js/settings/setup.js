@@ -1,13 +1,13 @@
-import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
 import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js';
+import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import options from '../options.js';
 import icons from '../icons.js';
 import { reloadScss, scssWatcher } from './scss.js';
 import { wallpaper } from './wallpaper.js';
 import { hyprlandInit, setupHyprland } from './hyprland.js';
 import { globals } from './globals.js';
-import Gtk from 'gi://Gtk';
+import Gtk from 'gi://Gtk?version=3.0';
 
 export function init() {
     notificationBlacklist();
@@ -23,6 +23,8 @@ export function init() {
     hyprlandInit();
     setupHyprland();
     wallpaper();
+
+    Audio.maxStreamVolume = 1.05;
 }
 
 function dependandOptions() {
