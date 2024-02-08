@@ -1,4 +1,5 @@
 import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
+import Bluetooth from 'resource:///com/github/Aylur/ags/service/bluetooth.js';
 import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js';
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import options from '../options.js';
@@ -25,6 +26,9 @@ export function init() {
     wallpaper();
 
     Audio.maxStreamVolume = 1.05;
+    setTimeout(() => {
+      Bluetooth.enabled = true;
+    }, 2000);
 }
 
 function dependandOptions() {
