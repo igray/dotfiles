@@ -47,8 +47,7 @@
 
   # packages
   environment.systemPackages = with pkgs; [
-    docker
-    docker-compose
+    cachix
     home-manager
     git
     wget
@@ -64,6 +63,7 @@
     flatpak.enable = true;
     envfs.enable = true;
     fwupd.enable = true;
+    openssh.enable = true;
   };
 
   # logind
