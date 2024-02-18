@@ -57,5 +57,9 @@
 
     # original config dependencies
     xdg-utils       # Open files
+
+    # ags
+    bun
+    dart-sass
   ];
 }

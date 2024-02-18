@@ -1,9 +1,9 @@
-const main = "/tmp/ags/main.js"
-const outdir = `${App.configDir}/main.ts`
+const main = "/tmp/ags/greeter.js"
+const entry = `${App.configDir}/greeter/greeter.ts`
 
 try {
     await Utils.execAsync([
-        "bun", "build", outdir,
+        "bun", "build", entry,
         "--outfile", main,
         "--external", "resource://*",
         "--external", "gi://*",
