@@ -48,8 +48,9 @@
   # packages
   environment.systemPackages = with pkgs; [
     cachix
-    home-manager
     git
+    home-manager
+    libva-utils
     wget
   ];
 

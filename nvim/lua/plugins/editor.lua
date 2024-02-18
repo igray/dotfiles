@@ -6,6 +6,7 @@ return {
       require("which-key").register({
         ["<leader>o"] = { name = "+ChatCPT" },
         ["<leader>or"] = { name = "+Run" },
+        ["<leader>r"] = { name = "+RSpec" },
       })
     end,
   },

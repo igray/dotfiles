@@ -1,6 +1,7 @@
 return {
   { "echasnovski/mini.pairs", enabled = false },
   { "tpope/vim-rails", ft = { "ruby", "eruby" } },
+  { "melopilosyan/rspec-integrated.nvim", event = "VeryLazy" },
   { "gleam-lang/gleam.vim" },
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
