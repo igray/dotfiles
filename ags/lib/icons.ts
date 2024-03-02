@@ -3,6 +3,7 @@ export const substitutes = {
     "blueberry.py": "blueberry",
     "Caprine": "facebook-messenger",
     "com.raggesilver.BlackBox-symbolic": "terminal-symbolic",
+    "org.wezfurlong.wezterm-symbolic": "terminal-symbolic",
     "audio-headset-bluetooth": "audio-headphones-symbolic",
     "audio-card-analog-usb": "audio-speakers-symbolic",
     "audio-card-analog-pci": "audio-card-symbolic",
@@ -12,6 +13,7 @@ export const substitutes = {
 }
 
 export default {
+    missing: "image-missing-symbolic",
     fallback: {
         executable: "application-x-executable-symbolic",
         notification: "dialog-information-symbolic",
@@ -33,6 +35,7 @@ export default {
         time: "hourglass-symbolic",
         toolbars: "toolbars-symbolic",
         warning: "dialog-warning-symbolic",
+        avatar: "avatar-default-symbolic",
         arrow: {
             right: "pan-end-symbolic",
             left: "pan-start-symbolic",
@@ -61,6 +64,11 @@ export default {
         },
         mixer: "mixer-symbolic",
     },
+    powerprofile: {
+        balanced: "power-profile-balanced-symbolic",
+        "power-saver": "power-profile-power-saver-symbolic",
+        performance: "power-profile-performance-symbolic",
+    },
     asusctl: {
         profile: {
             balanced: "power-profile-balanced-symbolic",
@@ -69,7 +77,7 @@ export default {
         },
     },
     battery: {
-        charging: "flash-symbolic",
+        charging: "battery-flash-symbolic",
         warning: "battery-empty-symbolic",
     },
     bluetooth: {

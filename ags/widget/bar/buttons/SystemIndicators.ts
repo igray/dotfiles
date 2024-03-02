@@ -6,10 +6,19 @@ const notifications = await Service.import("notifications")
 const bluetooth = await Service.import("bluetooth")
 const audio = await Service.import("audio")
 const network = await Service.import("network")
+const powerprof = await Service.import("powerprofiles")
 
-const ProfileIndicator = () => Widget.Icon()
-    .bind("visible", asusctl, "profile", p => p !== "Balanced")
-    .bind("icon", asusctl, "profile", p => icons.asusctl.profile[p])
+const ProfileIndicator = () => {
+    const visible = asusctl.available
+        ? asusctl.bind("profile").as(p => p !== "balanced")
+        : powerprof.bind("active_profile").as(p => p !== "balanced")
+
+    const icon = asusctl.available
+        ? asusctl.bind("profile").as(p => icons.asusctl.profile[p])
+        : powerprof.bind("active_profile").as(p => icons.powerprofile[p])
+
+    return Widget.Icon({ visible, icon })
+}
 
 const MicrophoneIndicator = () => Widget.Icon()
     .hook(audio, self => self.visible =
@@ -59,13 +68,12 @@ const AudioIndicator = () => Widget.Icon({
 })
 
 export default () => PanelButton({
-    class_name: "quicksettings panel-button",
+    window: "quicksettings",
     on_clicked: () => App.toggleWindow("quicksettings"),
     on_scroll_up: () => audio.speaker.volume += 0.02,
     on_scroll_down: () => audio.speaker.volume -= 0.02,
     child: Widget.Box([
-        // @ts-expect-error
-        asusctl?.available && ProfileIndicator(),
+        ProfileIndicator(),
         DNDIndicator(),
         BluetoothIndicator(),
         NetworkIndicator(),

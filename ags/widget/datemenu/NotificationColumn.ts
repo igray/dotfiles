@@ -17,12 +17,7 @@ const Animated = (n: Notif) => Widget.Revealer({
 })
 
 const ClearButton = () => Widget.Button({
-    on_clicked: () => {
-        const n = notifications.notifications
-        const t = options.transition.value / 2
-        for (let i = 0; i < n.length; i++)
-            Utils.timeout(t * i, () => n[i]?.close())
-    },
+    on_clicked: notifications.clear,
     sensitive: notifs.as(n => n.length > 0),
     child: Widget.Box({
         children: [
@@ -73,6 +68,7 @@ const NotificationList = () => {
                     remove(null, id)
 
                 const n = notifications.getNotification(id)!
+
                 const w = Animated(n)
                 map.set(id, w)
                 box.children = [w, ...box.children]

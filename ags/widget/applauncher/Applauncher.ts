@@ -2,7 +2,6 @@ import PopupWindow, { Padding } from "widget/PopupWindow"
 import { AppItem, QuickButton } from "./AppItem"
 import icons from "lib/icons"
 import options from "options"
-import type Gtk from "gi://Gtk?version=3.0"
 import { launchApp } from "lib/utils"
 
 const apps = await Service.import("applications")
@@ -11,7 +10,7 @@ const { width, margin, maxItem, favorites } = options.applauncher
 
 const SeparatedAppItem = (app: Parameters<typeof AppItem>[0]) => Widget.Revealer(
     { attribute: { app } },
-    Widget.Box<Gtk.Widget>(
+    Widget.Box(
         { vertical: true },
         Widget.Separator(),
         AppItem(app),
@@ -58,17 +57,16 @@ const Applauncher = () => {
         visible: favorites.bind().as(f => f.length > 0),
         child: Widget.Box({
             vertical: true,
-            children: [
+            children: favorites.bind().as(favs => favs.flatMap(fs => [
                 Widget.Separator(),
                 Widget.Box({
                     class_name: "quicklaunch horizontal",
-                    children: favorites.bind().as(f => f
+                    children: fs
                         .map(f => query(f)?.[0])
                         .filter(f => f)
                         .map(QuickButton),
-                    ),
                 }),
-            ],
+            ])),
         }),
     })
 
@@ -100,7 +98,7 @@ const Applauncher = () => {
         ],
     })
 
-    return Widget.Box<Gtk.Widget>(
+    return Widget.Box(
         { vertical: true, css: "padding: 1px" },
         Padding("applauncher", {
             css: margin.bind().as(v => `min-height: ${v}pt;`),

@@ -16,7 +16,6 @@ import { setupDateMenu } from "widget/datemenu/DateMenu"
 import { init } from "lib/init"
 
 export default config({
-    icons: "./assets",
     onConfigParsed: () => {
         setupQuickSettings()
         setupDateMenu()

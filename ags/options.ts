@@ -1,10 +1,13 @@
 import { type BarWidget } from "widget/bar/Bar"
 import { opt, mkOptions } from "lib/option"
+import { distro } from "lib/variables"
+import { icon } from "lib/utils"
+import icons from "lib/icons"
 
 const options = mkOptions(OPTIONS, {
     autotheme: opt(false),
 
-    wallpaper: opt(`/home/${USER}/.config/background`),
+    wallpaper: opt(`/home/${USER}/.config/background`, { persistent: true }),
 
     theme: {
         dark: {
@@ -36,6 +39,7 @@ const options = mkOptions(OPTIONS, {
             border: opt("#080808"),
         },
 
+        blur: opt(0),
         scheme: opt<"dark" | "light">("dark"),
         widget: { opacity: opt(94) },
         border: {
@@ -84,7 +88,7 @@ const options = mkOptions(OPTIONS, {
         launcher: {
             icon: {
                 colored: opt(true),
-                icon: opt("system-search-symbolic"),
+                icon: opt(icon(distro, icons.ui.search)),
             },
             label: {
                 colored: opt(false),
@@ -100,14 +104,15 @@ const options = mkOptions(OPTIONS, {
             bar: opt<"hidden" | "regular" | "whole">("regular"),
             charging: opt("#00D787"),
             percentage: opt(true),
-            blocks: opt(10),
-            width: opt(70),
+            blocks: opt(7),
+            width: opt(50),
             low: opt(30),
         },
         workspaces: {
             workspaces: opt(7),
         },
         taskbar: {
+            iconSize: opt(0),
             monochrome: opt(true),
             exclusive: opt(false),
         },
@@ -138,11 +143,13 @@ const options = mkOptions(OPTIONS, {
         margin: opt(80),
         maxItem: opt(6),
         favorites: opt([
-            "firefox",
-            "org.gnome.Nautilus",
-            "logseq",
-            "slack",
-            "spotify",
+            [
+                "firefox",
+                "org.gnome.Nautilus",
+                "logseq",
+                "slack",
+                "alacritty",
+            ],
         ]),
     },
 
@@ -202,11 +209,6 @@ const options = mkOptions(OPTIONS, {
     },
 
     hyprland: {
-        blur: opt<"*" | Array<string>>([
-            "powermenu",
-            "verification",
-        ]),
-        alpha: opt(.3),
         gaps: opt(2.4),
         inactiveBorder: opt("333333ff"),
     },

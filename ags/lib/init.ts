@@ -5,6 +5,7 @@ import tmux from "./tmux"
 import gtk from "./gtk"
 import lowBattery from "./battery"
 import swww from "./swww"
+import notifications from "./notifications"
 
 export async function init() {
     const bluetooth = await Service.import("bluetooth")
@@ -14,6 +15,7 @@ export async function init() {
         tmux()
         matugen()
         lowBattery()
+        notifications()
         hyprland()
         css()
         swww()

@@ -1,23 +1,65 @@
 { inputs
+, writeShellScript
 , system
 , stdenv
-, writeShellScriptBin
+, cage
 , swww
 , bun
 , dart-sass
 , fd
 , brightnessctl
 , accountsservice
+, slurp
+, wf-recorder
+, wl-clipboard
+, wayshot
+, swappy
+, hyprpicker
+, pavucontrol
+, networkmanager
+, gtk3
+, which
 }:
 let
+  name = "asztal";
+
   ags = inputs.ags.packages.${system}.default.override {
     extraPackages = [accountsservice];
   };
 
-  pname = "asztal";
+  dependencies = [
+    which
+    dart-sass
+    fd
+    brightnessctl
+    swww
+    inputs.matugen.packages.${system}.default
+    inputs.hyprland.packages.${system}.default
+    slurp
+    wf-recorder
+    wl-clipboard
+    wayshot
+    swappy
+    hyprpicker
+    pavucontrol
+    networkmanager
+    gtk3
+  ];
+
+  addBins = list: builtins.concatStringsSep ":" (builtins.map (p: "${p}/bin") list);
+
+  greeter = writeShellScript "greeter" ''
+    export PATH=$PATH:${addBins dependencies}
+    ${cage}/bin/cage -ds -m last ${ags}/bin/ags -- -c ${config}/greeter.js
+  '';
+
+  desktop = writeShellScript name ''
+    export PATH=$PATH:${addBins dependencies}
+    ${ags}/bin/ags -b ${name} -c ${config}/config.js $@
+  '';
+
   config = stdenv.mkDerivation {
-    inherit pname;
-    version = "1.7.6";
+    inherit name;
     src = ./.;
 
     buildPhase = ''
@@ -33,7 +75,7 @@ let
     '';
 
     installPhase = ''
-      mkdir $out
+      mkdir -p $out
       cp -r assets $out
       cp -r style $out
       cp -r greeter $out
@@ -42,24 +84,14 @@ let
       cp -f greeter.js $out/greeter.js
     '';
   };
-in {
-  desktop = {
-    inherit config;
-    script = writeShellScriptBin pname ''
-      export PATH=$PATH:${dart-sass}/bin
-      export PATH=$PATH:${fd}/bin
-      export PATH=$PATH:${brightnessctl}/bin
-      export PATH=$PATH:${swww}/bin
-      ${ags}/bin/ags -b ${pname} -c ${config}/config.js $@
-    '';
-  };
-  greeter = {
-    inherit config;
-    script = writeShellScriptBin "greeter" ''
-      export PATH=$PATH:${dart-sass}/bin
-      export PATH=$PATH:${fd}/bin
-      ${ags}/bin/ags -b ${pname} -c ${config}/greeter.js $@
-    '';
-  };
-}
+in stdenv.mkDerivation {
+  inherit name;
+  src = config;
 
+  installPhase = ''
+    mkdir -p $out/bin
+    cp -r . $out
+    cp ${desktop} $out/bin/${name}
+    cp ${greeter} $out/bin/greeter
+  '';
+}
