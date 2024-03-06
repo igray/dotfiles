@@ -165,6 +165,8 @@ in
         "SUPERSHIFT,right,movewindow,r"
         "SUPERSHIFT,up,movewindow,u"
         "SUPERSHIFT,down,movewindow,d"
+        "SUPERCTRL,up,movewindow,mon:-1"
+        "SUPERCTRL,down,movewindow,mon:+1"
 
         "SUPER,1,workspace,1"
         "SUPER,2,workspace,2"
