@@ -5,6 +5,8 @@ import Gtk from "gi://Gtk?version=3.0"
 import Gdk from "gi://Gdk"
 import GLib from "gi://GLib?version=2.0"
 
+export type Binding<T> = import("types/service").Binding<any, any, T>
+
 /**
   * @returns substitute icon || name || fallback icon
   */
@@ -57,15 +59,6 @@ export function forMonitors(widget: (monitor: number) => Gtk.Window) {
  */
 export function range(length: number, start = 1) {
     return Array.from({ length }, (_, i) => i + start)
-}
-
-/**
- * promisified timeout
- */
-export function wait<T>(ms: number, callback: () => T): Promise<T> {
-    return new Promise(resolve => Utils.timeout(ms, () => {
-        resolve(callback())
-    }))
 }
 
 /**

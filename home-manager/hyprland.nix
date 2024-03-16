@@ -124,8 +124,8 @@ in
         e = "exec, ags -b hypr";
       in [
         "CTRL SHIFT, R,  ${e} quit; ags -b hypr"
-        "SUPER, Space,   ${e} -t applauncher"
-        ", XF86PowerOff, ${e} -t powermenu"
+        "SUPER, Space,   ${e} -t launcher"
+        ", XF86PowerOff, ${e} -t 'powermenu.shutdown()'"
         "SUPER, Tab,     ${e} -t overview"
         ", XF86Launch4,  ${e} -r 'recorder.start()'"
         ",Print,         ${e} -r 'recorder.screenshot()'"

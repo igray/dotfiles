@@ -94,7 +94,7 @@ const options = mkOptions(OPTIONS, {
                 colored: opt(false),
                 label: opt(" Applications"),
             },
-            action: opt(() => App.toggleWindow("applauncher")),
+            action: opt(() => App.toggleWindow("launcher")),
         },
         date: {
             format: opt("%l:%M - %A %e."),
@@ -137,20 +137,29 @@ const options = mkOptions(OPTIONS, {
         },
     },
 
-    applauncher: {
-        iconSize: opt(62),
+    launcher: {
         width: opt(0),
         margin: opt(80),
-        maxItem: opt(6),
-        favorites: opt([
-            [
-                "firefox",
-                "org.gnome.Nautilus",
-                "logseq",
-                "slack",
-                "alacritty",
-            ],
-        ]),
+        nix: {
+            pkgs: opt("nixpkgs/nixos-unstable"),
+            max: opt(8),
+        },
+        sh: {
+            max: opt(16),
+        },
+        apps: {
+            iconSize: opt(62),
+            max: opt(6),
+            favorites: opt([
+                [
+                    "firefox",
+                    "org.gnome.Nautilus",
+                    "logseq",
+                    "slack",
+                    "alacritty",
+                ],
+            ]),
+        },
     },
 
     overview: {
@@ -211,6 +220,7 @@ const options = mkOptions(OPTIONS, {
     hyprland: {
         gaps: opt(2.4),
         inactiveBorder: opt("333333ff"),
+        gapsWhenOnly: opt(false),
     },
 })
 
