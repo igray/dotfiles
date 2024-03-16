@@ -15,7 +15,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   security = {
@@ -38,6 +38,8 @@
     nautilus
     pkgs.loupe
     pkgs.nwg-displays
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-hyprland
     pkgs.wlr-randr
   ];
 
