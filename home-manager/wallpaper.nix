@@ -62,7 +62,7 @@
         cp "$pic" $local_wallpaper
         hyprctl hyprpaper unload "$local_wallpaper"
         hyprctl hyprpaper preload "$local_wallpaper"
-        for mon in $(hyprctl monitors | grep Monitor | awk -e '{ print $2; }'); do
+        for mon in $(hyprctl monitors | grep Monitor | /run/current-system/sw/bin/awk -e '{ print $2; }'); do
           hyprctl hyprpaper wallpaper "$mon,$local_wallpaper"
         done
       '';
