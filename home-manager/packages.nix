@@ -33,6 +33,7 @@
     libnotify
     pciutils
     ripgrep
+    s3fs
     socat
     unzip
     usbutils
