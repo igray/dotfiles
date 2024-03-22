@@ -30,4 +30,4 @@ class Asusctl extends Service {
     get profile() { return this.#profile }
 }
 
-export default new Asusctl()
+export default new Asusctl

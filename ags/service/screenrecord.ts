@@ -68,20 +68,29 @@ class Recorder extends Service {
         const file = `${this.#screenshots}/${now()}.png`
         Utils.ensureDirectory(this.#screenshots)
 
-        const grim = `grim ${full ? "" : `-g "${await sh("slurp")}"`} ${file}`
-        await sh(grim)
+        if (full) {
+            await sh(`grim ${file}`)
+        }
+        else {
+            const size = await sh("slurp")
+            if (!size)
+                return
+
+            await sh(`grim -g "${size}" ${file}`)
+        }
+
         bash(`wl-copy < ${file}`)
 
         Utils.notify({
             image: file,
             summary: "Screenshot",
-            body: this.#file,
+            body: file,
             actions: {
                 "Show in Files": () => sh(`xdg-open ${this.#screenshots}`),
                 "View": () => sh(`xdg-open ${file}`),
                 "Edit": () => {
                     if (dependencies("swappy"))
-                        sh(`swappy, -f ${file}`)
+                        sh(`swappy -f ${file}`)
                 },
             },
         })
@@ -89,5 +98,5 @@ class Recorder extends Service {
 }
 
 const recorder = new Recorder
-globalThis["recorder"] = recorder
+Object.assign(globalThis, { recorder })
 export default recorder

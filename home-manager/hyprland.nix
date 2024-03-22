@@ -2,6 +2,10 @@
 let
   mainMonitor = "BOE 0x0BCA";
   secondMonitor = "Dell Inc. DELL UP2720Q BJMDMX2";
+
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  pactl = "${pkgs.pulseaudio}/bin/pactl";
 in
 {
   xdg.desktopEntries."org.gnome.Settings" = {
@@ -193,34 +197,22 @@ in
         "SUPERSHIFT,0,movetoworkspace,10"
         "SUPERSHIFT,right,movetoworkspace,+1"
         "SUPERSHIFT,left,movetoworkspace,-1"
-
-#       ",print,exec,${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f - -o ~/Pictures/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png && notify-send \"Saved to ~/Pictures/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png\""
-
-#       ",XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10"
-#       ",XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10"
-#       ",XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t"
-#       "SUPER_L,c,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
-#       ",XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
-#       ",XF86MonBrightnessDown,exec,${pkgs.light}/bin/light -U 10"
-#       ",XF86MonBrightnessUP,exec,${pkgs.light}/bin/light -A 10"
       ];
 
       bindle = let e = "exec, ags -b hypr -r"; in [
-        ",XF86MonBrightnessUp,   ${e} 'brightness.screen += 0.05; indicator.display()'"
-        ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
-        ",XF86KbdBrightnessUp,   ${e} 'brightness.kbd++; indicator.kbd()'"
-        ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
-        ",XF86AudioRaiseVolume,  ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
-        ",XF86AudioLowerVolume,  ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
+        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
+        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
+        ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
       ];
 
-      bindl = let e = "exec, ags -b hypr -r"; in [
-        ",XF86AudioPlay,    ${e} 'mpris?.playPause()'"
-        ",XF86AudioStop,    ${e} 'mpris?.stop()'"
-        ",XF86AudioPause,   ${e} 'mpris?.pause()'"
-        ",XF86AudioPrev,    ${e} 'mpris?.previous()'"
-        ",XF86AudioNext,    ${e} 'mpris?.next()'"
-        ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
+      bindl =  [
+        ",XF86AudioPlay,    exec, ${playerctl} play-pause"
+        ",XF86AudioStop,    exec, ${playerctl} pause"
+        ",XF86AudioPause,   exec, ${playerctl} pause"
+        ",XF86AudioPrev,    exec, ${playerctl} previous"
+        ",XF86AudioNext,    exec, ${playerctl} next"
+        ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
         ",switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh"
       ];
 
