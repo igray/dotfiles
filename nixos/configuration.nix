@@ -18,6 +18,7 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      trusted-users = [ "root" vars.username ];
     };
     gc = {                                  # Garbage Collection
       automatic = true;
