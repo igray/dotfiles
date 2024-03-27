@@ -8,6 +8,8 @@
     d-spy
     dconf-editor
     discord
+    foliate
+    font-manager
     gimp
     gnome-characters
     icon-library
