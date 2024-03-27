@@ -3,7 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./audio.nix
-    # ./gnome.nix
+    ./fonts.nix
     ./hyprland.nix
     ./laptop.nix
     ./locale.nix
