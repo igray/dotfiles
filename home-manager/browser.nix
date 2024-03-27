@@ -1,11 +1,24 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   home = {
     sessionVariables.BROWSER = "firefox";
 
+    packages = with pkgs; [
+      brave
+    ];
+
     file."firefox-gnome-theme" = {
       target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";
       source = inputs.firefox-gnome-theme;
+    };
+
+    file."brave-config" = {
+      target = ".config/brave-flags.conf";
+      text = ''
+        --enable-features=VaapiVideoDecoder,VaapiVideoEncoder,VaapiVideoDecodeLinuxGL
+        --ozone-platform-hint=auto
+        --password-store=gnome
+      '';
     };
   };
 
@@ -29,14 +42,6 @@
           @import "firefox-gnome-theme/userContent.css";
         '';
       };
-    };
-
-    google-chrome = {
-      enable = true;
-      commandLineArgs = [
-        "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
-        "--password-store=gnome"
-      ];
     };
   };
 }
