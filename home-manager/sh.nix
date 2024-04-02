@@ -3,7 +3,7 @@
     fish = {
       enable = true;
       functions = {
-        currentGitBranch = "git branch | grep '\*' | awk -e '{ print $2 }'";
+        currentGitBranch = "git branch --show-current";
         gsb = {
           body = ''
             command git branch $argv
