@@ -66,6 +66,10 @@
     envfs.enable = true;
     fwupd.enable = true;
     openssh.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
   };
 
   # logind
@@ -109,7 +113,10 @@
   };
 
   # simple-scan
-  hardware.sane.enable = true;
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.hplipWithPlugin ];
+  };
 
   # bootloader
   boot = {                                      # Boot Options
