@@ -17,6 +17,7 @@
     simple-scan
     slack
     spotify
+    tidal-hifi
     unstable.logseq
     vlc
     # zoom-us
@@ -25,6 +26,7 @@
     acpi
     bat
     btop
+    unstable.devenv
     fd
     fzf
     glib
