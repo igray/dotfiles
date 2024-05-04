@@ -79,7 +79,6 @@ class Wallpaper extends Service {
 
     constructor() {
         super()
-        return this
 
         if (!dependencies("swww"))
             return this

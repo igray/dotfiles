@@ -9,7 +9,10 @@ class Asusctl extends Service {
         })
     }
 
-    available = !!Utils.exec("which powerprofilesctl")
+    get available() {
+        return Utils.exec("which powerprofilesctl", () => true, () => false)
+    }
+
     #profile: Profile = "balanced"
 
     async setProfile(prof: Profile) {
