@@ -65,6 +65,7 @@
           nvim-web-devicons
           persistence-nvim
           plenary-nvim
+          rustaceanvim
           telescope-fzf-native-nvim
           telescope-nvim
           todo-comments-nvim
@@ -146,7 +147,9 @@
           markdown_inline
           nix
           regex
+          ron
           ruby
+          rust
           scss
           sql
           toml
