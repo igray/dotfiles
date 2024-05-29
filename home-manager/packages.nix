@@ -51,6 +51,7 @@
     grim            # Grab Images
     hyprpaper       # Background manager
     hyprpicker
+    image-roll
     imagemagick
     pavucontrol
     slurp
