@@ -108,6 +108,15 @@
             -- disable mason.nvim, use programs.neovim.extraPackages
             { "williamboman/mason-lspconfig.nvim", enabled = false },
             { "williamboman/mason.nvim", enabled = false },
+            -- Extras
+            { import = "lazyvim.plugins.extras.coding.copilot" },
+            { import = "lazyvim.plugins.extras.formatting.prettier" },
+            { import = "lazyvim.plugins.extras.lang.json" },
+            { import = "lazyvim.plugins.extras.lang.markdown" },
+            { import = "lazyvim.plugins.extras.lang.ruby" },
+            { import = "lazyvim.plugins.extras.lang.rust" },
+            { import = "lazyvim.plugins.extras.lang.typescript" },
+            { import = "lazyvim.plugins.extras.lang.yaml" },
             -- import/override with your plugins
             { import = "plugins" },
             -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
