@@ -13,6 +13,7 @@
     gimp
     gnome-characters
     icon-library
+    inkscape
     libreoffice-fresh
     simple-scan
     slack
