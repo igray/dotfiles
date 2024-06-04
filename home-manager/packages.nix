@@ -50,7 +50,7 @@
     brightnessctl
     gammastep       # Nightlight
     grim            # Grab Images
-    hyprpaper       # Background manager
+    unstable.hyprpaper       # Background manager
     hyprpicker
     image-roll
     imagemagick

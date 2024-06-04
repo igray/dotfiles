@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }:
+{ pkgs, unstable, vars, ... }:
 let
   mainMonitor = "BOE 0x0BCA";
   secondMonitor = "Dell Inc. DELL UP2720Q BJMDMX2";
@@ -260,7 +260,7 @@ in
         "${pkgs.systemd}/bin/systemctl start --user gnome-keyring.service"
         "${pkgs.gammastep}/bin/gammastep -m wayland -l 30.318276:-97.742119"
         "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 3600 '${pkgs.systemd}/bin/systemctl suspend' after-resume 'hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && hyprctl dispatch dpms off'"
-        "${pkgs.hyprpaper}/bin/hyprpaper"
+        "${unstable.hyprpaper}/bin/hyprpaper"
         "rfkill unblock bluetooth"
       ];
     };
