@@ -1,7 +1,8 @@
-{ pkgs, lib, vars, ... }:
+{ pkgs, unstable, lib, vars, ... }:
 {
   programs.neovim = {
     enable = true;
+    package = unstable.neovim-unwrapped;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
@@ -33,7 +34,7 @@
       let
         plugins = with pkgs.vimPlugins; [
           # LazyVim
-          LazyVim
+          unstable.vimPlugins.LazyVim
           bufferline-nvim
           cmp-buffer
           cmp-nvim-lsp
@@ -110,6 +111,7 @@
             { "williamboman/mason.nvim", enabled = false },
             -- Extras
             { import = "lazyvim.plugins.extras.coding.copilot" },
+            { import = "lazyvim.plugins.extras.coding.copilot-chat" },
             { import = "lazyvim.plugins.extras.formatting.prettier" },
             { import = "lazyvim.plugins.extras.lang.json" },
             { import = "lazyvim.plugins.extras.lang.markdown" },
