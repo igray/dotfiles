@@ -24,8 +24,8 @@ in
 
     settings = {
       monitor = [
-        "desc:${toString secondMonitor},3840x2160@59.997002,0x0,1.75"
-        "desc:${toString mainMonitor},2256x1504@59.999001,190x1234,1.25"
+        "desc:${toString secondMonitor},3840x2160@60.0,0x0,1.666667"
+        "desc:${toString mainMonitor},2256x1504@60.0,194x1296,1.175"
         ",preferred,auto,auto"
       ];
 
@@ -96,7 +96,6 @@ in
 
       gestures = {
         workspace_swipe = true;
-        workspace_swipe_numbered = true;
       };
 
       master = {
@@ -236,7 +235,6 @@ in
         "maxsize 600 800, ^(pavucontrol)$"
         "center, ^(pavucontrol)$"
         "tile, ^(libreoffice)$"
-        "nofullscreenrequest, ^(.*libreoffice.*)$"
         "float, ^(blueman-manager)$"
         "size 490 600, ^(org.gnome.Calculator)$"
         "idleinhibit focus, title:^(Google Meet.*)$"

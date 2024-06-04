@@ -7,7 +7,7 @@ set -a
 source /etc/nixos/restic.env
 set +a
 
-restic check --with-cache
+restic "$@"
 
 unset RESTIC_CACHE_DIR
 unset RESTIC_PASSWORD_FILE

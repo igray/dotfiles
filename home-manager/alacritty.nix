@@ -23,7 +23,6 @@
             family = "JetBrainsMono Nerd Font";
             style = "Medium Italic";
           };
-          built_in_box_drawing = false;
         };
         colors = {
           primary = {

@@ -4,8 +4,8 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   console.useXkbConfig = true;
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 }
