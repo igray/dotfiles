@@ -77,6 +77,22 @@
         "url": "https://github.com/somepaulo/MoreWaita/archive/refs/heads/main.zip"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1717515267,
+        "narHash": "sha256-3d/rDckP583688YqVPc6SyXTy2gHpma0HzCv3idi1OE=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "82b2e20fbffe6a5f0555701af136ad3e734a5faa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1708475490,
@@ -132,6 +148,7 @@
         "home-manager": "home-manager",
         "lf-icons": "lf-icons",
         "more-waita": "more-waita",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
