@@ -34,7 +34,7 @@
       let
         plugins = with pkgs.vimPlugins; [
           # LazyVim
-          unstable.vimPlugins.LazyVim
+          LazyVim
           bufferline-nvim
           cmp-buffer
           cmp-nvim-lsp

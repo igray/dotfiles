@@ -37,7 +37,7 @@
       config = {
         allowUnfree = true;
         permittedInsecurePackages = [
-          "electron-25.9.0" # logseq
+          "electron-27.3.11" # logseq
         ];
       };
     };

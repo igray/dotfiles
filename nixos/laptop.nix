@@ -1,8 +1,7 @@
 { pkgs, ... }:
 {
   boot = {
-    # sg_display: Workaround white-screen issue
-    kernelParams = [ "amdgpu.sg_display=0" "quiet" ];
+    kernelParams = [ "quiet" ];
     initrd = {
       kernelModules = [ "amdgpu" ];        # Video Drivers
       systemd.enable = true;
