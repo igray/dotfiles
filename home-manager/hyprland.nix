@@ -96,6 +96,7 @@ in
 
       gestures = {
         workspace_swipe = true;
+        workspace_swipe_use_r = true;
       };
 
       master = {
