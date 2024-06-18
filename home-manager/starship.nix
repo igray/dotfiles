@@ -51,11 +51,9 @@ in
         "Music" = " ";
         "Pictures" = " ";
         "Videos" = " ";
-        "Projects" = "󱌢 ";
-        "School" = "󰑴 ";
+        "Work" = "󱌢 ";
         "GitHub" = "";
         ".config" = " ";
-        "Vault" = "󱉽 ";
       };
       git_branch = {
         symbol = " ";
