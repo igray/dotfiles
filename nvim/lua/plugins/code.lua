@@ -169,25 +169,6 @@ return {
         return
       end
 
-      local configs = require("lspconfig.configs")
-      local util = require("lspconfig.util")
-
-      -- Check if the config is already defined (useful when reloading this file)
-      if not configs.gleam then
-        configs.gleam = {
-          default_config = {
-            cmd = { "gleam", "lsp" },
-            filetypes = { "gleam" },
-            root_dir = function(fname)
-              return util.root_pattern("gleam.toml")(fname)
-            end,
-            settings = {},
-          },
-        }
-      end
-
-      lspconfig.gleam.setup({})
-
       local custom_attach = function(client)
         if client.config.flags then
           client.config.flags.allow_incremental_sync = true
@@ -203,14 +184,7 @@ return {
       })
     end,
   },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    opts = {
-      languages = {
-        gleam = "// %s",
-      },
-    },
-  },
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "williamboman/mason.nvim", enabled = false },
   { "jose-elias-alvarez/typescript.nvim" },
   {

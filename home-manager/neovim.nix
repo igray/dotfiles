@@ -10,6 +10,7 @@
     withNodeJs = true;
 
     extraPackages = with pkgs; [
+      (callPackage ./neovim/vtsls/package.nix { })
       elmPackages.elm-language-server
       elmPackages.lamdera
       lua-language-server
@@ -34,7 +35,7 @@
       let
         plugins = with pkgs.vimPlugins; [
           # LazyVim
-          LazyVim
+          unstable.vimPlugins.LazyVim
           bufferline-nvim
           cmp-buffer
           cmp-nvim-lsp
@@ -45,6 +46,7 @@
           dressing-nvim
           flash-nvim
           friendly-snippets
+          fzf-lua
           gitsigns-nvim
           indent-blankline-nvim
           lualine-nvim
@@ -113,6 +115,8 @@
             { import = "lazyvim.plugins.extras.coding.copilot" },
             { import = "lazyvim.plugins.extras.coding.copilot-chat" },
             { import = "lazyvim.plugins.extras.formatting.prettier" },
+            { import = "lazyvim.plugins.extras.lang.elm" },
+            { import = "lazyvim.plugins.extras.lang.gleam" },
             { import = "lazyvim.plugins.extras.lang.json" },
             { import = "lazyvim.plugins.extras.lang.markdown" },
             { import = "lazyvim.plugins.extras.lang.ruby" },
