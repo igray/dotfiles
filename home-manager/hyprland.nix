@@ -99,10 +99,6 @@ in
         workspace_swipe_use_r = true;
       };
 
-      master = {
-        new_is_master = false;
-      };
-
       dwindle = {
         pseudotile = true;
         preserve_split = true;

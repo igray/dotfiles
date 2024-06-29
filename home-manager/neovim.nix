@@ -23,6 +23,7 @@
       nodePackages.vscode-langservers-extracted
       nodePackages.yaml-language-server
       shfmt
+      sqlfluff
       stylua
       zig
     ];
@@ -72,7 +73,7 @@
           telescope-fzf-native-nvim
           telescope-nvim
           todo-comments-nvim
-          trouble-nvim
+          unstable.vimPlugins.trouble-nvim
           vim-illuminate
           vim-startuptime
           which-key-nvim
@@ -114,15 +115,19 @@
             -- Extras
             { import = "lazyvim.plugins.extras.coding.copilot" },
             { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+            { import = "lazyvim.plugins.extras.editor.navic" },
             { import = "lazyvim.plugins.extras.formatting.prettier" },
             { import = "lazyvim.plugins.extras.lang.elm" },
             { import = "lazyvim.plugins.extras.lang.gleam" },
             { import = "lazyvim.plugins.extras.lang.json" },
             { import = "lazyvim.plugins.extras.lang.markdown" },
+            { import = "lazyvim.plugins.extras.lang.nix" },
             { import = "lazyvim.plugins.extras.lang.ruby" },
             { import = "lazyvim.plugins.extras.lang.rust" },
+            { import = "lazyvim.plugins.extras.lang.sql" },
             { import = "lazyvim.plugins.extras.lang.typescript" },
             { import = "lazyvim.plugins.extras.lang.yaml" },
+            { import = "lazyvim.plugins.extras.test.core" },
             -- import/override with your plugins
             { import = "plugins" },
             -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
