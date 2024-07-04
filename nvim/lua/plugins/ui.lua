@@ -78,32 +78,43 @@ return {
     end,
   },
   {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim", -- Optional
+      {
+        "stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
+        opts = {},
+      },
+    },
     config = function()
-      require("chatgpt").setup({
-        api_key_cmd = "cat /home/igray/.openai_key",
-        api_host_cmd = "echo api.openai.com",
+      local adapters = require("codecompanion.adapters")
+      require("codecompanion").setup({
+        adapters = {
+          anthropic = adapters.use("anthropic", {
+            env = {
+              api_key = "cmd:cat /home/igray/.anthropic_key",
+            },
+            schema = {
+              model = {
+                default = "claude-3-5-sonnet-20240620",
+              },
+            },
+          }),
+        },
+        strategies = {
+          chat = "anthropic",
+          inline = "anthropic",
+          tools = "anthropic",
+        },
       })
     end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
     keys = {
-      { "<leader>oi", "<cmd>ChatGPT<cr>", desc = "Interactive Window" },
-      { "<leader>oa", "<cmd>ChatGPTActAs<cr>", desc = "Act-As" },
-      { "<leader>oe", "<cmd>ChatGPTEditWithInstructions<cr>", desc = "Edit with Instructions" },
-      { "<leader>org", "<cmd>ChatGPTRun grammar_correction<cr>", desc = "grammar_correction" },
-      { "<leader>orr", "<cmd>ChatGPTRun translate<cr>", desc = "translate" },
-      { "<leader>ork", "<cmd>ChatGPTRun keywords<cr>", desc = "keywords" },
-      { "<leader>ord", "<cmd>ChatGPTRun docstring<cr>", desc = "docstring" },
-      { "<leader>ort", "<cmd>ChatGPTRun add_tests<cr>", desc = "add_tests" },
-      { "<leader>oro", "<cmd>ChatGPTRun optimize_code<cr>", desc = "optimize_code" },
-      { "<leader>ors", "<cmd>ChatGPTRun summarize<cr>", desc = "summarize" },
-      { "<leader>orf", "<cmd>ChatGPTRun fix_bugs<cr>", desc = "fix_bugs" },
-      { "<leader>ore", "<cmd>ChatGPTRun explain_code<cr>", desc = "explain_code" },
+      { "<leader>oi", "<cmd>CodeCompanion<cr>", desc = "Inline Prompting" },
+      { "<leader>oa", "<cmd>CodeCompanionActions<cr>", desc = "Act-As" },
+      { "<leader>oc", "<cmd>CodeCompanionToggle<cr>", desc = "Chat" },
+      { "<leader>oA", "<cmd>CodeCompanionAdd<cr>", desc = "Add" },
     },
   },
 }

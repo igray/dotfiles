@@ -128,7 +128,17 @@ return {
             },
           },
         },
-        yamlls = {},
+        yamlls = {
+          settings = {
+            yaml = {
+              format = {
+                enable = true,
+              },
+              keyOrdering = true,
+              validate = true,
+            },
+          },
+        },
       },
       setup = {
         solargraph = function(_, opts)

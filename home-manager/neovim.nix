@@ -11,20 +11,25 @@
 
     extraPackages = with pkgs; [
       (callPackage ./neovim/vtsls/package.nix { })
+      black
+      elmPackages.elm-format
       elmPackages.elm-language-server
       elmPackages.lamdera
+      haskellPackages.nixfmt
       lua-language-server
       markdownlint-cli
       marksman
+      mdformat
       nil
       nixpkgs-fmt
       nodePackages.prettier
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
-      nodePackages.yaml-language-server
+      prettierd
       shfmt
       sqlfluff
       stylua
+      yaml-language-server
       zig
     ];
 
