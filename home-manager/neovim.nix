@@ -81,7 +81,7 @@
           unstable.vimPlugins.trouble-nvim
           vim-illuminate
           vim-startuptime
-          which-key-nvim
+          unstable.vimPlugins.which-key-nvim
           { name = "LuaSnip"; path = luasnip; }
           { name = "mini.ai"; path = mini-nvim; }
           { name = "mini.bufremove"; path = mini-nvim; }

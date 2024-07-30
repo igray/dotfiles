@@ -3,8 +3,8 @@ return {
   {
     "folke/which-key.nvim",
     opts = function()
-      require("which-key").register({
-        ["<leader>o"] = { name = "+CodeCompanion" },
+      require("which-key").add({
+        { "<leader>o",  group = "CodeCompanion" },
       })
     end,
   },

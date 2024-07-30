@@ -30,7 +30,8 @@
   # virtualisation
   programs.virt-manager.enable = true;
   virtualisation = {
-    podman.enable = true;
+    docker.enable = true;
+    # podman.enable = true;
     libvirtd.enable = true;
   };
 
@@ -86,6 +87,7 @@
     extraGroups = [
       "audio"
       "camera"
+      "docker"
       "libvirtd"
       "lp"
       "networkmanager"
@@ -99,6 +101,9 @@
   networking = {
     hostName = "laptop";
     networkmanager.enable = true;
+    hosts = {
+      "127.0.0.1" = [ "lvh.me" "app.lvh.me" "cpats.click" ];
+    };
   };
 
   security = {
