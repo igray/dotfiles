@@ -4,7 +4,15 @@ return {
     "folke/which-key.nvim",
     opts = function()
       require("which-key").add({
-        { "<leader>o",  group = "CodeCompanion" },
+        { "<leader>b",  group = "Buffers" },
+        { "<leader>c",  group = "Code/LSP" },
+        { "<leader>f",  group = "Find" },
+        { "<leader>g",  group = "Git" },
+        { "<leader>q",  group = "Sessions" },
+        { "<leader>s",  group = "Search" },
+        { "<leader>u",  group = "UI Options" },
+        { "<leader>x",  group = "Lists" },
+        { "<leader><tab>",  group = "Tabs" },
       })
     end,
   },

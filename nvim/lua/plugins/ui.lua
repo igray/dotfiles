@@ -77,44 +77,4 @@ return {
       }
     end,
   },
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim", -- Optional
-      {
-        "stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
-        opts = {},
-      },
-    },
-    config = function()
-      local adapters = require("codecompanion.adapters")
-      require("codecompanion").setup({
-        adapters = {
-          anthropic = adapters.use("anthropic", {
-            env = {
-              api_key = "cmd:cat /home/igray/.anthropic_key",
-            },
-            schema = {
-              model = {
-                default = "claude-3-5-sonnet-20240620",
-              },
-            },
-          }),
-        },
-        strategies = {
-          chat = "anthropic",
-          inline = "anthropic",
-          tools = "anthropic",
-        },
-      })
-    end,
-    keys = {
-      { "<leader>oi", "<cmd>CodeCompanion<cr>", desc = "Inline Prompting" },
-      { "<leader>oa", "<cmd>CodeCompanionActions<cr>", desc = "Act-As" },
-      { "<leader>oc", "<cmd>CodeCompanionToggle<cr>", desc = "Chat" },
-      { "<leader>oA", "<cmd>CodeCompanionAdd<cr>", desc = "Add" },
-    },
-  },
 }
