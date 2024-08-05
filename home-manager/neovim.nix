@@ -53,7 +53,7 @@
           flash-nvim
           friendly-snippets
           fzf-lua
-          gitsigns-nvim
+          unstable.vimPlugins.gitsigns-nvim
           indent-blankline-nvim
           lualine-nvim
           neo-tree-nvim
