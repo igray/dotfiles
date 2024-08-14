@@ -5,7 +5,6 @@
 vim.opt.colorcolumn = "100"
 vim.opt.relativenumber = false
 vim.g.autoformat = false
-vim.g.lazyvim_ruby_lsp = "solargraph"
 
 -- LSP borders
 local _border = "rounded"

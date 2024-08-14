@@ -117,6 +117,20 @@ return {
             },
           },
         },
+        ruby_lsp = {
+          filetypes = { 'ruby', 'eruby' },
+          init_options = {
+            linters = { "rubocop", "reek" },
+            indexing = {
+              includedPatterns = {
+                "app/**/*.rb",
+                "config/**/*.rb",
+                "lib/**/*.rb",
+                "spec/**/*.rb"
+              },
+            },
+          },
+        },
         solargraph = {
           mason = false,
         },
