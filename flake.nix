@@ -23,9 +23,13 @@
       url = "https://github.com/rafaelmardojai/firefox-gnome-theme/archive/master.tar.gz";
       flake = false;
     };
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { home-manager, nixpkgs, nixpkgs-unstable, nixos-hardware, ... }@inputs:
+  outputs = { home-manager, nixpkgs, nixpkgs-unstable, nixos-hardware, nixos-cosmic, ... }@inputs:
   let
     vars = {
       username = "igray";
@@ -46,6 +50,13 @@
     nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs vars system; };
       modules = [
+         {
+           nix.settings = {
+             substituters = [ "https://cosmic.cachix.org/" ];
+             trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+           };
+         }
+         nixos-cosmic.nixosModules.default
          nixos-hardware.nixosModules.framework-13-7040-amd
         ./nixos/configuration.nix
       ];

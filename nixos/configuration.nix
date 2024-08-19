@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
     ./audio.nix
     ./fonts.nix
-    ./hyprland.nix
+    ./desktop.nix
     ./laptop.nix
     ./locale.nix
     ./restic.nix
