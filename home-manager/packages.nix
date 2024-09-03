@@ -20,6 +20,7 @@
     spotify
     tidal-hifi
     unstable.logseq
+    unstable.zed-editor
     vlc
     # zoom-us
 
@@ -50,7 +51,7 @@
     brightnessctl
     gammastep       # Nightlight
     grim            # Grab Images
-    unstable.hyprpaper       # Background manager
+    # unstable.hyprpaper       # Background manager
     hyprpicker
     image-roll
     imagemagick

@@ -8,6 +8,7 @@ in
     ./alacritty.nix
     ./browser.nix
     ./dconf.nix
+    ./desktop.nix
     ./git.nix
     ./hyprland.nix
     ./lf.nix
