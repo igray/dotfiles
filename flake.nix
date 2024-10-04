@@ -27,6 +27,7 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
   outputs = { home-manager, nixpkgs, nixpkgs-unstable, nixos-hardware, nixos-cosmic, ... }@inputs:

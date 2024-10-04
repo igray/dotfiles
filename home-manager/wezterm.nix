@@ -1,20 +1,12 @@
-{ pkgs, ... }:
-let
-  xterm = pkgs.writeShellScriptBin "xterm" ''
-    ${pkgs.wezterm}/bin/wezterm "$@"
-  '';
-in
+{ pkgs, inputs, ... }:
 {
-  home.packages = [
-    xterm
-  ];
-
   programs = {
     wezterm = {
       enable = true;
+      package = inputs.wezterm.packages.${pkgs.system}.default;
       extraConfig = ''
         return {
-          enable_wayland = false,
+          enable_wayland = true,
           color_scheme = "Builtin Solarized Dark",
           --font = wezterm.font("M+2 Nerd Font Propo", {weight="ExtraLight"}),
           font = wezterm.font("JetBrainsMono Nerd Font", {weight="ExtraLight"}),
@@ -58,6 +50,13 @@ in
             "CP-[^\\s]+",
           },
           warn_about_missing_glyphs = false,
+          window_decorations = "RESIZE",
+          window_padding = {
+            left = 0,
+            right = 0,
+            top = 0,
+            bottom = 0,
+          },
           window_frame = {
             inactive_titlebar_bg = "#353535",
             active_titlebar_bg = "#0a2730",

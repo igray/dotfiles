@@ -171,6 +171,7 @@
           markdown
           markdown_inline
           nix
+          query
           regex
           ron
           ruby
@@ -180,6 +181,7 @@
           toml
           typescript
           vim
+          vimdoc
           yaml
         ])).dependencies;
       };
