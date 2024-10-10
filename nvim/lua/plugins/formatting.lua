@@ -3,6 +3,7 @@ return {
     opts = {
       formatters_by_ft = {
         css = { "prettierd", "prettier" },
+        dart = { "dart_format" },
         elm = { "elm_format" },
         fish = { "fish_indent" },
         html = { "prettierd", "prettier" },

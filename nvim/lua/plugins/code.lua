@@ -1,6 +1,15 @@
 return {
   { "echasnovski/mini.pairs", enabled = false },
   { "tpope/vim-rails", ft = { "ruby", "eruby" } },
+  {
+      'akinsho/flutter-tools.nvim',
+      lazy = false,
+      dependencies = {
+          'nvim-lua/plenary.nvim',
+          'stevearc/dressing.nvim', -- optional for vim.ui.select
+      },
+      config = true,
+  },
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {

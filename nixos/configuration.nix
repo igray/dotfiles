@@ -39,6 +39,7 @@
   programs.dconf.enable = true;
 
   programs = {
+    adb.enable = true;
     fish.enable = true;
     neovim = {
       enable = true;
@@ -85,6 +86,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [
+      "adbusers"
       "audio"
       "camera"
       "docker"

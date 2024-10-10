@@ -33,6 +33,7 @@
   security = {
     polkit.enable = true;
     pam.services.gdm.enableGnomeKeyring = true;
+    pam.services.cosmic-greeter.enableGnomeKeyring = true;
     pam.services.swaylock = {};
   };
 
