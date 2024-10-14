@@ -135,7 +135,6 @@ return {
                 "app/**/*.rb",
                 "config/**/*.rb",
                 "lib/**/*.rb",
-                "spec/**/*.rb"
               },
             },
           },
