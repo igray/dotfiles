@@ -2,7 +2,7 @@
 {
   services = {
     swayidle = {
-      enable = true;
+      enable = false;
       events = [
         { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
         { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
