@@ -24,7 +24,7 @@
       nixpkgs-fmt
       nodePackages.prettier
       nodePackages.typescript-language-server
-      nodePackages.vscode-langservers-extracted
+      unstable.nodePackages.vscode-langservers-extracted
       prettierd
       shfmt
       sqlfluff

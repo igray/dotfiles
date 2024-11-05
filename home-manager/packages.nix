@@ -8,6 +8,7 @@
     d-spy
     dconf-editor
     discord
+    emote
     foliate
     font-manager
     gimp

@@ -28,6 +28,7 @@ in
     packages = with pkgs; [
       adw-gtk3
       font-awesome
+      joypixels
       moreWaita
       nerdfonts
     ];

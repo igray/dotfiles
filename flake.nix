@@ -67,6 +67,7 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        config.joypixels.acceptLicense = true;
       };
       extraSpecialArgs = { inherit inputs unstable vars; };
       modules = [ ./home-manager/home.nix ];
