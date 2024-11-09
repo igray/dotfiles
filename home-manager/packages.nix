@@ -15,6 +15,7 @@
     gnome-characters
     icon-library
     inkscape
+    unstable.joplin-desktop
     libreoffice-fresh
     simple-scan
     slack
