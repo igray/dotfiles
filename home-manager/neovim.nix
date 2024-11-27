@@ -48,7 +48,6 @@
           cmp-path
           cmp_luasnip
           conform-nvim
-          dashboard-nvim
           dressing-nvim
           flash-nvim
           friendly-snippets
@@ -75,6 +74,7 @@
           persistence-nvim
           plenary-nvim
           rustaceanvim
+          unstable.vimPlugins.snacks-nvim
           telescope-fzf-native-nvim
           telescope-nvim
           todo-comments-nvim
@@ -118,8 +118,9 @@
             { "williamboman/mason-lspconfig.nvim", enabled = false },
             { "williamboman/mason.nvim", enabled = false },
             -- Extras
-            { import = "lazyvim.plugins.extras.coding.copilot" },
-            { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+            { import = "lazyvim.plugins.extras.ai.copilot" },
+            { import = "lazyvim.plugins.extras.ai.copilot-chat" },
+            { import = "lazyvim.plugins.extras.coding.blink" },
             { import = "lazyvim.plugins.extras.editor.navic" },
             { import = "lazyvim.plugins.extras.formatting.prettier" },
             { import = "lazyvim.plugins.extras.lang.elm" },
