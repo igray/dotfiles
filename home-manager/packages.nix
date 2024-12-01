@@ -16,7 +16,7 @@
     icon-library
     inkscape
     unstable.joplin-desktop
-    libreoffice-fresh
+    unstable.libreoffice-fresh
     simple-scan
     slack
     spotify
