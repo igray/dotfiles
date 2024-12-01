@@ -174,6 +174,7 @@
           nix
           query
           regex
+          roc
           ron
           ruby
           rust
