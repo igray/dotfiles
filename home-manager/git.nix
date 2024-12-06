@@ -17,6 +17,7 @@ in {
         st = "status";
         unstage = "reset HEAD --";
         last = "log -1 HEAD";
+        lb = "!git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'";
         patch = "!git --no-pager diff";
         glog = "log --graph --decorate --oneline";
       };
