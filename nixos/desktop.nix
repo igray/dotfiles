@@ -38,7 +38,7 @@
   };
 
   environment = {
-    systemPackages = with pkgs.gnome; [
+    systemPackages = with pkgs; [
       adwaita-icon-theme
       baobab
       gnome-boxes
@@ -50,14 +50,15 @@
       gnome-system-monitor
       gnome-weather
       nautilus
-      pkgs.loupe
-      pkgs.nwg-displays
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.wlr-randr
+      loupe
+      nwg-displays
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+      wlr-randr
     ];
     sessionVariables = {
       AWT_TOOLKIT = "MToolkit";
+      COSMIC_DISABLE_DIRECT_SCANOUT = "1";
       GDK_BACKEND = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
       NIXOS_OZONE_WL = "1";

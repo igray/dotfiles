@@ -3,25 +3,25 @@
   boot = {
     kernelParams = [ "quiet" ];
     initrd = {
-      kernelModules = [ "amdgpu" ];        # Video Drivers
       systemd.enable = true;
     };
     plymouth.enable = true;
   };
   hardware = {
+    amdgpu = {
+      initrd.enable = true;
+      opencl.enable = true;
+      amdvlk.enable = true;
+    };
     enableRedistributableFirmware = true;
     cpu = {
       amd = {
         updateMicrocode = true;
       };
     };
-    opengl = {                                  # Hardware Accelerated Video
+    graphics = {                                  # Hardware Accelerated Video
       enable = true;
-      driSupport = true;
       extraPackages = with pkgs; [
-        rocm-opencl-icd
-        rocm-opencl-runtime
-        amdvlk
         mesa.drivers
       ];
     };

@@ -1,6 +1,6 @@
 { pkgs, unstable, ... }:
 {
-  home.packages = with pkgs; with nodePackages_latest; with gnome; [
+  home.packages = with pkgs; with nodePackages_latest; [
     # gui
     (mpv.override { scripts = [mpvScripts.mpris]; })
     authenticator
