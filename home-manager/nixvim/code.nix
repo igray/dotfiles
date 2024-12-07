@@ -56,8 +56,11 @@
       };
     };
   };
+  extraPackages = with pkgs; [
+    statix
+  ];
   extraPlugins = with pkgs.vimPlugins; [
-    vim-rails
     flutter-tools-nvim
+    vim-rails
   ];
 }
