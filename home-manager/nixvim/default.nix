@@ -2,9 +2,9 @@
 {
   imports = [
 #   ./keymaps.nix
-#   ./code.nix
+    ./code.nix
     ./colorscheme.nix
-#   ./editor.nix
+    ./editor.nix
 #   ./formatting.nix
     ./ui.nix
   ];
