@@ -1,7 +1,12 @@
 { ... }:
 {
-  # Neotree keymaps commented in Neve:
+  clipboard.providers = {
+    wl-copy.enable = true;
+  };
+  opts.clipboard = [ "unnamedplus" ];
+
   keymaps = [
+    # Neotree keymaps commented in Neve:
     {
       mode = "n";
       key = "<leader>e";
@@ -36,6 +41,35 @@
       options = {
         silent = true;
         desc = "Git explorer";
+      };
+    }
+
+    # Trouble keymaps:
+    {
+      mode = "n";
+      key = "gl";
+      action = "<cmd>lua vim.diagnostic.open_float()<CR>";
+      options = {
+        silent = true;
+        desc = "Show Diagnostic";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>xj";
+      action = "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>";
+      options = {
+        silent = true;
+        desc = "Next Diagnostic";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>xk";
+      action = "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>";
+      options = {
+        silent = true;
+        desc = "Previous Diagnostic";
       };
     }
   ];
