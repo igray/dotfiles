@@ -44,29 +44,5 @@
       '';
       executable = true;
     };
-    ".config/wallchange/wallchange.sh" = {
-      text = ''
-        #!/usr/bin/env bash
-
-        image_path=$1
-        if [ ! -d "$image_path" ]; then
-          image_path="$HOME/Pictures/wallpapers"
-        fi
-
-        local_dir="$HOME/.local/wallchange"
-        mkdir -p $local_dir
-        pic=$(find $image_path -regextype posix-extended -regex "(.*\.jpg)|(.*\.png)"|shuf -n1)
-        #echo $pic
-
-        local_wallpaper=$local_dir/mywallpaper.jpg
-        cp "$pic" $local_wallpaper
-        hyprctl hyprpaper unload "$local_wallpaper"
-        hyprctl hyprpaper preload "$local_wallpaper"
-        for mon in $(hyprctl monitors | grep Monitor | /run/current-system/sw/bin/awk -e '{ print $2; }'); do
-          hyprctl hyprpaper wallpaper "$mon,$local_wallpaper"
-        done
-      '';
-      executable = true;
-    };
   };
 }

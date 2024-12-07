@@ -12,8 +12,10 @@
     foliate
     font-manager
     gimp
+    gnome-calculator
     gnome-characters
     icon-library
+    image-roll
     inkscape
     unstable.joplin-desktop
     unstable.libreoffice-fresh
@@ -24,7 +26,8 @@
     unstable.logseq
     unstable.zed-editor
     vlc
-    # zoom-us
+    wf-recorder
+    wl-clipboard
 
     # tools
     acpi
@@ -49,27 +52,7 @@
     unzip
     zip
 
-    # hyprland
-    brightnessctl
-    gammastep       # Nightlight
-    grim            # Grab Images
-    # unstable.hyprpaper       # Background manager
-    hyprpicker
-    image-roll
-    imagemagick
-    pavucontrol
-    slurp
-    swappy
-    swayidle        # Idle Daemon
-    wf-recorder
-    wl-clipboard
-    wl-gammactl
-
     # original config dependencies
     xdg-utils       # Open files
-
-    # ags
-    bun
-    dart-sass
   ];
 }

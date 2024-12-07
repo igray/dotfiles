@@ -4,15 +4,11 @@ let
 in
 {
   imports = [
-#   ./ags.nix
     ./alacritty.nix
     ./browser.nix
-#   ./dconf.nix
     ./desktop.nix
     ./git.nix
-#   ./hyprland.nix
     ./lf.nix
-#   ./mimelist.nix
     ./nixvim.nix
     ./packages.nix
     ./sh.nix
