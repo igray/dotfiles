@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags.url = "github:Aylur/ags";
+    # ags.url = "github:Aylur/ags";
     lf-icons = {
       url = "https://raw.githubusercontent.com/gokcehan/lf/master/etc/icons.example";
       flake = false;

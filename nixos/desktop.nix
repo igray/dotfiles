@@ -16,12 +16,12 @@
       evolution-data-server.enable = true;
       glib-networking.enable = true;
       gnome-keyring.enable = true;
-      gnome-online-accounts.enable = true;
+#     gnome-online-accounts.enable = true;
     };
   };
 
   programs.hyprland = {
-    enable = true;
+    enable = false;
     xwayland.enable = true;
   };
 
@@ -39,22 +39,22 @@
 
   environment = {
     systemPackages = with pkgs; [
-      adwaita-icon-theme
-      baobab
-      gnome-boxes
+#     adwaita-icon-theme
+#     baobab
+#     gnome-boxes
       gnome-calculator
-      gnome-calendar
-      gnome-clocks
-      gnome-control-center
-      gnome-software # for flatpak
-      gnome-system-monitor
-      gnome-weather
-      nautilus
+#     gnome-calendar
+#     gnome-clocks
+#     gnome-control-center
+#     gnome-software # for flatpak
+#     gnome-system-monitor
+#     gnome-weather
+#     nautilus
       loupe
-      nwg-displays
+#     nwg-displays
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-      wlr-randr
+#     xdg-desktop-portal-hyprland
+#     wlr-randr
     ];
     sessionVariables = {
       AWT_TOOLKIT = "MToolkit";
