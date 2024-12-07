@@ -19,6 +19,15 @@
       url = "https://github.com/somepaulo/MoreWaita/archive/refs/heads/main.zip";
       flake = false;
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    Neve = {
+      url = "github:redyf/Neve";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,7 +75,10 @@
         config.joypixels.acceptLicense = true;
       };
       extraSpecialArgs = { inherit inputs unstable vars; };
-      modules = [ ./home-manager/home.nix ];
+      modules = [
+        inputs.nixvim.homeManagerModules.nixvim
+        ./home-manager/home.nix
+      ];
     };
   };
 }
