@@ -16,13 +16,7 @@
       evolution-data-server.enable = true;
       glib-networking.enable = true;
       gnome-keyring.enable = true;
-#     gnome-online-accounts.enable = true;
     };
-  };
-
-  programs.hyprland = {
-    enable = false;
-    xwayland.enable = true;
   };
 
   xdg.portal = {
@@ -32,29 +26,16 @@
 
   security = {
     polkit.enable = true;
-    pam.services.gdm.enableGnomeKeyring = true;
-    pam.services.cosmic-greeter.enableGnomeKeyring = true;
-    pam.services.swaylock = {};
+    pam.services = {
+      gdm.enableGnomeKeyring = true;
+      cosmic-greeter.enableGnomeKeyring = true;
+      swaylock = {};
+    };
   };
 
   environment = {
     systemPackages = with pkgs; [
-#     adwaita-icon-theme
-#     baobab
-#     gnome-boxes
-      gnome-calculator
-#     gnome-calendar
-#     gnome-clocks
-#     gnome-control-center
-#     gnome-software # for flatpak
-#     gnome-system-monitor
-#     gnome-weather
-#     nautilus
-      loupe
-#     nwg-displays
       xdg-desktop-portal-gtk
-#     xdg-desktop-portal-hyprland
-#     wlr-randr
     ];
     sessionVariables = {
       AWT_TOOLKIT = "MToolkit";
