@@ -13,7 +13,6 @@ in
     ./hyprland.nix
     ./lf.nix
     ./mimelist.nix
-#   ./neovim.nix
     ./nixvim.nix
     ./packages.nix
     ./sh.nix
