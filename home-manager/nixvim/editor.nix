@@ -1,9 +1,18 @@
-{ ... }:
+{ lib, ... }:
 {
   clipboard.providers = {
     wl-copy.enable = true;
   };
   opts.clipboard = [ "unnamedplus" ];
+
+  plugins.gitsigns = {
+    settings = {
+      current_line_blame = lib.mkForce true;
+    };
+  };
+  extraConfigLua = ''
+    vim.api.nvim_set_hl(0, 'GitsignsCurrentLineBlame', { link = 'VertSplit' })
+  '';
 
   keymaps = [
     # Neotree keymaps commented in Neve:

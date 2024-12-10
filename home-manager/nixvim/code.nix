@@ -56,6 +56,19 @@
       };
     };
   };
+  extraConfigLua = ''
+    vim.diagnostic.config({
+      virtual_text = false,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.HINT] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
+        },
+      },
+    })
+  '';
   extraPackages = with pkgs; [
     statix
   ];
