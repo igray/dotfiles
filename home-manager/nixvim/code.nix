@@ -56,6 +56,9 @@
       };
     };
   };
+  globals = {
+    disable_autoformat = true;
+  };
   extraConfigLua = ''
     vim.diagnostic.config({
       virtual_text = false,
