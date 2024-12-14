@@ -31,8 +31,10 @@
 
     # tools
     acpi
+    atac
     bat
-    btop
+    bottom
+    csvlens
     unstable.devenv
     fd
     fzf
@@ -43,6 +45,7 @@
     killall
     libnotify
     pciutils
+    repgrep
     ripgrep
     s3fs
     socat

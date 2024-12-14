@@ -54,6 +54,7 @@
     git
     home-manager
     libva-utils
+    systemctl-tui
     wget
   ];
 
