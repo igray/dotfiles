@@ -9,11 +9,7 @@
     withNodeJs = true;
 
     imports = [
-      inputs.Neve.nixvimModule
-      ./nixvim
+      inputs.nixvim-config.nixvimModule
     ];
-    colorschemes.enable = false;
-    filetrees.enable = true;
-    wakatime.enable = false;
   };
 }

@@ -23,8 +23,8 @@
       # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    Neve = {
-      url = "github:redyf/Neve";
+    nixvim-config = {
+      url = "github:igray/nixvim-config";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixos-cosmic = {
