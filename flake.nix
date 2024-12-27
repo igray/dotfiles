@@ -18,6 +18,7 @@
       url = "https://github.com/somepaulo/MoreWaita/archive/refs/heads/main.zip";
       flake = false;
     };
+    ghostty.url = "github:ghostty-org/ghostty";
     nixvim = {
       url = "github:nix-community/nixvim";
       # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
@@ -31,14 +32,13 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
   outputs = { home-manager, nixpkgs, nixpkgs-unstable, nixos-hardware, nixos-cosmic, ... }@inputs:
   let
     vars = {
       username = "igray";
-      terminal = "alacritty";
+      terminal = "ghostty";
     };
     system = "x86_64-linux";
     unstable = import nixpkgs-unstable {

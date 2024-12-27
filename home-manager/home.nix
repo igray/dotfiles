@@ -8,6 +8,7 @@ in
     ./browser.nix
     ./desktop.nix
     ./git.nix
+    ./ghostty.nix
     ./lf.nix
     ./nixvim.nix
     ./packages.nix
@@ -16,7 +17,6 @@ in
     ./theme.nix
     ./tmux.nix
     ./wallpaper.nix
-    ./wezterm.nix
   ];
 
   news.display = "show";
