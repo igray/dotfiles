@@ -34,6 +34,7 @@
     atac
     bat
     bottom
+    chafa
     csvlens
     unstable.devenv
     fd
