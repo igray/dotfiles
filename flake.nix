@@ -2,8 +2,8 @@
   description = "Home Manager and NixOS configuration of Framework laptop";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";                     # Stable Nix Packages (Default)
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";         # Unstable Nix Packages
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Stable Nix Packages (Default)
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -18,7 +18,6 @@
       url = "https://github.com/somepaulo/MoreWaita/archive/refs/heads/main.zip";
       flake = false;
     };
-    ghostty.url = "github:ghostty-org/ghostty";
     nixvim = {
       url = "github:nix-community/nixvim";
       # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
@@ -34,50 +33,58 @@
     };
   };
 
-  outputs = { home-manager, nixpkgs, nixpkgs-unstable, nixos-hardware, nixos-cosmic, ... }@inputs:
-  let
-    vars = {
-      username = "igray";
-      terminal = "ghostty";
-    };
-    system = "x86_64-linux";
-    unstable = import nixpkgs-unstable {
-      inherit system;
-      config = {
-        allowUnfree = true;
-        permittedInsecurePackages = [
-          "electron-27.3.11" # logseq
+  outputs =
+    {
+      home-manager,
+      nixpkgs,
+      nixpkgs-unstable,
+      nixos-hardware,
+      nixos-cosmic,
+      ...
+    }@inputs:
+    let
+      vars = {
+        username = "igray";
+        terminal = "ghostty";
+      };
+      system = "x86_64-linux";
+      unstable = import nixpkgs-unstable {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "electron-27.3.11" # logseq
+          ];
+        };
+      };
+    in
+    {
+      nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs vars system; };
+        modules = [
+          {
+            nix.settings = {
+              substituters = [ "https://cosmic.cachix.org/" ];
+              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+            };
+          }
+          nixos-cosmic.nixosModules.default
+          nixos-hardware.nixosModules.framework-13-7040-amd
+          ./nixos/configuration.nix
+        ];
+      };
+
+      homeConfigurations."${vars.username}" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          config.joypixels.acceptLicense = true;
+        };
+        extraSpecialArgs = { inherit inputs unstable vars; };
+        modules = [
+          inputs.nixvim.homeManagerModules.nixvim
+          ./home-manager/home.nix
         ];
       };
     };
-  in
-  {
-    nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs vars system; };
-      modules = [
-         {
-           nix.settings = {
-             substituters = [ "https://cosmic.cachix.org/" ];
-             trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-           };
-         }
-         nixos-cosmic.nixosModules.default
-         nixos-hardware.nixosModules.framework-13-7040-amd
-        ./nixos/configuration.nix
-      ];
-    };
-
-    homeConfigurations."${vars.username}" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        config.joypixels.acceptLicense = true;
-      };
-      extraSpecialArgs = { inherit inputs unstable vars; };
-      modules = [
-        inputs.nixvim.homeManagerModules.nixvim
-        ./home-manager/home.nix
-      ];
-    };
-  };
 }
