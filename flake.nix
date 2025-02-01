@@ -21,11 +21,11 @@
     nixvim = {
       url = "github:nix-community/nixvim";
       # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim-config = {
       url = "github:igray/nixvim-config";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
@@ -53,7 +53,6 @@
         config = {
           allowUnfree = true;
           permittedInsecurePackages = [
-            "electron-27.3.11" # logseq
           ];
         };
       };
@@ -64,8 +63,15 @@
         modules = [
           {
             nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              substituters = [
+                "https://cosmic.cachix.org/"
+                "https://nix-community.cachix.org"
+                "https://cache.nixos.org"
+              ];
+              trusted-public-keys = [
+                "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+                "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+              ];
             };
           }
           nixos-cosmic.nixosModules.default

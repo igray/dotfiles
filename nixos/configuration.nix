@@ -1,4 +1,5 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, ... }:
+{
 
   imports = [
     ./hardware-configuration.nix
@@ -16,11 +17,16 @@
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
+      download-buffer-size = 567108864;
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
-      trusted-users = [ "root" vars.username ];
+      trusted-users = [
+        "root"
+        vars.username
+      ];
     };
-    gc = {                                  # Garbage Collection
+    gc = {
+      # Garbage Collection
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 2d";
@@ -105,7 +111,11 @@
     hostName = "laptop";
     networkmanager.enable = true;
     hosts = {
-      "127.0.0.1" = [ "lvh.me" "app.lvh.me" "cpats.click" ];
+      "127.0.0.1" = [
+        "lvh.me"
+        "app.lvh.me"
+        "cpats.click"
+      ];
     };
   };
 
@@ -126,7 +136,8 @@
   };
 
   # bootloader
-  boot = {                                      # Boot Options
+  boot = {
+    # Boot Options
     tmp.cleanOnBoot = true;
     loader = {
       systemd-boot = {
