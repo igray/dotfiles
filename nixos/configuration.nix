@@ -38,7 +38,10 @@
   virtualisation = {
     docker.enable = true;
     # podman.enable = true;
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+    };
   };
 
   # dconf

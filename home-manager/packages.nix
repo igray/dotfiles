@@ -1,8 +1,14 @@
-{ pkgs, unstable, ... }:
+{
+  inputs,
+  pkgs,
+  unstable,
+  ...
+}:
 {
   home.packages = with pkgs; [
     # gui
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
+    annotator
     authenticator
     calibre
     d-spy
@@ -15,7 +21,6 @@
     gnome-calculator
     gnome-characters
     icon-library
-    image-roll
     inkscape
     unstable.joplin-desktop
     libreoffice-fresh
@@ -28,6 +33,7 @@
     vlc
     wf-recorder
     wl-clipboard
+    inputs.zen-browser.packages."${system}".default
 
     # tools
     acpi
