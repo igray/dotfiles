@@ -30,7 +30,7 @@
         cppr = "gh pr create --head igray:(currentGitBranch)";
         gpu = "git pull origin (currentGitBranch)";
         gpf = "git push --force-with-lease";
-        ciboost = {
+        rebase = {
           body = ''
             set branch (currentGitBranch)
             if test "$branch" = "main"
@@ -41,6 +41,11 @@
             gpu
             gco "$branch"
             git rebase main
+          '';
+        };
+        ciboost = {
+          body = ''
+            rebase
             git show -s --format=%B | sed '1 s/\( \[ciboost\]\)\?$/ [ciboost]/' | git commit --amend -F -
             gpf
           '';
@@ -53,36 +58,36 @@
         rbb = "bin/bundle";
         rbbe = "bin/bundle exec";
         rbbl = "bin/bundle list";
-        rbbo="bin/bundle open";
-        rbbu="bin/bundle update";
+        rbbo = "bin/bundle open";
+        rbbu = "bin/bundle update";
 
         # rails
-        ror="bin/rails";
-        rorc="bin/rails console";
-        rordc="bin/rails dbconsole";
-        rordm="bin/rake db:migrate";
-        rordM="bin/rake db:migrate db:test:clone";
-        rordr="bin/rake db:rollback";
-        rorg="bin/rails generate";
-        rorlc="bin/rake log:clear";
-        rorp="bin/rails plugin";
-        rorr="bin/rails runner";
-        rors="bin/rails server";
-        rorsd="bin/rails server --debugger";
+        ror = "bin/rails";
+        rorc = "bin/rails console";
+        rordc = "bin/rails dbconsole";
+        rordm = "bin/rake db:migrate";
+        rordM = "bin/rake db:migrate db:test:clone";
+        rordr = "bin/rake db:rollback";
+        rorg = "bin/rails generate";
+        rorlc = "bin/rake log:clear";
+        rorp = "bin/rails plugin";
+        rorr = "bin/rails runner";
+        rors = "bin/rails server";
+        rorsd = "bin/rails server --debugger";
 
         # git
 
-        gcm="git commit --message";
-        gco="git checkout";
-        gpush="git push";
-        gb="git branch";
+        gcm = "git commit --message";
+        gco = "git checkout";
+        gpush = "git push";
+        gb = "git branch";
 
         # other
-        doh=''
+        doh = ''
           commandline -i "sudo $history[1]";history delete --exact --case-sensitive doh
         '';
-        open="xdg-open";
-        ltr="ls -l -snew";
+        open = "xdg-open";
+        ltr = "ls -l -snew";
       };
       shellInit = ''
         set -g theme_display_ruby no
