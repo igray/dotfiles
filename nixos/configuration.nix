@@ -111,6 +111,12 @@
 
   # network
   networking = {
+    firewall.allowedTCPPorts = [
+      443
+      8443
+      80
+      8080
+    ];
     hostName = "laptop";
     networkmanager.enable = true;
     hosts = {

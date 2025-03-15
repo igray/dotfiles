@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 {
   programs.nixvim = {
     enable = true;
