@@ -33,7 +33,6 @@
     vlc
     wf-recorder
     wl-clipboard
-    inputs.zen-browser.packages."${system}".default
 
     # tools
     acpi
@@ -51,7 +50,9 @@
     inotify-tools
     jq
     killall
+    lazygit
     libnotify
+    mermaid-cli
     pciutils
     qmk
     repgrep

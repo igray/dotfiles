@@ -42,6 +42,7 @@
       enable = true;
       qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
     };
+    waydroid.enable = true;
   };
 
   # dconf

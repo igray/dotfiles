@@ -24,14 +24,13 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixvim-config = {
-      url = "github:igray/nixvim-config";
+      url = "github:igray/nixvim-config?ref=snacks";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs =
