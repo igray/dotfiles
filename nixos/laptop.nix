@@ -19,7 +19,8 @@
         updateMicrocode = true;
       };
     };
-    graphics = {                                  # Hardware Accelerated Video
+    graphics = {
+      # Hardware Accelerated Video
       enable = true;
       extraPackages = with pkgs; [
         mesa.drivers
@@ -36,6 +37,5 @@
   };
   services = {
     hardware.bolt.enable = true;
-    blueman.enable = true;
   };
 }
