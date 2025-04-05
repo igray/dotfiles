@@ -28,6 +28,7 @@
     simple-scan
     slack
     spotify
+    sshfs
     tidal-hifi
     unstable.zed-editor
     vlc
