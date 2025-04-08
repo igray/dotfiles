@@ -10,7 +10,7 @@
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
     annotator
     authenticator
-    calibre
+    unstable.calibre
     d-spy
     dconf-editor
     discord
