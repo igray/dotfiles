@@ -17,6 +17,7 @@ in
     ./theme.nix
     ./tmux.nix
     ./wallpaper.nix
+    ./zk.nix
   ];
 
   news.display = "show";

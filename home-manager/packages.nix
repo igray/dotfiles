@@ -55,10 +55,12 @@
     libnotify
     mermaid-cli
     pciutils
+    powertop
     qmk
     repgrep
     ripgrep
     s3fs
+    slides
     socat
     unzip
     usbutils
