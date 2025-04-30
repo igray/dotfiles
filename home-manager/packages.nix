@@ -34,6 +34,7 @@
     vlc
     wf-recorder
     wl-clipboard
+    zoom-us
 
     # tools
     acpi
@@ -41,6 +42,7 @@
     bat
     bottom
     chafa
+    unstable.claude-code
     csvlens
     curl
     devenv

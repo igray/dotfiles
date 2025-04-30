@@ -29,7 +29,7 @@
     pam.services = {
       gdm.enableGnomeKeyring = true;
       cosmic-greeter.enableGnomeKeyring = true;
-      swaylock = {};
+      swaylock = { };
     };
   };
 
@@ -39,7 +39,7 @@
     ];
     sessionVariables = {
       AWT_TOOLKIT = "MToolkit";
-      COSMIC_DISABLE_DIRECT_SCANOUT = "1";
+      # COSMIC_DISABLE_DIRECT_SCANOUT = "1";
       GDK_BACKEND = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
       NIXOS_OZONE_WL = "1";
