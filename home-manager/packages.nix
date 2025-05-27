@@ -26,6 +26,7 @@
     libreoffice-fresh
     resources
     simple-scan
+    unstable.shattered-pixel-dungeon
     slack
     spotify
     sshfs
@@ -34,7 +35,7 @@
     vlc
     wf-recorder
     wl-clipboard
-    zoom-us
+    unstable.zoom-us
 
     # tools
     acpi
