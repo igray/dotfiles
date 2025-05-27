@@ -23,7 +23,7 @@
       # Hardware Accelerated Video
       enable = true;
       extraPackages = with pkgs; [
-        mesa.drivers
+        mesa
       ];
     };
     bluetooth = {

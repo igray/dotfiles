@@ -2,20 +2,16 @@
   description = "Home Manager and NixOS configuration of Framework laptop";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Stable Nix Packages (Default)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # Stable Nix Packages (Default)
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lf-icons = {
       url = "https://raw.githubusercontent.com/gokcehan/lf/master/etc/icons.example";
-      flake = false;
-    };
-    more-waita = {
-      url = "https://github.com/somepaulo/MoreWaita/archive/refs/heads/main.zip";
       flake = false;
     };
     nixvim = {
@@ -27,10 +23,6 @@
       url = "github:igray/nixvim-config?ref=snacks";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -39,7 +31,6 @@
       nixpkgs,
       nixpkgs-unstable,
       nixos-hardware,
-      nixos-cosmic,
       ...
     }@inputs:
     let
@@ -74,7 +65,6 @@
               ];
             };
           }
-          nixos-cosmic.nixosModules.default
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./nixos/configuration.nix
         ];
