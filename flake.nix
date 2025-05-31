@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # Stable Nix Packages (Default)
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
+    nixpkgs-rolling.url = "github:cachix/devenv-nixpkgs/rolling"; # Devenv Rolling Packages
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -30,6 +31,7 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
+      nixpkgs-rolling,
       nixos-hardware,
       ...
     }@inputs:
@@ -39,6 +41,9 @@
         terminal = "ghostty";
       };
       system = "x86_64-linux";
+      rolling = import nixpkgs-rolling {
+        inherit system;
+      };
       unstable = import nixpkgs-unstable {
         inherit system;
         config = {
@@ -76,7 +81,14 @@
           config.allowUnfree = true;
           config.joypixels.acceptLicense = true;
         };
-        extraSpecialArgs = { inherit inputs unstable vars; };
+        extraSpecialArgs = {
+          inherit
+            inputs
+            rolling
+            unstable
+            vars
+            ;
+        };
         modules = [
           inputs.nixvim.homeManagerModules.nixvim
           ./home-manager/home.nix

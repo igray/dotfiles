@@ -1,6 +1,6 @@
 {
-  inputs,
   pkgs,
+  rolling,
   unstable,
   ...
 }:
@@ -45,7 +45,7 @@
     chafa
     unstable.claude-code
     csvlens
-    curl
+    rolling.curl
     devenv
     fd
     fzf
