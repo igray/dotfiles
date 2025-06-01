@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # Stable Nix Packages (Default)
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
-    nixpkgs-rolling.url = "github:cachix/devenv-nixpkgs/rolling"; # Devenv Rolling Packages
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -21,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixvim-config = {
-      url = "github:igray/nixvim-config?ref=snacks";
+      url = "github:igray/nixvim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -31,7 +30,6 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
-      nixpkgs-rolling,
       nixos-hardware,
       ...
     }@inputs:
@@ -41,9 +39,6 @@
         terminal = "ghostty";
       };
       system = "x86_64-linux";
-      rolling = import nixpkgs-rolling {
-        inherit system;
-      };
       unstable = import nixpkgs-unstable {
         inherit system;
         config = {
@@ -84,7 +79,6 @@
         extraSpecialArgs = {
           inherit
             inputs
-            rolling
             unstable
             vars
             ;
