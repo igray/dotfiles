@@ -30,10 +30,11 @@
     spotify
     sshfs
     tidal-hifi
-    unstable.zed-editor
     vlc
+    warp-terminal
     wf-recorder
     wl-clipboard
+    unstable.zed-editor
     unstable.zoom-us
 
     # tools
@@ -48,6 +49,7 @@
     devenv
     fd
     fzf
+    unstable.gemini-cli
     glib
     glow
     inotify-tools

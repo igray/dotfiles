@@ -17,6 +17,7 @@
       window-decoration = false;
       keybind = [
         "alt+w=toggle_window_decorations"
+        "shift+enter=text:\\n"
       ];
     };
   };
