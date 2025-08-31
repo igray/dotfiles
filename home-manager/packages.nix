@@ -23,6 +23,7 @@
     inkscape
     unstable.joplin-desktop
     libreoffice-fresh
+    obs-studio
     resources
     simple-scan
     unstable.shattered-pixel-dungeon
