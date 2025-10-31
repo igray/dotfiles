@@ -29,12 +29,12 @@
       # Garbage Collection
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 2d";
+      options = "--delete-older-than 30d";
+      persistent = true;
     };
   };
 
   # virtualisation
-  programs.virt-manager.enable = true;
   virtualisation = {
     docker.enable = true;
     # podman.enable = true;
@@ -45,17 +45,16 @@
     waydroid.enable = true;
   };
 
-  # dconf
-  programs.dconf.enable = true;
-
   programs = {
     adb.enable = true;
+    dconf.enable = true;
     fish.enable = true;
     neovim = {
       enable = true;
       viAlias = true;
       vimAlias = true;
     };
+    virt-manager.enable = true;
   };
 
   # packages

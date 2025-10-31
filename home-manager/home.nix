@@ -25,6 +25,11 @@ in
   targets.genericLinux.enable = true;
 
   nix = {
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+      persistent = true;
+    };
     package = pkgs.nix;
     settings = {
       download-buffer-size = 567108864;
