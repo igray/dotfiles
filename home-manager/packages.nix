@@ -9,7 +9,7 @@
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
     annotator
     authenticator
-    unstable.calibre
+    calibre
     d-spy
     dconf-editor
     discord
@@ -19,9 +19,11 @@
     gimp
     gnome-calculator
     gnome-characters
+    google-chrome
     icon-library
     inkscape
     unstable.joplin-desktop
+    kdePackages.kdenlive
     libreoffice-fresh
     obs-studio
     resources
@@ -54,11 +56,13 @@
     glib
     glow
     inotify-tools
+    unstable.jira-cli-go
     jq
     killall
     lazygit
     libnotify
     mermaid-cli
+    ollama-rocm
     pciutils
     powertop
     qmk
@@ -71,6 +75,7 @@
     usbutils
     wget
     unzip
+    uv
     zip
 
     # original config dependencies
