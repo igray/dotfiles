@@ -22,7 +22,6 @@
     google-chrome
     icon-library
     inkscape
-    unstable.joplin-desktop
     kdePackages.kdenlive
     libreoffice-fresh
     obs-studio
