@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixvim-config = {
-      url = "github:igray/nixvim-config";
+      url = "github:igray/nixvim-config?ref=lazyvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

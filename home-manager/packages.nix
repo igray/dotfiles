@@ -59,6 +59,7 @@
     jq
     killall
     lazygit
+    libinput
     libnotify
     mermaid-cli
     ollama-rocm
