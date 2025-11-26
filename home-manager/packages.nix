@@ -1,6 +1,5 @@
 {
   pkgs,
-  unstable,
   ...
 }:
 {
@@ -27,7 +26,7 @@
     obs-studio
     resources
     simple-scan
-    unstable.shattered-pixel-dungeon
+    shattered-pixel-dungeon
     slack
     spotify
     sshfs
@@ -36,8 +35,8 @@
     warp-terminal
     wf-recorder
     wl-clipboard
-    unstable.zed-editor
-    unstable.zoom-us
+    zed-editor
+    zoom-us
 
     # tools
     acpi
@@ -45,17 +44,17 @@
     bat
     bottom
     chafa
-    unstable.claude-code
+    claude-code
     csvlens
     curl
     devenv
     fd
     fzf
-    unstable.gemini-cli
+    gemini-cli
     glib
     glow
     inotify-tools
-    unstable.jira-cli-go
+    jira-cli-go
     jq
     killall
     libinput

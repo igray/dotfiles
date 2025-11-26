@@ -2,26 +2,40 @@ let
   email = "igray78756@gmail.com";
   name = "Iain Gray";
   user = "igray";
-in {
+in
+{
   programs = {
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        syntaxTheme = "Solarized (dark)";
+        sideBySide = true;
+        lineNumbers = true;
+        maxLineWidth = 120;
+        lightTheme = "Solarized (light)";
+      };
+    };
     git = {
       enable = true;
-      userEmail = email;
-      userName = name;
-      aliases = {
-        pf = "push --force-with-lease";
-        hard-reset = "reset --hard @{u}";
-        co = "checkout";
-        br = "branch";
-        ci = "commit";
-        st = "status";
-        unstage = "reset HEAD --";
-        last = "log -1 HEAD";
-        lb = "!git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'";
-        patch = "!git --no-pager diff";
-        glog = "log --graph --decorate --oneline";
-      };
-      extraConfig = {
+      settings = {
+        alias = {
+          pf = "push --force-with-lease";
+          hard-reset = "reset --hard @{u}";
+          co = "checkout";
+          br = "branch";
+          ci = "commit";
+          st = "status";
+          unstage = "reset HEAD --";
+          last = "log -1 HEAD";
+          lb = "!git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'";
+          patch = "!git --no-pager diff";
+          glog = "log --graph --decorate --oneline";
+        };
+        user = {
+          email = email;
+          name = name;
+        };
         init.defaultBranch = "main";
         fetch.prune = true;
         rebase.autosquash = true;
@@ -36,10 +50,6 @@ in {
         github.user = user;
         push.autoSetupRemote = true;
         merge.autoStash = true;
-      };
-      difftastic = {
-        enable = true;
-        background = "light";
       };
     };
     gitui = {
@@ -63,8 +73,7 @@ in {
       settings = {
         git = {
           pagers = [
-            # { useExternalDiffGitConfig = true; }
-            { externalDiffCommand = "difft --color=always --background light --display side-by-side"; }
+            { pager = "delta --dark --paging=never"; }
           ];
         };
       };

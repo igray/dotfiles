@@ -95,7 +95,6 @@
       '';
     };
     command-not-found.enable = true;
-    thefuck.enable = true;
     dircolors = {
       enable = true;
       enableFishIntegration = true;
