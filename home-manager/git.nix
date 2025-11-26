@@ -35,6 +35,7 @@ in {
         credential.helper = "store";
         github.user = user;
         push.autoSetupRemote = true;
+        merge.autoStash = true;
       };
       difftastic = {
         enable = true;
@@ -54,6 +55,17 @@ in {
           co = "pr checkout";
           pv = "pr view -w";
           pcr = "pr create -d -f";
+        };
+      };
+    };
+    lazygit = {
+      enable = true;
+      settings = {
+        git = {
+          pagers = [
+            # { useExternalDiffGitConfig = true; }
+            { externalDiffCommand = "difft --color=always --background light --display side-by-side"; }
+          ];
         };
       };
     };

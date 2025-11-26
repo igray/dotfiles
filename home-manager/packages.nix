@@ -58,7 +58,6 @@
     unstable.jira-cli-go
     jq
     killall
-    lazygit
     libinput
     libnotify
     mermaid-cli
