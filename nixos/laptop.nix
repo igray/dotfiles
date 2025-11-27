@@ -21,9 +21,6 @@
     graphics = {
       # Hardware Accelerated Video
       enable = true;
-      extraPackages = with pkgs; [
-        mesa
-      ];
     };
     bluetooth = {
       enable = true;
