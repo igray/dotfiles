@@ -92,6 +92,12 @@
       shellInit = ''
         set -g theme_display_ruby no
         set -g theme_color_scheme solarized-dark
+
+        # Import systemd user environment to override PAM-set SSH_AUTH_SOCK
+        # This ensures we use gcr-ssh-agent instead of the non-existent gnome-keyring SSH socket
+        if test -n "$XDG_RUNTIME_DIR"
+          set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
+        end
       '';
     };
     command-not-found.enable = true;

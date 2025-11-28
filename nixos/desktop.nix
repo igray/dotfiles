@@ -13,9 +13,8 @@
     power-profiles-daemon.enable = true;
     accounts-daemon.enable = true;
     gnome = {
-      evolution-data-server.enable = true;
       glib-networking.enable = true;
-      gnome-keyring.enable = true;
+      gcr-ssh-agent.enable = true;
     };
   };
 
@@ -27,9 +26,7 @@
   security = {
     polkit.enable = true;
     pam.services = {
-      gdm.enableGnomeKeyring = true;
-      cosmic-greeter.enableGnomeKeyring = true;
-      swaylock = { };
+      # cosmic-greeter.enableGnomeKeyring = true;
     };
   };
 
@@ -39,13 +36,11 @@
     ];
     sessionVariables = {
       AWT_TOOLKIT = "MToolkit";
-      # COSMIC_DISABLE_DIRECT_SCANOUT = "1";
       GDK_BACKEND = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/keyring/ssh";
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
   };
