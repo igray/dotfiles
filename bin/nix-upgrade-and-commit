@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -e
+
+# Change to the dotfiles directory
+cd "$(dirname "$0")/.."
+
+echo "Updating flake inputs..."
+nix flake update
+
+echo "Rebuilding NixOS configuration..."
+# Capture output to extract version info
+output=$(sudo nice nixos-rebuild switch --show-trace --flake .#nixos 2>&1 | tee /dev/tty)
+
+# Extract the version/commit from the nixos-rebuild output
+# Looking for: /nix/store/...-nixos-system-laptop-26.05.20251215.1306659
+version=$(echo "$output" | grep -oP 'nixos-system-laptop-\K[0-9.]+' | tail -n1)
+
+if [ -z "$version" ]; then
+  echo "Warning: Could not extract version from nixos-rebuild output"
+  echo "Proceeding with home-manager rebuild but will not commit"
+  home-manager switch --show-trace --flake .#igray
+  exit 1
+fi
+
+echo "Rebuilding home-manager configuration..."
+home-manager switch --show-trace --flake .#igray
+
+echo "Committing flake.lock with version: $version"
+git add flake.lock
+git commit -m "$(
+  cat <<EOF
+Upgrade $(date +%Y-%m-%d)
+
+NixOS version: $version
+EOF
+)"
+
+echo "✓ Upgrade complete and committed"
