@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     # gui
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
+    android-studio
     annotator
     authenticator
     calibre
