@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./alacritty.nix
+    ./android.nix
     ./browser.nix
     ./desktop.nix
     ./git.nix
