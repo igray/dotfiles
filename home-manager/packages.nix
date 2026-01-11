@@ -35,7 +35,7 @@
     warp-terminal
     wf-recorder
     wl-clipboard
-    zed-editor
+    # zed-editor
     zoom-us
 
     # tools

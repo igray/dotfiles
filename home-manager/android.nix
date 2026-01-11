@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     android-studio
+    android-tools
   ];
 
   home.file = {
