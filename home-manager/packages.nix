@@ -21,7 +21,7 @@
     google-chrome
     icon-library
     inkscape
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     libreoffice-fresh
     obs-studio
     resources
@@ -30,12 +30,11 @@
     slack
     spotify
     sshfs
-    tidal-hifi
     vlc
     warp-terminal
     wf-recorder
     wl-clipboard
-    # zed-editor
+    zed-editor
     zoom-us
 
     # tools
@@ -53,6 +52,7 @@
     gemini-cli
     glib
     glow
+    goose-cli
     inotify-tools
     jira-cli-go
     jq
@@ -61,6 +61,7 @@
     libnotify
     mermaid-cli
     ollama-rocm
+    pandoc
     pciutils
     powertop
     qmk
