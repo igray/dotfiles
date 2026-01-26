@@ -3,6 +3,10 @@
 let
   localServer = "192.168.86.10";
   localServerUser = "igray";
+  healthchecks = {
+    nightly = "https://hc-ping.com/bd8d44e8-ce1d-4129-b33b-c4033110d3ba";
+    work = "https://hc-ping.com/82f3ed12-5e50-42fa-9958-b53255c18202";
+  };
 in
 {
   environment.systemPackages = with pkgs; [
@@ -37,6 +41,13 @@ in
           checkOpts = [
             "--with-cache"
           ];
+          backupPrepareCommand = ''
+            ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.nightly}/start
+            ${pkgs.restic}/bin/restic unlock || true
+          '';
+          backupCleanupCommand = ''
+            ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.nightly}
+          '';
         };
         work = {
           passwordFile = "/home/${vars.username}/.restic-password";
@@ -66,6 +77,13 @@ in
           checkOpts = [
             "--with-cache"
           ];
+          backupPrepareCommand = ''
+            ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.work}/start
+            ${pkgs.restic}/bin/restic unlock || true
+          '';
+          backupCleanupCommand = ''
+            ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.work}
+          '';
         };
       };
     };
