@@ -21,7 +21,7 @@
     google-chrome
     icon-library
     inkscape
-    # kdePackages.kdenlive
+    kdePackages.kdenlive
     libreoffice-fresh
     obs-studio
     resources

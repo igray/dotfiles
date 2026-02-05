@@ -4,7 +4,7 @@
     enable = true;
     enableFishIntegration = true;
     settings = {
-      theme = "Builtin Solarized Dark";
+      theme = "iTerm2 Solarized Dark";
       font-family = "JetBrainsMono Nerd Font";
       font-family-bold = "JetBrainsMono Nerd Font";
       font-family-italic = "JetBrainsMono Nerd Font";
