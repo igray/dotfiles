@@ -46,6 +46,10 @@
   };
 
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     dconf.enable = true;
     fish.enable = true;
     neovim = {
@@ -99,6 +103,7 @@
       "audio"
       "camera"
       "docker"
+      "input"
       "libvirtd"
       "lp"
       "networkmanager"

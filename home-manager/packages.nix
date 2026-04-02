@@ -50,6 +50,7 @@
     fd
     fzf
     gemini-cli
+    git-filter-repo
     glib
     glow
     goose-cli
