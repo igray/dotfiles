@@ -13,10 +13,10 @@ in
       GTK_THEME = gtk-theme;
     };
   };
-
   gtk = {
     enable = true;
     font.name = "Ubuntu Nerd Font";
+    gtk4.theme = null;
     theme.name = gtk-theme;
   };
 

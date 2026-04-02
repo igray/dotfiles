@@ -51,6 +51,7 @@ in
         push.autoSetupRemote = true;
         merge.autoStash = true;
       };
+      signing.format = null;
     };
     gitui = {
       enable = true;
