@@ -53,7 +53,6 @@
     git-filter-repo
     glib
     glow
-    goose-cli
     inotify-tools
     jira-cli-go
     jq
@@ -76,6 +75,7 @@
     wget
     unzip
     uv
+    worktrunk
     zip
 
     # original config dependencies
