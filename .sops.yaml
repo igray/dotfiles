@@ -1,0 +1,8 @@
+keys:
+  - &igray age1axplnq7uqquh3yu8at679ww20he8vkjp53h8a0pms7paadhy05mqvx5raw
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *igray

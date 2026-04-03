@@ -13,7 +13,9 @@ in
     ./lf.nix
     ./nixvim.nix
     ./packages.nix
+    ./rclone.nix
     ./sh.nix
+    ./sops.nix
     ./starship.nix
     ./theme.nix
     ./tmux.nix
