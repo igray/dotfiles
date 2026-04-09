@@ -78,11 +78,6 @@
           inherit system;
           config.allowUnfree = true;
           config.joypixels.acceptLicense = true;
-          overlays = [
-            (final: prev: {
-              claude-code = final.callPackage ./packages/claude-code/package.nix { };
-            })
-          ];
         };
         extraSpecialArgs = {
           inherit

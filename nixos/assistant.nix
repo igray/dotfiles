@@ -11,10 +11,15 @@ with vars;
           wants = [ "network-online.target" ];
           path = with pkgs; [
             bash
+            claude-code
+            direnv
+            gettext
             gh
+            git
             jq
             python3
             uv
+            wt
           ];
           serviceConfig = {
             Type = "oneshot";
