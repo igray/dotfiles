@@ -30,26 +30,6 @@
         cppr = "gh pr create --head igray:(currentGitBranch)";
         gpu = "git pull origin (currentGitBranch)";
         gpf = "git push --force-with-lease";
-        rebase = {
-          body = ''
-            set branch (currentGitBranch)
-            if test "$branch" = "main"
-              echo "You are on main branch, please checkout to a feature branch"
-              return 1
-            end
-            gco main
-            gpu
-            gco "$branch"
-            git rebase main
-          '';
-        };
-        ciboost = {
-          body = ''
-            rebase
-            git show -s --format=%B | sed '1 s/\( \[ciboost\]\)\?$/ [ciboost]/' | git commit --amend -F -
-            gpf
-          '';
-        };
       };
       plugins = [
       ];
@@ -81,6 +61,11 @@
         gco = "git checkout";
         gpush = "git push";
         gb = "git branch";
+
+        # worktrunk
+
+        wts = "wt switch";
+        wtd = "wt remove --force";
 
         # other
         doh = ''

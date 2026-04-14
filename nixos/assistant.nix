@@ -12,14 +12,16 @@ with vars;
           path = with pkgs; [
             bash
             claude-code
+            devenv
             direnv
+            gawk
             gettext
             gh
             git
             jq
             python3
             uv
-            wt
+            worktrunk
           ];
           serviceConfig = {
             Type = "oneshot";
