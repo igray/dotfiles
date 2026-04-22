@@ -59,6 +59,7 @@
     killall
     libinput
     libnotify
+    marp-cli
     mermaid-cli
     ollama-rocm
     pandoc

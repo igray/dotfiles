@@ -28,6 +28,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
   outputs =
@@ -36,6 +37,7 @@
       nixpkgs,
       # nixpkgs-unstable,
       nixos-hardware,
+      claude-code,
       ...
     }@inputs:
     let
@@ -87,6 +89,7 @@
             ;
         };
         modules = [
+          { nixpkgs.overlays = [ claude-code.overlays.default ]; }
           inputs.nixvim.homeModules.nixvim
           inputs.sops-nix.homeManagerModules.sops
           ./home-manager/home.nix

@@ -53,6 +53,7 @@ in
         recents = "--sort created- --created-after 'last two weeks'";
       };
       alias = {
+        help = "glow ~/.config/zk/cheatsheet.md";
         edlast = "zk edit --limit 1 --sort modified- $@";
         recent = "zk edit --sort created- --created-after 'last two weeks' --interactive";
         ls = "zk edit --interactive";
@@ -102,6 +103,56 @@ in
           date: {{ format-date now 'long' }}
           tags: [{{ slug title }}]
           ---
+        '';
+      };
+      "zk-cheatsheet" = {
+        target = ".config/zk/cheatsheet.md";
+        text = ''
+          # `zk` cheat-sheet — project aliases
+
+          Notebook root: `~/notes` • Templates under `~/.config/zk/templates/`
+
+          ## Create notes
+
+          | Alias | What it does | Template |
+          |---|---|---|
+          | `zk daily` | New journal entry in `~/notes/journal`, filename = today's date | `journal.md` |
+          | `zk ne <title>` | New idea note in `~/notes/ideas` | `default.md` |
+          | `zk me <title>` | New meeting note in `~/notes/meetings`, filename = `YYYY-MM-DD-slug` | `meetings.md` |
+
+          Note: `ne` / `me` take a raw title (not a flag). Quote multi-word titles: `zk me "Weekly 1:1"`.
+
+          ## Browse / edit (interactive fzf picker)
+
+          | Alias | Scope |
+          |---|---|
+          | `zk ls` | All notes |
+          | `zk recent` | Created in the last two weeks |
+          | `zk edlast` | Jump straight to most recently modified |
+          | `zk t <tag>` | Notes matching a tag |
+          | `zk journal` | Journal only, newest first |
+          | `zk meeting` | Meetings only, newest first |
+          | `zk ideas` | Ideas only, newest first |
+
+          ## Destructive / pipeline
+
+          | Alias | What it does |
+          |---|---|
+          | `zk rm [filter]` | Pick notes interactively, then `rm -vf` them |
+          | `zk slides [filter]` | Pick a note, open it with `slides` |
+
+          ## Useful built-ins (not aliased but handy)
+
+          - `zk list --tag work` — filter by tag
+          - `zk list --linked-by <path>` — backlinks
+          - `zk list --match "search terms"` — full-text search
+          - `zk edit --interactive --match "foo"` — fzf + search
+
+          ## Tool config worth knowing
+
+          - Editor: `nvim` • Pager: `less -FIRX` • fzf preview: `bat`
+          - IDs: 4-char lowercase alphanum, filename `{{id}}-{{slug title}}.md`
+          - Hashtags (`#foo`) and colon-tags (`:foo:`) both parsed
         '';
       };
     };
