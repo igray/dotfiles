@@ -58,6 +58,14 @@
       viAlias = true;
       vimAlias = true;
     };
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        stdenv.cc.cc
+        zlib
+        openssl
+      ];
+    };
     virt-manager.enable = true;
   };
 

@@ -7,6 +7,7 @@ in
     ./alacritty.nix
     ./android.nix
     ./browser.nix
+    ./claude-desktop.nix
     ./desktop.nix
     ./git.nix
     ./ghostty.nix

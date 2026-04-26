@@ -29,6 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     claude-code.url = "github:sadjow/claude-code-nix";
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
   outputs =
@@ -37,7 +38,6 @@
       nixpkgs,
       # nixpkgs-unstable,
       nixos-hardware,
-      claude-code,
       ...
     }@inputs:
     let
@@ -89,7 +89,9 @@
             ;
         };
         modules = [
-          { nixpkgs.overlays = [ claude-code.overlays.default ]; }
+          {
+            nixpkgs.overlays = import ./overlays { inherit inputs; };
+          }
           inputs.nixvim.homeModules.nixvim
           inputs.sops-nix.homeManagerModules.sops
           ./home-manager/home.nix

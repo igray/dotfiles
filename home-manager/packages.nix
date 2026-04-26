@@ -44,6 +44,7 @@
     bottom
     chafa
     claude-code
+    claude-desktop-fhs
     csvlens
     curl
     devenv
