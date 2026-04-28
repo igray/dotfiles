@@ -1,7 +1,10 @@
 { inputs, pkgs, ... }:
+let
+  firefoxDesktop = "firefox.desktop";
+in
 {
   home = {
-    sessionVariables.BROWSER = "brave";
+    sessionVariables.BROWSER = "firefox";
 
     packages = with pkgs; [
       brave
@@ -23,6 +26,22 @@
       profiles.default = {
         name = "Default";
       };
+    };
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = firefoxDesktop;
+      "text/xml" = firefoxDesktop;
+      "application/xhtml+xml" = firefoxDesktop;
+      "application/xml" = firefoxDesktop;
+      "x-scheme-handler/http" = firefoxDesktop;
+      "x-scheme-handler/https" = firefoxDesktop;
+      "x-scheme-handler/ftp" = firefoxDesktop;
+      "x-scheme-handler/about" = firefoxDesktop;
+      "x-scheme-handler/unknown" = firefoxDesktop;
+      "x-scheme-handler/chrome" = firefoxDesktop;
     };
   };
 }
