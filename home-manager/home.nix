@@ -11,6 +11,7 @@ in
     ./desktop.nix
     ./git.nix
     ./ghostty.nix
+    ./glow.nix
     ./lf.nix
     ./nixvim.nix
     ./packages.nix

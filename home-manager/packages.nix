@@ -53,7 +53,6 @@
     gemini-cli
     git-filter-repo
     glib
-    glow
     inotify-tools
     jira-cli-go
     jq
