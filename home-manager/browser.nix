@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ config, pkgs, ... }:
 let
   firefoxDesktop = "firefox.desktop";
 in
@@ -26,6 +26,7 @@ in
       profiles.default = {
         name = "Default";
       };
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
     };
   };
 
