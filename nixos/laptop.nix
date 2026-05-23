@@ -1,6 +1,21 @@
 { pkgs, ... }:
 {
   boot = {
+    # MT7922 bluetooth ("Failed to send wmt func ctrl (-22)") regressed in the
+    # stable 6.18 series between 6.18.26 (good) and 6.18.31/.32 (broken): the
+    # btmtk driver started rejecting too-short WMT FUNC_CTRL events. Firmware is
+    # unchanged. Cherry-pick the upstream fix until it lands in a stable release
+    # (expected 6.18.33+). See https://github.com/NixOS/nixpkgs/issues/521528
+    # Remove this patch once nixpkgs ships a kernel that already contains it.
+    kernelPatches = [
+      {
+        name = "Bluetooth: btmtk: accept too short WMT FUNC_CTRL events";
+        patch = pkgs.fetchurl {
+          url = "https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git/patch/?id=162b1adeb057d28ad84fd8a03f3c50cf08db5c62";
+          hash = "sha256-ij0hQmC0U++AdXWQy6nycnDe6z4yaMoQIrSiLal5DHc=";
+        };
+      }
+    ];
     kernelParams = [ "quiet" ];
     initrd = {
       systemd.enable = true;
@@ -24,11 +39,6 @@
     };
     bluetooth = {
       enable = true;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-        };
-      };
     };
   };
   services = {
