@@ -41,7 +41,7 @@ in
         rebase.autosquash = true;
         url = {
           "ssh://git@github.com/" = {
-            insteadOf = "https://github.com/";
+            pushInsteadOf = "https://github.com/";
           };
         };
         color.ui = true;
