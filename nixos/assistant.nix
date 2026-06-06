@@ -12,6 +12,7 @@ with vars;
           path = with pkgs; [
             bash
             claude-code
+            curl
             devenv
             direnv
             gawk
@@ -27,7 +28,6 @@ with vars;
             Type = "oneshot";
             ExecStart = "/home/${username}/Work/assistant/dispatcher.sh";
             WorkingDirectory = "/home/${username}/Work/assistant";
-            TimeoutStartSec = 600;
           };
           description = "Personal Assistant Dispatcher";
         };
@@ -38,7 +38,7 @@ with vars;
           wantedBy = [ "timers.target" ];
           description = "Personal Assistant Timer";
           timerConfig = {
-            OnUnitActiveSec = "15min";
+            OnUnitActiveSec = "30min";
             Persistent = true;
           };
         };
