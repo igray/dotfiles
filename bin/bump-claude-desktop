@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Bump the pinned claude-desktop flake input to the latest GitHub release.
+#
+# aaddrick/claude-desktop-debian receives auto-bot commits on main whenever
+# upstream Claude Desktop ships a new build. Those commits frequently break
+# the build until the maintainer updates patch anchors and cuts a new tag,
+# so we pin to release tags and use this script to advance release-by-release.
+
+cd "$(dirname "$0")/.."
+
+REPO="aaddrick/claude-desktop-debian"
+FLAKE="flake.nix"
+INPUT="claude-desktop"
+
+latest_tag=$(gh api "repos/${REPO}/releases/latest" --jq .tag_name)
+if [[ -z "${latest_tag}" ]]; then
+  echo "Failed to fetch latest release tag from ${REPO}" >&2
+  exit 1
+fi
+
+# Flake refs are URLs; `+` must be encoded as %2B in the query string.
+encoded_tag=${latest_tag//+/%2B}
+new_url="github:${REPO}?ref=${encoded_tag}"
+
+current_url=$(grep -oP "${INPUT}\.url\s*=\s*\"\K[^\"]+" "${FLAKE}" || true)
+if [[ -z "${current_url}" ]]; then
+  echo "Could not find ${INPUT}.url in ${FLAKE}" >&2
+  exit 1
+fi
+
+echo "Latest release : ${latest_tag}"
+echo "Current ref    : ${current_url}"
+echo "Target ref     : ${new_url}"
+
+if [[ "${current_url}" == "${new_url}" ]]; then
+  echo "Already on the latest release. Nothing to do."
+  exit 0
+fi
+
+sed -i "s|${INPUT}\.url = \"[^\"]*\";|${INPUT}.url = \"${new_url}\";|" "${FLAKE}"
+
+echo "Updated ${FLAKE}. Refreshing flake lock..."
+nix flake update "${INPUT}"
+
+echo "Done. Review the diff with: git diff ${FLAKE} flake.lock"
