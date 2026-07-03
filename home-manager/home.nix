@@ -74,6 +74,14 @@ in
     "file://${homeDirectory}/.local/share Local"
   ];
 
+  # Cap how long the user service manager waits for a unit/scope to stop after
+  # SIGTERM before escalating to SIGKILL. Default is 90s; long-lived terminal
+  # sessions (Claude Code + its python MCP/tool subprocesses) routinely ignore
+  # SIGTERM and burn the full 90s at reboot, stalling shutdown. 15s still gives
+  # well-behaved apps time to save state. Only affects user units, not system
+  # services. See systemd-user.conf(5).
+  systemd.user.settings.Manager.DefaultTimeoutStopSec = "15s";
+
   programs.home-manager.enable = true;
   xdg.enable = true;
   home.stateVersion = "21.11";
