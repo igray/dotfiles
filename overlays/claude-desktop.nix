@@ -21,7 +21,7 @@
         cp ${final.claude-desktop}/share/applications/* $out/share/applications/
         mkdir -p $out/share/icons
         cp -r ${final.claude-desktop}/share/icons/* $out/share/icons/
-        substituteInPlace $out/share/applications/claude-desktop.desktop \
+        substituteInPlace $out/share/applications/com.anthropic.Claude.desktop \
           --replace-fail "Exec=claude-desktop" "Exec=$out/bin/claude-desktop"
       '';
       meta = prev.claude-desktop-fhs.meta;

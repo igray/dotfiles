@@ -29,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     claude-code.url = "github:sadjow/claude-code-nix";
-    claude-desktop.url = "github:aaddrick/claude-desktop-debian?ref=v2.0.22%2Bclaude1.15962.1";
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian?ref=v3.2.1%2Bclaude1.21459.0";
   };
 
   outputs =
