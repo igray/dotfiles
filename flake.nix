@@ -36,7 +36,6 @@
     {
       home-manager,
       nixpkgs,
-      # nixpkgs-unstable,
       nixos-hardware,
       ...
     }@inputs:
@@ -46,56 +45,58 @@
         terminal = "ghostty";
       };
       system = "x86_64-linux";
-      # unstable = import nixpkgs-unstable {
-      #   inherit system;
-      #   config = {
-      #     allowUnfree = true;
-      #     permittedInsecurePackages = [
-      #     ];
-      #   };
-      # };
-    in
-    {
-      nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs vars system; };
-        modules = [
-          {
-            nix.settings = {
-              substituters = [
-                "https://nix-community.cachix.org"
-                "https://cache.nixos.org"
-              ];
-              trusted-public-keys = [
-                "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-              ];
-            };
-          }
-          nixos-hardware.nixosModules.framework-amd-ai-300-series
-          ./hosts/laptop
-        ];
+
+      cachixSettings = {
+        nix.settings = {
+          substituters = [
+            "https://nix-community.cachix.org"
+            "https://cache.nixos.org"
+          ];
+          trusted-public-keys = [
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          ];
+        };
       };
 
-      homeConfigurations."${vars.username}" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-          config.joypixels.acceptLicense = true;
+      mkNixos =
+        { hostModule, hwModules ? [ ] }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs vars system; };
+          modules = [ cachixSettings ] ++ hwModules ++ [ hostModule ];
         };
-        extraSpecialArgs = {
-          inherit
-            inputs
-            # unstable
-            vars
-            ;
+
+      mkHome =
+        homeModule:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            config.joypixels.acceptLicense = true;
+          };
+          extraSpecialArgs = { inherit inputs vars; };
+          modules = [
+            { nixpkgs.overlays = import ./overlays { inherit inputs; }; }
+            inputs.nixvim.homeModules.nixvim
+            inputs.sops-nix.homeManagerModules.sops
+            homeModule
+          ];
         };
-        modules = [
-          {
-            nixpkgs.overlays = import ./overlays { inherit inputs; };
-          }
-          inputs.nixvim.homeModules.nixvim
-          inputs.sops-nix.homeManagerModules.sops
-          ./home-manager/home.nix
-        ];
+    in
+    {
+      nixosConfigurations = {
+        laptop = mkNixos {
+          hostModule = ./hosts/laptop;
+          hwModules = [ nixos-hardware.nixosModules.framework-amd-ai-300-series ];
+        };
+        "work-server" = mkNixos {
+          hostModule = ./hosts/work-server;
+          hwModules = [ nixos-hardware.nixosModules.framework-13-7040-amd ];
+        };
+      };
+
+      homeConfigurations = {
+        "igray@laptop" = mkHome ./home-manager/laptop.nix;
+        "igray@work-server" = mkHome ./home-manager/work-server.nix;
       };
     };
 }
