@@ -31,7 +31,7 @@ The system is split into two main configuration contexts, each defined per-host:
 
 - User-space application and dotfile management
 - Imports nixvim for Neovim configuration via external flake
-- Uses both stable and unstable nixpkgs channels
+- Uses the same nixos-unstable nixpkgs channel as the system
 
 ## Common Commands
 
