@@ -70,8 +70,8 @@
               ];
             };
           }
-          nixos-hardware.nixosModules.framework-13-7040-amd
-          ./nixos/configuration.nix
+          nixos-hardware.nixosModules.framework-amd-ai-300-series
+          ./hosts/laptop
         ];
       };
 
