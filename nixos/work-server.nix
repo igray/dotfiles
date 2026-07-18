@@ -17,6 +17,9 @@
 
   users.users.igray.extraGroups = [ "docker" ];
 
-  # Fresh install: set to the release you install from (confirm in Task 8).
-  system.stateVersion = "25.05";
+  # The old SSD carries its existing 23.05 install over unchanged, so keep the
+  # original stateVersion — raising it on an existing system can silently change
+  # stateful service defaults. (Only set this to the install-media release for a
+  # genuinely fresh server install.)
+  system.stateVersion = "23.05";
 }
