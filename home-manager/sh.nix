@@ -30,6 +30,13 @@
         cppr = "gh pr create --head igray:(currentGitBranch)";
         gpu = "git pull origin (currentGitBranch)";
         gpf = "git push --force-with-lease";
+
+        rebuild = {
+          body = ''
+            sudo nixos-rebuild switch --flake ~/Work/dotfiles; and \
+              home-manager switch --flake ~/Work/dotfiles
+          '';
+        };
       };
       plugins = [
       ];
