@@ -9,7 +9,6 @@ in
     ./android.nix
     ./browser.nix
     ./claude-desktop.nix
-    ./desktop.nix
     ./ghostty.nix
     ./theme.nix
     ./wallpaper.nix

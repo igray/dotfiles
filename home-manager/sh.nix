@@ -86,9 +86,8 @@
         set -g theme_color_scheme solarized-dark
         set -g fish_key_bindings fish_vi_key_bindings
 
-        # Import systemd user environment to override PAM-set SSH_AUTH_SOCK
-        # This ensures we use gcr-ssh-agent instead of the non-existent gnome-keyring SSH socket
-        if test -n "$XDG_RUNTIME_DIR"
+        # Use gcr-ssh-agent locally, but never clobber a forwarded SSH agent.
+        if not set -q SSH_CONNECTION; and test -S "$XDG_RUNTIME_DIR/gcr/ssh"
           set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
         end
       '';

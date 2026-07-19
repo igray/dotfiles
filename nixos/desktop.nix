@@ -26,7 +26,8 @@
   security = {
     polkit.enable = true;
     pam.services = {
-      # cosmic-greeter.enableGnomeKeyring = true;
+      # Auto-unlock the login keyring at the COSMIC greeter.
+      cosmic-greeter.enableGnomeKeyring = true;
     };
   };
 
