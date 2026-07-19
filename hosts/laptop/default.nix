@@ -8,8 +8,7 @@
     ../../nixos/audio.nix
     ../../nixos/fonts.nix
     ../../nixos/wallpaper.nix
-    # ../../nixos/restic.nix
-    ../../nixos/assistant.nix
+    ../../nixos/restic.nix
   ];
 
   # GUI/VAAPI video-acceleration debug tools (laptop-only; common.nix omits VAAPI).
