@@ -2,13 +2,16 @@
 
 with vars;
 {
+  # Lingering so the user services run headless, without an active login.
+  users.users.${username}.linger = true;
+
   systemd = {
     user = {
       services = {
         assistant = {
           wantedBy = [ "default.target" ];
-          after = [ "network-online.target" ];
-          wants = [ "network-online.target" ];
+          after = [ "network-online.target" "devenv-cpats.service" ];
+          wants = [ "network-online.target" "devenv-cpats.service" ];
           path = with pkgs; [
             bash
             claude-code
