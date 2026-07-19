@@ -2,7 +2,15 @@
 {
   networking.hostName = "work-server";
 
-  # systemd-based initrd — required for TPM2-backed LUKS auto-unlock (Task 8).
+  boot.initrd.network.enable = true;
+  boot.initrd.network.ssh = {
+    enable = true;
+    port = 2222;
+    authorizedKeys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGa2Fl7BrbkjzF9BxAODhMfHSQLCt/K41MkPOi8VZCoL igray@igray-laptop"
+    ];
+    hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
+  };
   boot.initrd.systemd.enable = true;
 
   # Headless box in a case: no lid, ignore the power key so a stray press
