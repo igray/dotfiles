@@ -8,7 +8,7 @@
     ../../nixos/audio.nix
     ../../nixos/fonts.nix
     ../../nixos/wallpaper.nix
-    ../../nixos/restic.nix
+    # ../../nixos/restic.nix
     ../../nixos/assistant.nix
   ];
 
