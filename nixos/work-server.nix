@@ -17,6 +17,11 @@
 
   users.users.igray.extraGroups = [ "docker" ];
 
+  users.users.igray.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGa2Fl7BrbkjzF9BxAODhMfHSQLCt/K41MkPOi8VZCoL igray@igray-laptop"
+  ];
+  services.openssh.settings.PasswordAuthentication = false;
+
   # The old SSD carries its existing 23.05 install over unchanged, so keep the
   # original stateVersion — raising it on an existing system can silently change
   # stateful service defaults. (Only set this to the install-media release for a

@@ -52,6 +52,7 @@
     fzf
     gemini-cli
     git-filter-repo
+    gitleaks
     glib
     inotify-tools
     jira-cli-go

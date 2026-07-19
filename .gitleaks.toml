@@ -1,0 +1,19 @@
+# gitleaks config for this dotfiles repo.
+# Extends gitleaks' default rule set and allowlists content we have verified is
+# safe to publish: sops/age-encrypted secrets and SSH *public* keys.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Encrypted secrets and public keys are safe to commit"
+# Whole files whose contents are encrypted at rest (sops) or are config for it.
+paths = [
+  '''^\.sops\.yaml$''',
+  '''^secrets/.*\.ya?ml$''',
+]
+# Patterns that are safe wherever they appear.
+regexes = [
+  '''-----BEGIN AGE ENCRYPTED FILE-----''',   # sops/age ciphertext blocks
+  '''ENC\[AES256_GCM''',                        # sops inline ciphertext
+  '''ssh-(ed25519|rsa|dss) AAAA''',             # SSH public keys (authorizedKeys)
+]

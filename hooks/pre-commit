@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Secret-scan the staged diff before every commit; block the commit if gitleaks
+# finds anything. Allowlist/rules live in .gitleaks.toml at the repo root.
+#
+# This hook is tracked in the repo but git only runs it once core.hooksPath
+# points here. Enable it in a fresh clone with:
+#
+#     git config core.hooksPath hooks
+#
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks_cmd=(gitleaks)
+else
+  # gitleaks not installed yet (e.g. before the first home-manager switch).
+  # Fall back to the flakes registry copy so the hook still protects you.
+  echo "pre-commit: gitleaks not on PATH, falling back to 'nix run nixpkgs#gitleaks'" >&2
+  gitleaks_cmd=(nix run nixpkgs#gitleaks --)
+fi
+
+"${gitleaks_cmd[@]}" protect --staged --redact --verbose \
+  --config="$repo_root/.gitleaks.toml"
