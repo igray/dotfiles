@@ -10,8 +10,14 @@ with vars;
       services = {
         assistant = {
           wantedBy = [ "default.target" ];
-          after = [ "network-online.target" "devenv-cpats.service" ];
-          wants = [ "network-online.target" "devenv-cpats.service" ];
+          after = [
+            "network-online.target"
+            "devenv-cpats.service"
+          ];
+          wants = [
+            "network-online.target"
+            "devenv-cpats.service"
+          ];
           path = with pkgs; [
             bash
             claude-code
@@ -23,6 +29,7 @@ with vars;
             gh
             git
             jq
+            nodejs
             python3
             uv
             worktrunk
