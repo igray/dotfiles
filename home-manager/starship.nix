@@ -63,6 +63,7 @@ in
       os = {
         disabled = true;
       };
+      gcloud.disabled = true;
       hostname.ssh_symbol = " ";
       aws = {
         disabled = true;
