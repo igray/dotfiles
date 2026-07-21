@@ -1,4 +1,9 @@
-{ pkgs, vars, lib, ... }:
+{
+  pkgs,
+  vars,
+  lib,
+  ...
+}:
 {
   imports = [
     ./locale.nix
@@ -73,6 +78,13 @@
     enableIPv6 = false;
     networkmanager.enable = true;
   };
+
+  # NetworkManager owns the interfaces, so systemd-networkd has no use.
+  systemd.suppressedSystemUnits = [
+    "systemd-networkd.service"
+    "systemd-networkd.socket"
+    "systemd-networkd-wait-online.service"
+  ];
 
   boot = {
     tmp.cleanOnBoot = true;
