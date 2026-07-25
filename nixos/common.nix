@@ -86,6 +86,16 @@
     "systemd-networkd-wait-online.service"
   ];
 
+  # ...but work-server's initrd runs networkd for the remote LUKS unlock, and
+  # /run survives switch-root, so /run/systemd/netif/state arrives in the booted
+  # system frozen at OPER_STATE=off. With networkd suppressed nothing ever
+  # updates it, and timesyncd believes it is offline forever (never sends a
+  # single packet). Drop the stale file before timesyncd reads it; with no
+  # networkd state at all it falls back to assuming the network is up.
+  # No-op on hosts without initrd networking.
+  systemd.services.systemd-timesyncd.serviceConfig.ExecStartPre =
+    "+${pkgs.coreutils}/bin/rm -f /run/systemd/netif/state";
+
   boot = {
     tmp.cleanOnBoot = true;
     loader = {
