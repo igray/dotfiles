@@ -35,7 +35,7 @@
     wf-recorder
     wl-clipboard
     zed-editor
-    # zoom-us
+    zoom-us
 
     # tools
     acpi
