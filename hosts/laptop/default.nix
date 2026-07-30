@@ -9,6 +9,7 @@
     ../../nixos/fonts.nix
     ../../nixos/wallpaper.nix
     ../../nixos/restic.nix
+    ../../nixos/amd-ai.nix
   ];
 
   # GUI/VAAPI video-acceleration debug tools (laptop-only; common.nix omits VAAPI).
@@ -76,6 +77,7 @@
     "input"
     "libvirtd"
     "lp"
+    "render" # GPU/NPU compute access for amd-ai.nix (lemonade, ROCm)
     "scanner"
     "video"
   ];

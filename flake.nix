@@ -28,6 +28,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Deliberately no `inputs.nixpkgs.follows` here, unlike every other input:
+    # this flake's overlay builds its packages against its own pinned nixpkgs,
+    # so following ours would miss its binary cache and rebuild the ROCm/Vulkan
+    # backends from source.
+    nix-amd-ai.url = "github:noamsto/nix-amd-ai";
     claude-code.url = "github:sadjow/claude-code-nix";
     claude-desktop.url = "github:aaddrick/claude-desktop-debian?ref=v3.2.1%2Bclaude1.24012.0";
   };
