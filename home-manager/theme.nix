@@ -9,9 +9,6 @@ in
       font-awesome
       joypixels
     ];
-    sessionVariables = {
-      GTK_THEME = gtk-theme;
-    };
   };
   gtk = {
     enable = true;
@@ -24,4 +21,9 @@ in
     enable = true;
     platformTheme.name = "kde";
   };
+
+  # Ghostty >= 1.3.0 honours this GTK setting for middle-click paste from the
+  # primary selection. It defaults to false outside GNOME, so COSMIC leaves
+  # middle-click paste silently disabled.
+  dconf.settings."org/gnome/desktop/interface".gtk-enable-primary-paste = true;
 }
