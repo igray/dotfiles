@@ -67,7 +67,12 @@
         { hostModule, hwModules ? [ ] }:
         nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs vars system; };
-          modules = [ cachixSettings ] ++ hwModules ++ [ hostModule ];
+          modules = [
+            cachixSettings
+            inputs.sops-nix.nixosModules.sops
+          ]
+          ++ hwModules
+          ++ [ hostModule ];
         };
 
       mkHome =
