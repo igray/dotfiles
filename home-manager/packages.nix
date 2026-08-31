@@ -22,7 +22,7 @@
     icon-library
     inkscape
     kdePackages.kdenlive
-    libreoffice-fresh
+    libreoffice-stable
     obs-studio
     resources
     simple-scan
@@ -50,7 +50,7 @@
     devenv
     fd
     fzf
-    gemini-cli
+    antigravity-cli
     git-filter-repo
     gitleaks
     glib
