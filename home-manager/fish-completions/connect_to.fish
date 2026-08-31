@@ -1,4 +1,4 @@
-# Completions for CareerPlug's bin/ssh/connect_to (atsnix repo).
+# Completions for CareerPlug's bin/ssh/connect_to (ats repo).
 #
 # connect_to parses its flags with getopts "c:n:p:grstx" and then takes up to
 # two positional arguments: <environment> [role]. Flags therefore normally come
@@ -89,15 +89,15 @@ complete -c connect_to -n __connect_to_needs_environment -a staging -d 'Staging 
 complete -c connect_to -n __connect_to_needs_environment -a dev-staging -d 'Dev staging (requires a role and -n/CPSTAGING_NUM)'
 
 # Roles, narrowed to the ones the chosen environment actually maps to a server
-complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a web -d 'EC2ContainerService-production-ats-web'
-complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a worker -d 'EC2ContainerService-production-ats-worker'
+complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a web -d EC2ContainerService-production-ats-web
+complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a worker -d EC2ContainerService-production-ats-worker
 complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a escalation -d 'ats.production.escalations'
-complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a onb -d 'onb-production-classic-al2023'
-complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a onb-docs -d 'onb-production-classic-docs-clone'
+complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a onb -d onb-production-classic-al2023
+complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is production' -a onb-docs -d onb-production-classic-docs-clone
 
-complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is staging' -a web -d 'EC2ContainerService-staging-ats-web'
-complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is staging' -a worker -d 'EC2ContainerService-staging-ats-worker'
-complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is staging' -a onb -d 'onb-staging-classic'
+complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is staging' -a web -d EC2ContainerService-staging-ats-web
+complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is staging' -a worker -d EC2ContainerService-staging-ats-worker
+complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is staging' -a onb -d onb-staging-classic
 
 complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is dev-staging' -a web -d 'ats-staging-$n'
 complete -c connect_to -n '__connect_to_needs_role; and __connect_to_environment_is dev-staging' -a worker -d 'ats-staging-$n-worker'

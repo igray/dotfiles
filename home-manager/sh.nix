@@ -1,8 +1,9 @@
 {
   # Loaded from conf.d, not completions/: fish only autoloads completions/<cmd>.fish
   # for commands it can resolve (PATH/function/builtin), and connect_to only ever
-  # lives at bin/ssh/connect_to inside the atsnix checkout.
-  xdg.configFile."fish/conf.d/connect_to-completions.fish".source = ./fish-completions/connect_to.fish;
+  # lives at bin/ssh/connect_to inside the ats checkout.
+  xdg.configFile."fish/conf.d/connect_to-completions.fish".source =
+    ./fish-completions/connect_to.fish;
 
   programs = {
     fish = {

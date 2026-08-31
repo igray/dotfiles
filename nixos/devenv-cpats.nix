@@ -2,7 +2,7 @@
 
 with vars;
 {
-  # Single systemd-managed `devenv up` for the CPATS (atsnix) checkout, so a
+  # Single systemd-managed `devenv up` for the CPATS (ats) checkout, so a
   # stray second `devenv up` is a no-op instead of re-evaluating and bumping
   # the process-compose ports.
   systemd.user.services.devenv-cpats = {
@@ -18,10 +18,10 @@ with vars;
       nix
     ];
     serviceConfig = {
-      # `direnv exec` loads the atsnix .envrc so `devenv up` gets the same
+      # `direnv exec` loads the ats .envrc so `devenv up` gets the same
       # environment as an interactive shell.
-      ExecStart = "${pkgs.direnv}/bin/direnv exec /home/${username}/Work/cp/atsnix ${pkgs.devenv}/bin/devenv up";
-      WorkingDirectory = "/home/${username}/Work/cp/atsnix";
+      ExecStart = "${pkgs.direnv}/bin/direnv exec /home/${username}/Work/cp/ats ${pkgs.devenv}/bin/devenv up";
+      WorkingDirectory = "/home/${username}/Work/cp/ats";
       Restart = "on-failure";
       RestartSec = 10;
     };
