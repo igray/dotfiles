@@ -8,6 +8,7 @@ in
     ./glow.nix
     ./lf.nix
     ./nixvim.nix
+    ./opencode.nix
     ./packages.nix
     ./rclone.nix
     ./sh.nix
