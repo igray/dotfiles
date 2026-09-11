@@ -15,7 +15,10 @@
   nix = {
     settings = {
       download-buffer-size = 567108864;
-      experimental-features = "nix-command flakes";
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
       trusted-users = [
         "root"
