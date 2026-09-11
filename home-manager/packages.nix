@@ -77,7 +77,6 @@
     wget
     unzip
     uv
-    worktrunk
     zip
 
     # original config dependencies

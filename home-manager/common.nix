@@ -15,6 +15,7 @@ in
     ./sops.nix
     ./starship.nix
     ./tmux.nix
+    ./worktrunk.nix
     ./zk.nix
   ];
 
