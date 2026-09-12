@@ -10,6 +10,7 @@ in
     ./browser.nix
     ./claude-desktop.nix
     ./ghostty.nix
+    ./ollama.nix
     ./theme.nix
     ./wallpaper.nix
   ];

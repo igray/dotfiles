@@ -4,9 +4,12 @@ let
 in
 {
   imports = [
+    ./antigravity.nix
+    ./claude-code.nix
     ./git.nix
     ./glow.nix
     ./lf.nix
+    ./mpv.nix
     ./nixvim.nix
     ./opencode.nix
     ./packages.nix
@@ -16,6 +19,7 @@ in
     ./starship.nix
     ./tmux.nix
     ./worktrunk.nix
+    ./zed.nix
     ./zk.nix
   ];
 

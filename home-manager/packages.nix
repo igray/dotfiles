@@ -5,7 +5,6 @@
 {
   home.packages = with pkgs; [
     # gui
-    (mpv.override { scripts = [ mpvScripts.mpris ]; })
     annotator
     authenticator
     calibre
@@ -18,7 +17,6 @@
     gimp
     gnome-calculator
     gnome-characters
-    google-chrome
     icon-library
     inkscape
     kdePackages.kdenlive
@@ -34,7 +32,6 @@
     warp-terminal
     wf-recorder
     wl-clipboard
-    zed-editor
     zoom-us
 
     # tools
@@ -43,14 +40,11 @@
     bat
     bottom
     chafa
-    claude-code
     claude-desktop-fhs
     csvlens
     curl
     devenv
     fd
-    fzf
-    antigravity-cli
     git-filter-repo
     gitleaks
     glib
@@ -62,7 +56,6 @@
     libnotify
     marp-cli
     mermaid-cli
-    ollama-rocm
     pandoc
     pciutils
     powertop
@@ -72,7 +65,6 @@
     s3fs
     slides
     socat
-    unzip
     usbutils
     wget
     unzip
