@@ -11,6 +11,20 @@
     ];
   };
 
+  # amdgpu draws GTT from system RAM, and those pages are kernel-owned: they
+  # never show in any process RSS, so the OOM killer cannot target the model.
+  boot.kernelParams = [ "amdgpu.gttsize=32768" ];
+
+  # TTM reclaims GPU memory by swapping to shmem, which needs real swap to make
+  # progress; with none the kernel livelocks under GTT pressure instead of OOMing.
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
+  boot.kernel.sysctl."vm.swappiness" = 10;
+
   hardware.amd-npu = {
     enable = true;
 
