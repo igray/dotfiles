@@ -1,4 +1,4 @@
-{ inputs, vars, ... }:
+{ inputs, pkgs, vars, ... }:
 {
   imports = [ inputs.nix-amd-ai.nixosModules.default ];
 
@@ -10,6 +10,10 @@
       "nix-amd-ai.cachix.org-1:F4OU4vw/lV2oiG6SBHZ+nqjl4EFJuqI4X9A7pvaBmhQ="
     ];
   };
+
+  # FastFlowLM needs NPU firmware >=1.1.0.0, and only amdxdna on kernel >=7.0
+  # asks for amdnpu/17f0_10/npu_7.sbin; older builds get npu.sbin at 1.0.0.63.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # amdgpu draws GTT from system RAM, and those pages are kernel-owned: they
   # never show in any process RSS, so the OOM killer cannot target the model.
