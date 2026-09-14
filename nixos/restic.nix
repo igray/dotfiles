@@ -3,6 +3,7 @@
 let
   localServer = "192.168.86.10";
   localServerUser = "igray";
+  workSftpCommand = "sftp.command='ssh ${localServerUser}@${localServer} -i /home/${vars.username}/.ssh/restic -s sftp'";
   healthchecks = {
     nightly = "https://hc-ping.com/bd8d44e8-ce1d-4129-b33b-c4033110d3ba";
     work = "https://hc-ping.com/82f3ed12-5e50-42fa-9958-b53255c18202";
@@ -52,9 +53,7 @@ in
         work = {
           passwordFile = "/home/${vars.username}/.restic-password";
           repository = "sftp:${localServerUser}@${localServer}:/media/backup/restic";
-          extraOptions = [
-            "sftp.command='ssh ${localServerUser}@${localServer} -i /home/${vars.username}/.ssh/restic -s sftp'"
-          ];
+          extraOptions = [ workSftpCommand ];
           initialize = true;
           user = vars.username;
           paths = [
@@ -79,7 +78,7 @@ in
           ];
           backupPrepareCommand = ''
             ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.work}/start
-            ${pkgs.restic}/bin/restic unlock || true
+            ${pkgs.restic}/bin/restic -o ${workSftpCommand} unlock || true
           '';
           backupCleanupCommand = ''
             ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.work}
