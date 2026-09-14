@@ -13,6 +13,11 @@
       systemd.enable = true;
     };
     plymouth.enable = true;
+    kernel.sysctl = {
+      "kernel.softlockup_panic" = 1;
+      "kernel.hardlockup_panic" = 1;
+      "kernel.sysrq" = 1;
+    };
   };
   hardware = {
     amdgpu = {
@@ -34,6 +39,7 @@
     };
   };
   services = {
+    journald.settings.Journal.SyncIntervalSec = "15s";
     hardware.bolt.enable = true;
     udev.extraRules = ''
       SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl start --no-block battery-mode.service"
@@ -44,12 +50,16 @@
   systemd.services = {
     battery-mode = {
       description = "Switch to power-saver profile on battery";
+      requires = [ "power-profiles-daemon.service" ];
+      after = [ "power-profiles-daemon.service" ];
       script = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver";
       serviceConfig.Type = "oneshot";
     };
 
     ac-mode = {
       description = "Switch to performance profile on AC power";
+      requires = [ "power-profiles-daemon.service" ];
+      after = [ "power-profiles-daemon.service" ];
       script = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
       serviceConfig.Type = "oneshot";
     };
@@ -57,7 +67,8 @@
     power-profile-init = {
       description = "Set initial power profile based on AC status";
       after = [ "power-profiles-daemon.service" ];
-      wantedBy = [ "multi-user.target" ];
+      # Upstream orders power-profiles-daemon after multi-user.target.
+      wantedBy = [ "power-profiles-daemon.service" ];
       script = ''
         for adapter in /sys/class/power_supply/*/type; do
           if [ "$(cat "$adapter")" = "Mains" ]; then
