@@ -21,7 +21,15 @@
   # We use `withPackages` rather than exporting PYTHONPATH so the SDK rides on
   # THIS interpreter's own sys.path and never shadows project deps in other
   # python invocations the agent makes.
-  (final: prev: {
+  (final: prev:
+  let
+    workProfileDirs = [
+      "Work/cp"
+      "Work/assistant"
+    ];
+    workProfilePatterns = final.lib.concatMapStringsSep " | " (d: ''"$HOME/${d}/"*'') workProfileDirs;
+  in
+  {
     claude-code = final.symlinkJoin {
       name = "claude-code-wrapped-${prev.claude-code.version or "unknown"}";
       paths = [ prev.claude-code ];
@@ -32,7 +40,8 @@
             final.lib.makeBinPath [
               (final.python3.withPackages (ps: [ ps.claude-agent-sdk ]))
             ]
-          }
+          } \
+          --run 'if [ -z "''${CLAUDE_CONFIG_DIR-}" ]; then case "$PWD/" in ${workProfilePatterns}) ;; *) export CLAUDE_CONFIG_DIR="$HOME/.claude-personal" ;; esac; fi'
       '';
     };
   })

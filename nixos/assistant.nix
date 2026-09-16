@@ -34,6 +34,8 @@ with vars;
             uv
             worktrunk
           ];
+          # Tasks may run claude outside the wrapper's work-profile dirs.
+          environment.CLAUDE_CONFIG_DIR = "/home/${username}/.claude";
           serviceConfig = {
             Type = "oneshot";
             ExecStart = "/home/${username}/Work/assistant/dispatcher.sh";
