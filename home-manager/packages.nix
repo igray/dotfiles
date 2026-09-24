@@ -30,7 +30,6 @@
     sshfs
     vlc
     warp-terminal
-    wf-recorder
     wl-clipboard
     zoom-us
 

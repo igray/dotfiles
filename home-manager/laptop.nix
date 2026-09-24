@@ -9,8 +9,10 @@ in
     ./android.nix
     ./browser.nix
     ./claude-desktop.nix
+    ./dictation.nix
     ./ghostty.nix
     ./ollama.nix
+    ./screen-recording.nix
     ./theme.nix
     ./wallpaper.nix
   ];
