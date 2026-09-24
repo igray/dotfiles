@@ -8,6 +8,7 @@ in
     ./claude-code.nix
     ./git.nix
     ./glow.nix
+    ./herdr.nix
     ./lf.nix
     ./mpv.nix
     ./nixvim.nix
