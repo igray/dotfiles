@@ -1,14 +1,7 @@
 { pkgs, ... }:
 {
   boot = {
-    kernelParams = [
-      "quiet"
-      # Diagnose slow reboots: an RCU-Tasks grace period stalls the final
-      # shutdown phase for minutes. These make the kernel dump the holdout
-      # task(s) quickly so the culprit shows up in the next boot's journal.
-      "rcupdate.rcu_task_stall_info=1"
-      "rcupdate.rcu_task_stall_timeout=10"
-    ];
+    kernelParams = [ "quiet" ];
     initrd = {
       systemd.enable = true;
     };
