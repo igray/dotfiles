@@ -10,6 +10,7 @@
       "kernel.softlockup_panic" = 1;
       "kernel.hardlockup_panic" = 1;
       "kernel.sysrq" = 1;
+      "kernel.panic" = 10;
     };
   };
   hardware = {
