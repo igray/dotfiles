@@ -11,7 +11,6 @@
     ];
     hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
   };
-  boot.initrd.systemd.enable = true;
 
   # Headless box in a case: no lid, ignore the power key so a stray press
   # can't suspend it.

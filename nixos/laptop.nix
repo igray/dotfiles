@@ -2,9 +2,6 @@
 {
   boot = {
     kernelParams = [ "quiet" ];
-    initrd = {
-      systemd.enable = true;
-    };
     plymouth.enable = true;
     kernel.sysctl = {
       "kernel.softlockup_panic" = 1;
