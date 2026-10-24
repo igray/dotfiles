@@ -11,6 +11,7 @@
     ../../nixos/restic.nix
     ../../nixos/amd-ai.nix
     ../../nixos/wireguard.nix
+    ../../nixos/cosmic-nightlight.nix
   ];
 
   # GUI/VAAPI video-acceleration debug tools (laptop-only; common.nix omits VAAPI).
