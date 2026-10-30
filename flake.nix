@@ -34,7 +34,7 @@
     # backends from source.
     nix-amd-ai.url = "github:noamsto/nix-amd-ai";
     claude-code.url = "github:sadjow/claude-code-nix";
-    claude-desktop.url = "github:aaddrick/claude-desktop-debian?ref=v3.3.13%2Bclaude3.6556.2";
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian?ref=v3.3.14%2Bclaude4.29.0";
   };
 
   outputs =
