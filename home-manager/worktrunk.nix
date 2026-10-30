@@ -12,7 +12,8 @@
       post-switch.herdr = "herdr worktree open --cwd {{ repo_path }} --path {{ worktree_path }} --label {{ branch }}";
 
       projects."github.com/CareerPlug/ats".pre-start.claude =
-        "rm -rf .claude && ln -s {{ primary_worktree_path }}/.claude .claude && ln -s {{ primary_worktree_path }}/CLAUDE.local.md CLAUDE.local.md";
+        "rm -rf .claude && ln -s {{ primary_worktree_path }}/.claude .claude && ln -s {{ primary_worktree_path }}/CLAUDE.local.md CLAUDE.local.md && ln -s {{ primary_worktree_path }}/.mcp.json .mcp.json";
+      projects."github.com/CareerPlug/ats".post-start.assets = "yarn build";
     };
   };
 }
