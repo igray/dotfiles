@@ -6,7 +6,7 @@
 
   # sshd runs ~/.ssh/rc on every login, including herdr's bridge connections.
   home.file.".ssh/rc".text = ''
-    if [ -S "$SSH_AUTH_SOCK" ]; then
+    if [ -S "$SSH_AUTH_SOCK" ] && ! [ -S "$HOME/.ssh/auth_sock" ]; then
       ln -sfn "$SSH_AUTH_SOCK" "$HOME/.ssh/auth_sock"
     fi
   '';
