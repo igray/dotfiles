@@ -2,10 +2,7 @@
 let
   # RADV is the only GPU backend that fits this box: the ONNX engines (parakeet,
   # moonshine, ...) are CUDA/MIGraphX-oriented and are left out of the build.
-  # nixpkgs' voxtype 1.1.1 links -lsqlite3 but omits sqlite from buildInputs.
-  voxtype = (pkgs.voxtype.override { vulkanSupport = true; }).overrideAttrs (old: {
-    buildInputs = old.buildInputs ++ [ pkgs.sqlite ];
-  });
+  voxtype = pkgs.voxtype.override { vulkanSupport = true; };
 in
 {
   home.packages = [ voxtype ];
