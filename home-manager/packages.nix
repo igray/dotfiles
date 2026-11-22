@@ -5,7 +5,7 @@
 {
   home.packages = with pkgs; [
     # gui
-    annotator
+    satty
     authenticator
     calibre
     d-spy
