@@ -105,6 +105,7 @@
           hostModule = ./hosts/work-server;
           hwModules = [ nixos-hardware.nixosModules.framework-13-7040-amd ];
         };
+        server = mkNixos { hostModule = ./hosts/server; };
       };
 
       homeConfigurations = {
