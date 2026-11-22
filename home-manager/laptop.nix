@@ -11,7 +11,9 @@ in
     ./claude-desktop.nix
     ./dictation.nix
     ./ghostty.nix
+    ./herdr-desktop.nix
     ./ollama.nix
+    ./packages-gui.nix
     ./screen-recording.nix
     ./theme.nix
     ./wallpaper.nix

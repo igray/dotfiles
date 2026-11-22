@@ -1,0 +1,35 @@
+{
+  pkgs,
+  ...
+}:
+{
+  home.packages = with pkgs; [
+    authenticator
+    calibre
+    claude-desktop-fhs
+    d-spy
+    dconf-editor
+    discord
+    emote
+    foliate
+    font-manager
+    gimp
+    gnome-calculator
+    gnome-characters
+    icon-library
+    inkscape
+    kdePackages.kdenlive
+    libreoffice-stable
+    obs-studio
+    resources
+    satty
+    simple-scan
+    shattered-pixel-dungeon
+    slack
+    spotify
+    vlc
+    warp-terminal
+    wl-clipboard
+    zoom-us
+  ];
+}

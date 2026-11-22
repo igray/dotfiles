@@ -4,42 +4,11 @@
 }:
 {
   home.packages = with pkgs; [
-    # gui
-    satty
-    authenticator
-    calibre
-    d-spy
-    dconf-editor
-    discord
-    emote
-    foliate
-    font-manager
-    gimp
-    gnome-calculator
-    gnome-characters
-    icon-library
-    inkscape
-    kdePackages.kdenlive
-    libreoffice-stable
-    obs-studio
-    resources
-    simple-scan
-    shattered-pixel-dungeon
-    slack
-    spotify
-    sshfs
-    vlc
-    warp-terminal
-    wl-clipboard
-    zoom-us
-
-    # tools
     acpi
     atac
     bat
     bottom
     chafa
-    claude-desktop-fhs
     csvlens
     curl
     devenv
@@ -47,6 +16,7 @@
     git-filter-repo
     gitleaks
     glib
+    herdr-core
     inotify-tools
     jira-cli-go
     jq
@@ -64,6 +34,7 @@
     s3fs
     slides
     socat
+    sshfs
     usbutils
     wget
     unzip
