@@ -26,6 +26,74 @@ let
     }
   );
 
+  # Herdr has no weight setting and asks a family for 400 and 700, so the faces
+  # Ghostty uses are re-registered at those weights under their own family.
+  terminalFont = "JetBrainsMono Herdr";
+  ghosttyStyle = key: lib.head (lib.toList config.programs.ghostty.settings.${key});
+  faces = {
+    "Regular" = ghosttyStyle "font-style";
+    "Bold" = ghosttyStyle "font-style-bold";
+    "Italic" = ghosttyStyle "font-style-italic";
+    "Bold Italic" = ghosttyStyle "font-style-bold-italic";
+  };
+
+  retagFont = pkgs.writeText "retag-font.py" ''
+    import sys
+    from fontTools.ttLib import TTFont
+
+    src, dst, family, style = sys.argv[1:5]
+    bold = "Bold" in style
+    italic = "Italic" in style
+    names = {
+        1: family,
+        2: style,
+        4: f"{family} {style}",
+        6: f"{family}-{style}".replace(" ", ""),
+        16: family,
+        17: style,
+    }
+    font = TTFont(src)
+    for record in list(font["name"].names):
+        if record.nameID in names:
+            record.string = names[record.nameID]
+    os2 = font["OS/2"]
+    os2.usWeightClass = 700 if bold else 400
+    os2.fsSelection = (os2.fsSelection & ~0x61) | (
+        (0x20 if bold else 0) | (0x01 if italic else 0) or 0x40
+    )
+    font["head"].macStyle = (1 if bold else 0) | (2 if italic else 0)
+    font.save(dst)
+  '';
+
+  terminalFonts =
+    pkgs.runCommand "herdr-app-terminal-fonts"
+      {
+        nativeBuildInputs = [ (pkgs.python3.withPackages (ps: [ ps.fonttools ])) ];
+      }
+      (
+        "mkdir $out\n"
+        + lib.concatStrings (
+          lib.mapAttrsToList (style: source: ''
+            python3 ${retagFont} \
+              ${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFont-${
+                lib.replaceStrings [ " " ] [ "" ] source
+              }.ttf \
+              "$out/${lib.replaceStrings [ " " ] [ "" ] style}.ttf" ${lib.escapeShellArgs [
+                terminalFont
+                style
+              ]}
+          '') faces
+        )
+      );
+
+  fonts = lib.genAttrs' (lib.attrNames faces) (
+    style:
+    let
+      file = "${lib.replaceStrings [ " " ] [ "" ] style}.ttf";
+    in
+    lib.nameValuePair "${appHome}/fonts/${file}" { source = "${terminalFonts}/${file}"; }
+  );
+
   prFlowBlock = (pkgs.formats.json { }).generate "herdr-app-pr-flow-block.json" {
     id = "pr-flow";
     type = "block";
@@ -55,6 +123,8 @@ let
 
   settings = (pkgs.formats.json { }).generate "herdr-app-settings.json" {
     sounds.enabled = false;
+    font = terminalFont;
+    font_size = 14.2;
     theme = {
       dark = "solarized-dark";
       light = "solarized-light";
@@ -67,6 +137,7 @@ in
   xdg.configFile =
     mods
     // themes
+    // fonts
     // {
       "${appHome}/layouts/home.json".source = layout;
     };
