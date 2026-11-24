@@ -94,6 +94,43 @@ let
     lib.nameValuePair "${appHome}/fonts/${file}" { source = "${terminalFonts}/${file}"; }
   );
 
+  # deploy-watch reveals this column and selects its tab by these ids.
+  insightsColumn = (pkgs.formats.json { }).generate "herdr-app-insights-column.json" {
+    id = "insights";
+    type = "column";
+    size.px = 380;
+    min = 280;
+    max = 900;
+    children = [
+      {
+        id = "insights-tabs";
+        type = "stack";
+        header.content = "tabs";
+        active = "reviews";
+        children = [
+          {
+            id = "reviews";
+            title = "Reviews";
+            type = "block";
+            content.mod = "pr-reviews";
+          }
+          {
+            id = "deploy";
+            title = "Deploy";
+            type = "block";
+            content.mod = "deploy-watch";
+          }
+          {
+            id = "wh-plan";
+            title = "WH Plan";
+            type = "block";
+            content.mod = "wh-plan";
+          }
+        ];
+      }
+    ];
+  };
+
   # Herdr restores its shipped layouts on every start, so changes to main
   # have to live in a layout under another name.
   layout =
@@ -102,7 +139,11 @@ let
         nativeBuildInputs = [ pkgs.jq ];
       }
       ''
-        jq '.toast = "system-toast"' ${pkgs.herdr-desktop.src}/defaults/layouts/main.json > $out
+        jq --slurpfile insights ${insightsColumn} '
+          .toast = "system-toast"
+          | (.. | objects | select(.id == "work-body") | .children) += $insights
+        ' ${pkgs.herdr-desktop.src}/defaults/layouts/main.json > $out
+        jq -e '[.. | objects | select(.id == "insights")] | length == 1' $out > /dev/null
       '';
 
   settings = (pkgs.formats.json { }).generate "herdr-app-settings.json" {
