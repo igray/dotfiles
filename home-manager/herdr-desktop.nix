@@ -94,18 +94,6 @@ let
     lib.nameValuePair "${appHome}/fonts/${file}" { source = "${terminalFonts}/${file}"; }
   );
 
-  prFlowBlock = (pkgs.formats.json { }).generate "herdr-app-pr-flow-block.json" {
-    id = "pr-flow";
-    type = "block";
-    content = {
-      mod = "pr-flow";
-      props.mine = true;
-    };
-    size.px = 340;
-    min = 260;
-    max = 700;
-  };
-
   # Herdr restores its shipped layouts on every start, so changes to main
   # have to live in a layout under another name.
   layout =
@@ -114,11 +102,7 @@ let
         nativeBuildInputs = [ pkgs.jq ];
       }
       ''
-        jq --slurpfile prFlow ${prFlowBlock} '
-          .toast = "system-toast"
-          | (.. | objects | select(.id == "work-body") | .children) += $prFlow
-        ' ${pkgs.herdr-desktop.src}/defaults/layouts/main.json > $out
-        jq -e '[.. | objects | select(.id == "pr-flow")] | length == 1' $out > /dev/null
+        jq '.toast = "system-toast"' ${pkgs.herdr-desktop.src}/defaults/layouts/main.json > $out
       '';
 
   settings = (pkgs.formats.json { }).generate "herdr-app-settings.json" {
