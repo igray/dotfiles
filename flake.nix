@@ -122,6 +122,7 @@
             age
             sops
             ssh-to-age
+            jq
           ];
         };
     };

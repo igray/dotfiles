@@ -1,4 +1,4 @@
-{ pkgs, vars, ...}:
+{ config, pkgs, vars, ...}:
 
 let
   localServer = "192.168.86.10";
@@ -11,6 +11,15 @@ let
 in
 # backupCleanupCommand runs as ExecStopPost, where systemd sets EXIT_STATUS; healthchecks.io treats a non-zero suffix as a failure.
 {
+  sops.secrets = {
+    "restic/nightly-password".sopsFile = ../secrets/laptop.yaml;
+    "restic/nightly-env".sopsFile = ../secrets/laptop.yaml;
+    "restic/work-password" = {
+      sopsFile = ../secrets/laptop.yaml;
+      owner = vars.username;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     restic
   ];
@@ -18,8 +27,8 @@ in
     restic = {
       backups = {
         nightly = {
-          passwordFile = "/etc/nixos/restic-password";
-          environmentFile = "/etc/nixos/restic.env";
+          passwordFile = config.sops.secrets."restic/nightly-password".path;
+          environmentFile = config.sops.secrets."restic/nightly-env".path;
           repository = "s3:s3.amazonaws.com/resticlaptop";
           initialize = true;
           paths = [
@@ -52,7 +61,7 @@ in
           '';
         };
         work = {
-          passwordFile = "/home/${vars.username}/.restic-password";
+          passwordFile = config.sops.secrets."restic/work-password".path;
           repository = "sftp:${localServerUser}@${localServer}:/media/backup/restic";
           extraOptions = [ workSftpCommand ];
           initialize = true;
