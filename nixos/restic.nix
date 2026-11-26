@@ -9,6 +9,7 @@ let
     work = "https://hc-ping.com/82f3ed12-5e50-42fa-9958-b53255c18202";
   };
 in
+# backupCleanupCommand runs as ExecStopPost, where systemd sets EXIT_STATUS; healthchecks.io treats a non-zero suffix as a failure.
 {
   environment.systemPackages = with pkgs; [
     restic
@@ -47,7 +48,7 @@ in
             ${pkgs.restic}/bin/restic unlock || true
           '';
           backupCleanupCommand = ''
-            ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.nightly}
+            ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.nightly}/''${EXIT_STATUS:-1}
           '';
         };
         work = {
@@ -81,7 +82,7 @@ in
             ${pkgs.restic}/bin/restic -o ${workSftpCommand} unlock || true
           '';
           backupCleanupCommand = ''
-            ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.work}
+            ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 ${healthchecks.work}/''${EXIT_STATUS:-1}
           '';
         };
       };
