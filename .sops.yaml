@@ -3,8 +3,14 @@ keys:
   # Derived from laptop's /etc/ssh/ssh_host_ed25519_key via ssh-to-age. Lets the
   # NixOS-level sops-nix module decrypt at boot, before any user is logged in.
   - &laptop-host age1xjn2ccjfwr79hfa6rnndnwhvmrt5mlr4xy8txgw7l6vzf478reksvlxj07
+  - &server-host age1t7jyjx5e2qgm4ahfkh5aqgg03nqn7prkjgv9mmu70p9y09npepds8hahft
 
 creation_rules:
+  - path_regex: secrets/server\.yaml$
+    key_groups:
+      - age:
+          - *igray
+          - *server-host
   # Host-level secrets: readable by the machine itself, not just the user.
   - path_regex: secrets/laptop\.yaml$
     key_groups:

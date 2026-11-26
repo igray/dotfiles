@@ -7,5 +7,6 @@
     ../../nixos/server-web.nix
     ../../nixos/server-media.nix
     ../../nixos/server-shares.nix
+    ../../nixos/server-backup.nix
   ];
 }

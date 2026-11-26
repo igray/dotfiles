@@ -112,5 +112,17 @@
         "igray@laptop" = mkHome ./home-manager/laptop.nix;
         "igray@work-server" = mkHome ./home-manager/work-server.nix;
       };
+
+      devShells.${system}.default =
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        pkgs.mkShell {
+          packages = with pkgs; [
+            age
+            sops
+            ssh-to-age
+          ];
+        };
     };
 }
