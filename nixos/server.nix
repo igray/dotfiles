@@ -47,7 +47,6 @@ in
   boot.swraid = {
     enable = true;
     mdadmConf = ''
-      MAILADDR root
       ARRAY /dev/md/mediaraid metadata=1.2 UUID=51adf3d9:c34d2b43:922a800f:2c01cafb
       ARRAY /dev/md/0 metadata=1.2 UUID=fcdeacfa:042443b2:a07c1b20:5c997485
     '';

@@ -8,5 +8,6 @@
     ../../nixos/server-media.nix
     ../../nixos/server-shares.nix
     ../../nixos/server-backup.nix
+    ../../nixos/server-disk-alerts.nix
   ];
 }
