@@ -12,7 +12,7 @@ This is a NixOS and Home Manager dotfiles configuration for two Framework machin
 - **hosts/**: Per-host entry points (`hosts/<name>/default.nix` + `hardware-configuration.nix`)
 - **nixos/**: Shared and host-specific system-level NixOS modules (imported by the host entry points)
 - **home-manager/**: User-level configuration modules (applications, dotfiles, packages)
-- **bin/**: Custom scripts (mainly restic backup scripts)
+- **bin/**: Custom scripts
 
 The configuration targets a single user (igray) with the username variable defined in flake.nix.
 
